@@ -1,3 +1,4 @@
 JavaScript, Java
 Visual Studio Code, Intellij
 Windows
+terminal: CMD
