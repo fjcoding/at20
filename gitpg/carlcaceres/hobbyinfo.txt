@@ -1,1 +1,2 @@
 1. VolleyBall, 2. WallyBall, 3. BaseBall, 4. Ping Pong y 5. RaquetBall
+1. Rock, 2. PunkRock, 3. Pop, 4. R&B, 5. Clasica y 6. Electronic
