@@ -1,0 +1,23 @@
+{
+  "name": "at20",
+  "version": "1.0.0",
+  "description": "Coding (Dev Fundamentals) repository for AT20 group",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fjcoding/at20.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fjcoding/at20/issues"
+  },
+  "homepage": "https://github.com/fjcoding/at20#readme",
+  "devDependencies": {
+    "eslint": "^8.32.0"
+  }
+}
