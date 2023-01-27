@@ -1,3 +1,4 @@
 AMD Ryzen 5
-16GB RAM
+16GB
 250GB
+pc code: AMDRyzen5-16g-250g

@@ -2,3 +2,4 @@
 1. Visual Studio Code, 2. Sublime Text, 3. Netbeans y 4. Atom
 Linux Ubuntu y Windows
 langs count: 5
+tech code:c-Visual Studio Code

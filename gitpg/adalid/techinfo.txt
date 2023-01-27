@@ -2,3 +2,4 @@ JavaScript, Java
 Visual Studio Code, Intellij
 Windows
 langs count: 2
+tech code:JavaScript-Visual Studio Code
