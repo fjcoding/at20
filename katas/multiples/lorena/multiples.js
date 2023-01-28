@@ -1,6 +1,6 @@
 
-const limit = process.argv[0]; // number limit
-//var limit = 100;
+const limit = process.argv[2]; // first argumentvar limit = prompt('digite un numero?'); // number limit
+//var limit = -15;
 var addsum = 0;
 
 if( limit >= 0){
@@ -8,7 +8,7 @@ if( limit >= 0){
         if(i % 3 == 0 || i % 5 == 0)
             addsum = addsum + i;
     }
-    console.log ("The sum is ${addsum}")
+    console.log(`The sum is: ${addsum}`)
     }
 else
     console.log (0)
