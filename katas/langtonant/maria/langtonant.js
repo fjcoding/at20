@@ -2,10 +2,10 @@ var gridSize = process.argv[2];
 var steps = process.argv[3];
 
 var gridRow = new Array();
-for (x = 0; x < gridSize ; x++){
+for (let x = 0; x < gridSize ; x++){
     gridRow[x] = new Array();
-    for (y = 0; y < gridSize ; y++){
-    gridRow[x][y]= 0;
+    for (let y = 0; y < gridSize ; y++){
+        gridRow[x][y]= 0;
     }
 }
 
