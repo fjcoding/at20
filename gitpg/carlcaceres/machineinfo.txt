@@ -2,3 +2,5 @@ Lenovo Ipad S340		Intel Core i5 1035G4 CPU @ 1.10GHz (8 CPUs), 1.5GHz
 8GB de RAM
 1TB de Almacenamiento
 CPU Brand: Intel
+capacity code: 8g-1000g
+pc code: Intel-8g-1000g
