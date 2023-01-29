@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form id="number" action="/action_page.php">
+  
+entry number: <input type="number" name="fnumber" value=""><br>
+
+</form> 
+<button onclick="multiples()">find 3-5 Multiples Sum</button>
+
+<p id="R"></p>
+
+<script>
+function multiples() {
+  var x = document.getElementById("number");
+  var text = "";
+  var i;
+  var y=0;
+  for (i = 0; i < x.length ;i++) {
+    text += x.elements[i].value;
+  }
+  var j=parseInt(text);
+  var m;
+   for(m=0;m<j;m++)
+   {
+    if(m%3==0){
+        y=y+m;
+    }
+    if(m%5==0){
+        y=y+m;
+    }
+   }
+   var sum=y;
+   
+  document.getElementById("R").innerHTML = sum;
+}
+</script>
+
+</body>
+</html>
