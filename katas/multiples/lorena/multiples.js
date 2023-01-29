@@ -1,6 +1,6 @@
 
-const limit = process.argv[2]; // first argumentvar limit = prompt('digite un numero?'); // number limit
-//var limit = -15;
+const limit = process.argv[2]; // number limit
+
 var addsum = 0;
 
 if( limit >= 0){
