@@ -20,7 +20,7 @@ function main() {
         if (number >= 0) {
             sumOfMultiples(number);
         } else {
-            console.log("0");
+            console.log('0');
         }
     } else {
         console.log('You must enter a number');
