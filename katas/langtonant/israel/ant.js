@@ -1,6 +1,6 @@
-/* 
+/*
        up
-      ---- 
+      ----
      |0000|
 left |0000| right
      |0000|
@@ -12,70 +12,55 @@ In simple words ANT is like a vector so it has a position(x,y) and a direction(u
 */
 
 module.exports = class ant {
-    constructor(position_ant,direction_ant){
-        this.position_ant = position_ant;
-        this.direction_ant = direction_ant;
+    constructor(positionAnt, directionAnt) {
+        this.positionAnt = positionAnt;
+        this.directionAnt = directionAnt;
     }
 
-    new_direction(direction,color){
-        //with black color
-
-        if(direction == "up" && color == "black"){
-            return "left";
-        }
-        else if(direction == "down" && color == "black"){
-            return "right";
-        }
-        else if(direction == "left" && color == "black"){
-            return "down";
-        }
-        else if(direction == "right" && color == "black"){
-            return "up";
+    newDirection(direction, color) {
+        if (direction == 'up' && color == 'black') {
+            return 'left';
+        } else if (direction == 'down' && color == 'black') {
+            return 'right';
+        } else if (direction == 'left' && color == 'black') {
+            return 'down';
+        } else if (direction == 'right' && color == 'black') {
+            return 'up';
         }
 
-        //with white color
-
-        if(direction == "up" && color == "white"){
-            return "right";
-        }
-        else if(direction == "down" && color == "white"){
-            return "left";
-        }
-        else if(direction == "left" && color == "white"){
-            return "up";
-        }
-        else if(direction == "right" && color == "white"){
-            return "down";
-        }
-
-    }
-
-
-    new_position(direction,position){
-        let new_position = [position[0], position[1]];
-    
-        if(direction == "up"){
-            new_position[1] -= 1; 
-            return new_position;
-        }
-        else if(direction == "down"){
-            new_position[1] += 1; 
-            return new_position;
-        }
-        else if(direction == "left"){
-            new_position[0] -= 1; 
-            return new_position;
-        }
-        else if(direction == "right" ){
-            new_position[0] += 1; 
-            return new_position;
+        if (direction == 'up' && color == 'white') {
+            return 'right';
+        } else if (direction == 'down' && color == 'white') {
+            return 'left';
+        } else if (direction == 'left' && color == 'white') {
+            return 'up';
+        } else if (direction == 'right' && color == 'white') {
+            return 'down';
         }
     }
 
-    move (color){
-        let new_direction = this.new_direction(this.direction_ant,color);
-        let new_position = this.new_position(new_direction,this.position_ant)
-        this.direction_ant = new_direction
-        this.position_ant = new_position;
+    newPosition(direction, position) {
+        let newPosition = [position[0], position[1]];
+
+        if (direction == 'up') {
+            newPosition[1] -= 1;
+            return newPosition;
+        } else if (direction == 'down') {
+            newPosition[1] += 1;
+            return newPosition;
+        } else if (direction == 'left') {
+            newPosition[0] -= 1;
+            return newPosition;
+        } else if (direction == 'right') {
+            newPosition[0] += 1;
+            return newPosition;
+        }
     }
-}
+
+    move (color) {
+        let newDirection = this.newDirection(this.directionAnt, color);
+        let newPosition = this.newPosition(newDirection, this.positionAnt);
+        this.directionAnt = newDirection;
+        this.positionAnt = newPosition;
+    }
+};
