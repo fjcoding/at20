@@ -49,7 +49,7 @@ can_ob.fillRect(0, 0, width, height);//Place the grid on the canvas
         if (state.data[0] == w_st && state.data[1] == w_st && state.data[2] == w_st ){
             ant_dir+=1;
             if (ant_dir > 3 ){
-                   ant_dir=ant_up
+                   ant_dir=ant_up;
             }
         
             can_ob.fillStyle = dark;
@@ -93,7 +93,7 @@ function move(dir) {
 
     else if(dir == ant_l){
         ant_x-=pixelSize;
-        ant_y=ant_y
+        ant_y=ant_y;
     } 
 
     // console.log("Coordinates x y: ");
