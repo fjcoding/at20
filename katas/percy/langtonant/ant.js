@@ -1,113 +1,78 @@
-window.onload = function() {
-  canvas = document.getElementById('grid');
-  ctx = canvas.getContext('2d');
-  const grid = new Grid(canvas.width, canvas.height);
-  grid.init();
-  setInterval(moveAnt, 1000/20, grid);
+let grid;
+let x;
+let y;
+let dir;
 
-}
-
-const ANTUP = 0;
-const ANTRIGHT = 1;
-const ANTDOWN = 2;
-const ANTLEFT = 3;
-
-class Ant {
-  x = 0;
-  y = 0;
-
-  direction = ANTRIGHT;
-
-  moveForward(width, height) {
-    switch (this.direction) {
-      case ANTUP:
-        this.x = ((this.x - 1) + width) % width;
-        break;
-      case ANTRIGHT:
-        this.y = ((this.y + 1) + height) % height;
-        break;
-      case ANTDOWN:
-        this.x = ((this.x + 1) + width) % width;
-        break;
-      case ANTLEFT:
-        this.y = ((this.y - 1) + height) % height;
-        break;
+let ANTUP = 0;
+let ANTRIGHT = 1;
+let ANTDOWN = 2;
+let ANTLEFT = 3;
+var width = 200;
+var height = 200;
+grid = [width][height];
+x = width / 2;
+y = height / 2;
+dir = ANTUP;
+function turnRight() {
+    dir++;
+    if (dir > ANTLEFT) {
+        dir = ANTUP;
     }
-  }
-
-  rotateRight() {
-    this.direction = ((this.direction + 1) + (ANTLEFT + 1)) % (ANTLEFT + 1);
-  }
-
-  rotateLeft() {
-    this.direction = ((this.direction - 1) + (ANTLEFT + 1)) % (ANTLEFT + 1);
-  }
 }
 
-class Cell {
-  alive = false;
-
-  setAlive(alive) {
-    this.alive = alive;
-  }
-
-  get isAlive() {
-    return this.alive;
-  }
-}
-
-class Grid {
-  cells = [];
-  ant;
-  height = 0;
-  width = 0;
-  moves = 0;
-
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
-
-  init() {
-    for (let x = 0; x < this.width; x++) {
-      this.cells[x] = [];
-      for (let y = 0; y < this.height; y++) {
-        const cell = new Cell();
-        this.cells[x][y] = cell;
-      }
+function turnLeft() {
+    dir--;
+    if (dir < ANTUP) {
+        dir = ANTLEFT;
     }
-    this.ant = new Ant();
-    this.ant.x = this.width / 2;
-    this.ant.y = this.height / 2;
-  }
+}
 
-  move () {
-    for (let i = 0; i < 100; i++) {
-      let cell = this.cells[this.ant.x][this.ant.y];
-      if (cell.isAlive) {
-        cell.alive = false;
-        ctx.fillStyle = 'white';
-        ctx.fillRect(this.ant.x, this.ant.y, 1, 1);
-        this.ant.rotateRight();
-        this.ant.moveForward(this.width, this.height);
-      }
-      else {
-        cell.alive = true;
-        ctx.fillStyle = 'black';
-        ctx.fillRect(this.ant.x, this.ant.y, 1, 1);
-        this.ant.rotateLeft();
-        this.ant.moveForward(this.width, this.height);
-      }
-      ctx.fillStyle = 'red';
-      ctx.fillRect(this.ant.x, this.ant.y, 1, 1);
-      this.moves++;
+function moveForward() {
+    if (dir == ANTUP) {
+        y--;
+    } else if (dir == ANTRIGHT) {
+        x++;
+    } else if (dir == ANTDOWN) {
+        y++;
+    } else if (dir == ANTLEFT) {
+        x--;
     }
-  }
-}
 
-function moveAnt(grid) {
-  grid.move();
-  ctx.stroke();
-  var moves = document.getElementById('moves');
-  moves.innerHTML = grid.moves;
+    if (x > width - 1) {
+        x = 0;
+    } else if (x < 0) {
+        x = width - 1;
+    }
+    if (y > height - 1) {
+        y = 0;
+    } else if (y < 0) {
+        y = height - 1;
+    }
 }
+for (let n = 0; n < 100; n++) {
+    let state = grid[x][y];
+    if (state == 0) {
+        turnRight();
+        grid[x][y] = 1;
+        console.log('*');
+    } else if (state == 1) {
+        turnLeft();
+        grid[x][y] = 0;
+        console.log('*');
+    }
+    if (grid[x][y] == 1) {
+        console.log('*');
+    }
+
+    moveForward();
+}
+/*function make2DArray(cols, rows) {
+    let arr = new Array(cols);
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = new Array(rows);
+        for (let j = 0; j < arr[i].length; j++) {
+            arr[i][j] = 0;
+        }
+    }
+    return arr;
+}*/
