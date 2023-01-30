@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Langton's Ant</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Create a canvas element -->
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <script>
+      // Initialize the grid and set its size
+      const grid = [];
+      const gridSize = 40;
+      const cellSize = 20;
+
+      // Initialize the ant's position and direction
+      let antX = Math.floor(gridSize / 2);
+      let antY = Math.floor(gridSize / 2);
+      let antDirection = "up";
+
+      // Set the number of steps for the simulation
+      const numSteps = 10000;
+      let currentStep = 0;
+
+      // Get the canvas and its context
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      // Fill the grid with white cells
+      for (let x = 0; x < gridSize; x++) {
+        grid[x] = [];
+        for (let y = 0; y < gridSize; y++) {
+          grid[x][y] = "white";
+        }
+      }
+
+      // Function to update the canvas and simulate the ant's movement
+      function updateCanvas() {
+        // Stop the simulation if all the steps have been completed
+        if (currentStep >= numSteps) {
+          return;
+        }
+
+        // Change the direction of the ant and the color of the current cell based on the current color
+        if (grid[antX][antY] === "white") {
+          antDirection = (antDirection === "up") ? "right" : (antDirection === "right") ? "down" : (antDirection === "down") ? "left" : "up";
+          grid[antX][antY] = "black";
+        } else {
+          antDirection = (antDirection === "up") ? "left" : (antDirection === "left") ? "down" : (antDirection === "down") ? "right" : "up";
+          grid[antX][antY] = "white";
+        }
+
+        // Update the position of the ant based on its current direction
+        if (antDirection === "up") {
+          antY--;
+        } else if (antDirection === "right") {
+          antX++;
+        } else if (antDirection === "down") {
+          antY++;
+        } else {
+          antX--;
+        }
+
+        // Draw the updated state of the grid on the canvas
+        for (let x = 0; x < gridSize; x++) {
+          for (let y = 0; y < gridSize; y++) {
+            ctx.fillStyle = grid[x][y];
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+          }
+        }
+
+        // Draw the ant on the canvas
+        ctx.fillStyle = "red";
+        ctx.fillRect(antX * cellSize, antY * cellSize, cellSize, cellSize);
+        currentStep++;
+      }
+      setInterval(updateCanvas, 300);
+    </script>
+  </body>
+</html>
