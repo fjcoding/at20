@@ -1,11 +1,16 @@
-const dimension = parseInt(prompt('Enter the dimension of the grid: '));
-const nSteps = parseInt(prompt('Enter number of steps: '));
-const speed = parseInt(prompt('Enter speed (millisecond): '));
+// const dimension = parseInt(prompt('Enter the dimension of the grid: '));
+// const nSteps = parseInt(prompt('Enter number of steps: '));
+// const speed = parseInt(prompt('Enter speed (millisecond): '));
+
+const dimension = 30;
+const nSteps = 100;
+const speed = 200;
 
 
 let initialPosition;
 let antPosition;
 let pointerCell;
+let directionPainted;
 var document;
 
 function createGrid() {
@@ -60,33 +65,33 @@ function langtonAntStart() {
         directionNextStep(direction);
         steps--;
         if (steps == 0) {
-            clearInterval(timer)
+            clearInterval(timer);
         }
     }, speed);
 }
 
 function directionNextStep(direction) {
     switch (direction) {
-        case 'u':
-            pointerCell -= dimension;
-            directionPainted = document.getElementById(`c${pointerCell}`).getAttribute('data-painted') == 0 ? 'r' : 'l';
-            document.getElementById(`c${pointerCell}`).setAttribute('data-direction', directionPainted);
-            break;
-        case 'd':
-            pointerCell += dimension;
-            directionPainted = document.getElementById(`c${pointerCell}`).getAttribute('data-painted') == 0 ? 'l' : 'r';
-            document.getElementById(`c${pointerCell}`).setAttribute('data-direction', directionPainted);
-            break;
-        case 'r':
-            pointerCell++;
-            directionPainted = document.getElementById(`c${pointerCell}`).getAttribute('data-painted') == 0 ? 'd' : 'u';
-            document.getElementById(`c${pointerCell}`).setAttribute('data-direction', directionPainted);
-            break;
-        case 'l':
-            pointerCell--;
-            directionPainted = document.getElementById(`c${pointerCell}`).getAttribute('data-painted') == 0 ? 'u' : 'd';
-            document.getElementById(`c${pointerCell}`).setAttribute('data-direction', directionPainted);
-            break;
+    case 'u':
+        pointerCell -= dimension;
+        directionPainted = document.getElementById(`c${pointerCell}`).getAttribute('data-painted') == 0 ? 'r' : 'l';
+        document.getElementById(`c${pointerCell}`).setAttribute('data-direction', directionPainted);
+        break;
+    case 'd':
+        pointerCell += dimension;
+        directionPainted = document.getElementById(`c${pointerCell}`).getAttribute('data-painted') == 0 ? 'l' : 'r';
+        document.getElementById(`c${pointerCell}`).setAttribute('data-direction', directionPainted);
+        break;
+    case 'r':
+        pointerCell++;
+        directionPainted = document.getElementById(`c${pointerCell}`).getAttribute('data-painted') == 0 ? 'd' : 'u';
+        document.getElementById(`c${pointerCell}`).setAttribute('data-direction', directionPainted);
+        break;
+    case 'l':
+        pointerCell--;
+        directionPainted = document.getElementById(`c${pointerCell}`).getAttribute('data-painted') == 0 ? 'u' : 'd';
+        document.getElementById(`c${pointerCell}`).setAttribute('data-direction', directionPainted);
+        break;
     }
     antPosition = document.getElementById(`c${pointerCell}`);
 }
