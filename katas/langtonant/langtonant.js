@@ -3,6 +3,8 @@ const nSteps = parseInt(prompt("Enter number of steps: "));
 const speed = parseInt(prompt("Enter speed (millisecond): "));
 
 let initialPosition;
+let antPosition;
+let pointerCell;
 
 function createGrid(){
     let body = document.getElementsByTagName("body")[0];
@@ -37,3 +39,55 @@ function createGrid(){
     bodyGrid.setAttribute("border", "1");
     body.appendChild(bodyGrid);
 }
+
+function langtonAntStart(){
+    antPosition = document.getElementById(`c${initialPosition}`);
+    pointerCell = initialPosition;
+    let steps = nSteps;
+
+    const timer = setInterval(()=>{
+        let changeColor = "white";
+        let paintCell = 0;
+        if(antPosition.getAttribute("data-painted")==0){
+            changeColor = "black"
+            paintCell = 1;
+        }
+        antPosition.setAttribute("style","background: "+changeColor+"; padding: 10px;");
+        antPosition.setAttribute("data-painted",paintCell);
+        let direction = antPosition.getAttribute("data-direction");
+        directionNextStep(direction);
+        steps--;
+        if(steps == 0){
+            clearInterval(timer)
+        }
+    },speed);
+}
+
+function directionNextStep(direction){
+    switch (direction) {
+        case "u":
+            pointerCell -= dimension;
+            directionPainted = document.getElementById(`c${pointerCell}`).getAttribute("data-painted")==0 ? "r" : "l";
+            document.getElementById(`c${pointerCell}`).setAttribute("data-direction",directionPainted);
+            break;
+        case "d":
+            pointerCell += dimension;
+            directionPainted = document.getElementById(`c${pointerCell}`).getAttribute("data-painted")==0 ? "l" : "r";
+            document.getElementById(`c${pointerCell}`).setAttribute("data-direction",directionPainted);
+            break;
+        case "r":
+            pointerCell++;
+            directionPainted = document.getElementById(`c${pointerCell}`).getAttribute("data-painted")==0 ? "d" : "u";
+            document.getElementById(`c${pointerCell}`).setAttribute("data-direction",directionPainted);
+            break;
+        case "l":
+            pointerCell--;
+            directionPainted = document.getElementById(`c${pointerCell}`).getAttribute("data-painted")==0 ? "u" : "d";
+            document.getElementById(`c${pointerCell}`).setAttribute("data-direction",directionPainted);
+            break;
+    }
+    antPosition = document.getElementById(`c${pointerCell}`);
+}
+
+createGrid();
+langtonAntStart();
