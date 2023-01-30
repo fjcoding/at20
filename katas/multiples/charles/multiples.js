@@ -11,7 +11,7 @@ function sumOfMultiples(number) {
             sum += index;
         }
     }
-    console.log("Sum of multiples: " + sum);
+    console.log('Sum of multiples: ' + sum);
 }
 
 function main() {
@@ -23,7 +23,7 @@ function main() {
             console.log("0");
         }
     } else {
-        console.log("You must enter a number");
+        console.log('You must enter a number');
     }
 }
 
