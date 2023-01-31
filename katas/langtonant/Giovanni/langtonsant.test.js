@@ -1,5 +1,5 @@
 import { turn } from './langtonsant';
-import { advance } from './langtonsant';
+//import { advance } from './langtonsant';
 import { ant } from './langtonsant';
 
 test('Function that turns the ant according to the color of its position', () => {
