@@ -2,7 +2,7 @@
 0 = white
 1 = black
 */
-module.exports = class grid {
+export class grid {
     constructor(defaultColor, size, obj) {
         this.size = size;
         this.obj = obj;
