@@ -23,8 +23,6 @@ let x = 2;     // start position
 let y = 2;   // start position
 let Direction = up;      // Ant´s orientation
 color = white;
-var movent = new Array(color, Direction);
-
 function color_(x, y) {      // obtaining color
     var color;
     if (grid[x][y] == white) {
@@ -37,36 +35,35 @@ function color_(x, y) {      // obtaining color
 }
 
 export function movements(color, Direction) {      ///obtaining direction
-    var move;
     //white slate movements
     if (color == white) {
         if (Direction == right) {
-            grid[x][y]=black;
+            grid[x][y] = black;
             Direction = up;
         } else if (Direction == left) {
-            grid[x][y]=black;
+            grid[x][y] = black;
             Direction = down;
         } else if (Direction == up) {
-            grid[x][y]=black;
+            grid[x][y] = black;
             Direction = left;
         } else if (Direction == down) {
-            grid[x][y]=black;
+            grid[x][y] = black;
             Direction = right;
         }
     }
     //black slates movements
     if (color == black) {
         if (Direction == right) {
-            grid[x][y]=white;
+            grid[x][y] = white;
             Direction = down;
         } else if (Direction == left) {
-            grid[x][y]=white;
+            grid[x][y] = white;
             Direction = up;
         } else if (Direction == up) {
-            grid[x][y]=white;
+            grid[x][y] = white;
             Direction = right;
         } else if (Direction == down) {
-            grid[x][y]=white;
+            grid[x][y] = white;
             Direction = left;
         }
     }
@@ -76,23 +73,22 @@ export function movements(color, Direction) {      ///obtaining direction
 }
 
 
-
-function newMovement(x,y,Direction) {      ///obtaining movement
-var move;
-    if(Direction==right) {
+function newMovement(x, y, Direction) {      ///obtaining movement
+    var move;
+    if (Direction == right) {
         x++;
     }
-    if(Direction==left) {
+    if (Direction == left) {
         x--;
     }
-    if(Direction==up) {
+    if (Direction == up) {
         y--;
     }
-    if(Direction==down) {
+    if (Direction == down) {
         y++;
     }
     move = new Array (x, y);
-    return(move);
+    return (move);
 }
 
 
@@ -103,7 +99,7 @@ while (steps > 0) {
     // Ant´s  movements
     newDirection = movements(color, Direction); // new direction
     Direction = newDirection;
-    newMovements=newMovement(x,y,Direction)
+    newMovements = newMovement(x, y, Direction);
     x = newMovements[0];
     y = newMovements[1];
     color = color_(x, y);              //color_ function
