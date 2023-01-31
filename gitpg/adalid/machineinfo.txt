@@ -1,5 +1,6 @@
 AMD Ryzen 5
 16GB RAM
 250GB
+CPU Brand: AMD
 capacity code: 16g-250g
 pc code: AMDRyzen5-16g-250g
