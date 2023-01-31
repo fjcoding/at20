@@ -63,4 +63,4 @@ export class ant {
         this.directionAnt = newDirection;
         this.positionAnt = newPosition;
     }
-};
+}

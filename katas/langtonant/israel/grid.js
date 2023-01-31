@@ -41,4 +41,4 @@ export class grid {
             console.log(row.join(' '));
         }
     }
-};
+}
