@@ -1,6 +1,7 @@
 JavaScript, Java
 Visual Studio Code, Intellij
 Windows
+terminal: CMD
 editors/IDEs count:  2
 langs count: 2
 tech code:JavaScript-Visual Studio Code
