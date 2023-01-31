@@ -20,9 +20,13 @@ const antMoves = (large = undefined, steps = undefined, sense = '') =>{
     if (sense === '') {
         return console.error('The sense can not be empty');
     }
+    const RIGHT = 'R';
+    const LEFT = 'L';
+    const UP = 'U';
+    const DOWN = 'D';
 
-    let positionX = Math.floor(large / 2);
-    let positionY = Math.floor(large / 2);
+    let directionX = Math.floor(large / 2);
+    let directionY = Math.floor(large / 2);
     //let sense = randomDirection();
     let posActual;
     console.log(sense);
@@ -37,14 +41,14 @@ const antMoves = (large = undefined, steps = undefined, sense = '') =>{
         }
     }
     //Save the initial position
-    posActual = arr[positionX][positionY];
-    arr[positionX][positionY] = 'a';
+    posActual = arr[directionX][directionY];
+    arr[directionX][directionY] = 'a';
     showTable(arr);
 
 
-    if (posActual === 0 && sense === 'U') {
-        arr[positionX][positionY - 1] = 'a';
-        arr[positionX][positionY] = 1;
+    if (posActual === 0 && sense === UP) {
+        arr[directionX][directionY - 1] = 'a';
+        arr[directionX][directionY] = 1;
         steps--;
         sense = 'L';
         console.log('**********');
@@ -54,9 +58,9 @@ const antMoves = (large = undefined, steps = undefined, sense = '') =>{
             antMoves(large, steps, sense);
         }
     } else
-    if (posActual === 0 && sense === 'D') {
-        arr[positionX][positionY + 1] = 'a';
-        arr[positionX][positionY] = 1;
+    if (posActual === 0 && sense === DOWN) {
+        arr[directionX][directionY + 1] = 'a';
+        arr[directionX][directionY] = 1;
         steps--;
         sense = 'R';
         console.log('**********');
@@ -66,9 +70,9 @@ const antMoves = (large = undefined, steps = undefined, sense = '') =>{
             antMoves(large, steps, sense);
         }
     } else
-    if (posActual === 0 && sense === 'R') {
-        arr[positionX - 1][positionY] = 'a';
-        arr[positionX][positionY] = 1;
+    if (posActual === 0 && sense === RIGHT) {
+        arr[directionX - 1][directionY] = 'a';
+        arr[directionX][directionY] = 1;
         steps--;
         sense = 'U';
         console.log('**********');
@@ -78,9 +82,9 @@ const antMoves = (large = undefined, steps = undefined, sense = '') =>{
             antMoves(large, steps, sense);
         }
     } else
-    if (posActual === 0 && sense === 'L') {
-        arr[positionX + 1][positionY] = 'a';
-        arr[positionX][positionY] = 1;
+    if (posActual === 0 && sense === LEFT) {
+        arr[directionX + 1][directionY] = 'a';
+        arr[directionX][directionY] = 1;
         steps--;
         sense = 'D';
         console.log('**********');
@@ -105,8 +109,8 @@ const showTable = (arr) =>{
 };
 
 antMoves(5, 1, 'U');
-antMoves(5, 1, 'D');
-antMoves(5, 1, 'R');
-antMoves(5, 1, 'L');
+// antMoves(5, 1, 'D');
+// antMoves(5, 1, 'R');
+// antMoves(5, 1, 'L');
 
 
