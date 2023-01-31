@@ -1,4 +1,4 @@
-import { movements } from './langtonant';
+import { movements } from './ant';
 
 test('langtonAnt movements', () => {
     //white slates=0 right 0 left 1 up 2 down 3
