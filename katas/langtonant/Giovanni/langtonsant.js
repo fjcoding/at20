@@ -1,56 +1,57 @@
-const mapdim = 6;
-let map = new Array(mapdim).fill().map(() => Array(mapdim).fill(0));
-let visualmap = map;
+const mapDim = 6;
+
+let map = new Array(mapDim).fill().map(() => Array(mapDim).fill(0));
+
 const ant = {};
 
-const NORTH = 0;
-const EAST = 1;
-const SOUTH = 2;
-const WEST = 3;
+const up = 0;
+const right = 1;
+const down = 2;
+const left = 3;
 
-const BLACKcase = 1;
-const WHITEcase = 0;
+const black = 1;
+const white = 0;
 
-const LEFT = 3;
-const RIGHT = 1;
+const turnLeft = 3;
+const turnRight = 1;
 
 ant.symbol = 8;
-ant.x = mapdim / 2;
-ant.y = mapdim / 2;
-ant.dir = 0;
+ant.x = mapDim / 2;
+ant.y = mapDim / 2;
+ant.dir = 3;
 
-//WHILE TRUE
+for (let iterations = 0; iterations < 10; iterations++) {
+    let color = map[ant.y][ant.x];
+    map[ant.y][ant.x] = ant.symbol;
+    console.log(map);
 
-visualmap = map;
-visualmap[ant.y][ant.x] = ant.symbol;
-console.log(visualmap);
+    switch (color) {
+    case white:
+        map[ant.y][ant.x] = 1;
+        ant.dir = (ant.dir + turnRight) % 4;
+        map[ant.y][ant.x] = black;
+        break;
+    case black:
+        map[ant.y][ant.x] = 0;
+        ant.dir = (ant.dir + turnLeft) % 4;
+        map[ant.y][ant.x] = white;
+        break;
+    }
 
-let color = map[ant.y][ant.x];
-switch (color) {
-case WHITEcase:  //BLANCO
-    map[ant.y][ant.x] = 1;
-    ant.dir = (ant.dir + RIGHT) % 4;
-    break;
-case BLACKcase:  //NEGRO
-    map[ant.y][ant.x] = 0;
-    ant.dir = (ant.dir + LEFT) % 4;
-    break;
+    switch (ant.dir) {
+    case up:
+        ant.y--;
+        break;
+    case down:
+        ant.y++;
+        break;
+    case right:
+        ant.x++;
+        break;
+    case left:
+        ant.x--;
+        break;
+    }
 }
-switch (ant.dir) {
-case NORTH:
-    ant.y--;
-    break;
-case SOUTH:
-    ant.y++;
-    break;
-case EAST:
-    ant.x++;
-    break;
-case WEST:
-    ant.x--;
-    break;
-}
-
-visualmap = map;
-visualmap[ant.y][ant.x] = ant.symbol;
-console.log(visualmap);
+map[ant.y][ant.x] = ant.symbol;
+console.log(map);
