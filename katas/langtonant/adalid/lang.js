@@ -1,22 +1,4 @@
-const antMoves = (large = undefined, steps = undefined, sense = '') =>{
-    if (large === undefined) {
-        return console.warn('You did not enter any number for the size of the arr');
-    }
-    if (typeof large !== 'number') {
-        return console.error(`The valu ${large} entered is NOT a number`);
-    }
-    if (Math.sign(large) === -1) {
-        return console.error('The number cannot be negative');
-    }
-    if (steps === undefined) {
-        return console.warn('You did not enter a valid number of steps');
-    }
-    if (typeof steps !== 'number') {
-        return console.error(`The valu ${steps} entered is NOT a number`);
-    }
-    if (Math.sign(steps) === -1) {
-        return console.error('The steps cannot be negative');
-    }
+const antMoves = (large = undefined, steps = undefined, sense = '',) =>{
     if (sense === '') {
         return console.error('The sense can not be empty');
     }
