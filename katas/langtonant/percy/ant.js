@@ -1,23 +1,17 @@
 // Grid and directions values and color values
-var grid = new Array();
-var lenght = 6;
-var width = 6;
-var right = 0;
-var left = 1;
-var up = 2;
-var down = 3;
-var white = 0;
-var black = 1;
-var color;
-
-
-for (let i = 0; i < lenght; i++) {
-    grid[i] = new Array();
-    for (let j = 0; j < width; j++) {
-        grid[i][j] = 0;
-    }
-    //  console.log(grid[i]);
-}
+let grid = new Array();
+let lenght = 5;
+let width = 5;
+const right = 0;
+const left = 1;
+const up = 2;
+const down = 3;
+const white = 0;
+const black = 1;
+let color;
+var verifyMoveXY;
+var newDirection;
+var newMovements;
 // ant start position
 
 let x = 2;     // start position
@@ -25,6 +19,12 @@ let y = 2;   // start position
 let Direction = up;      // Ant´s orientation
 color = white;
 
+for (let i = 0; i < lenght; i++) {
+    grid[i] = new Array();
+    for (let j = 0; j < width; j++) {
+        grid[i][j] = 0;
+    }
+}
 
 function color_(x, y) {      // obtaining color
     var color;
@@ -74,8 +74,9 @@ export function movements(color, Direction) {      ///obtaining direction
 }
 
 
-function newMovement(x, y, Direction) {      ///obtaining movement
+export function newMovement(x, y, Direction) {      ///obtaining movement
     var move;
+
     if (Direction == right) {
         x++;
     }
@@ -88,27 +89,14 @@ function newMovement(x, y, Direction) {      ///obtaining movement
     if (Direction == down) {
         y++;
     }
-    move = new Array (x, y);
+    move = [x, y];
+
     return (move);
 }
 
 
-var newDirection;
-var steps = 10;
-var newMovements;                    // Number of steps that need tracking right 0 left 1 up 2 down 3
-while (steps > 0) {
-    // Ant´s  movements
-    newDirection = movements(color, Direction); // new direction
-    Direction = newDirection;
-    newMovements = newMovement(x, y, Direction);
-    x = newMovements[0];
-    y = newMovements[1];
-    color = color_(x, y);              //color_ function
-    console.log (grid);
-    console.log(newMovements);
-    console.log(newDirection);
-    steps--;
-    //if x,y doesnt have space
+export function verifyMove(x, y) {    //if x,y doesnt have space
+    var verifyMove;
     if (x < 0) { //what happens when x doesnt have more space
         x = width - 1;
     }
@@ -121,4 +109,25 @@ while (steps > 0) {
     if (y > lenght - 1) {
         y = 0;
     }
+    verifyMove = [x, y];
+    return verifyMove;
+}
+
+
+function antMoving() {
+    // Ant´s  movements
+    newDirection = movements(color, Direction); // new direction
+    Direction = newDirection;
+    newMovements = newMovement(x, y, Direction);
+    x = newMovements[0];
+    y = newMovements[1];
+    color = color_(x, y);              //color_ function
+    verifyMoveXY = verifyMove(x, y);
+    x = verifyMoveXY[0];
+    y = verifyMoveXY[1];
+}
+
+var steps = 20;      // Number of steps that need tracking right 0 left 1 up 2 down 3
+for (let i = 0; i < steps; i++) {
+    antMoving();
 }
