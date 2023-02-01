@@ -4,42 +4,38 @@ import {direction} from './bryan_Lant';
 import {displayGrid} from './bryan_Lant';
 import {swState} from './bryan_Lant';
 import {move} from './bryan_Lant';
-import {langtonAnt} from './bryan_Lant'
+import {langtonAnt} from './bryan_Lant';
 
 test('makeGrid function should display new clean height x width grid filled with -', () => {
     const gridTestA = makeGrid(3, 3);
     expect(gridTestA).toStrictEqual([['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]);
     const gridTestB = makeGrid(5, 5);
-    expect(gridTestB).toStrictEqual([['-', '-', '-','-','-'],['-', '-', '-','-','-'],['-', '-', '-','-','-'],['-', '-', '-','-','-'],['-', '-', '-','-','-']]);
+    expect(gridTestB).toStrictEqual([['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-'], ['-', '-', '-', '-', '-']]);
     const gridTestC = makeGrid(0, 0);
     expect(gridTestC).toStrictEqual([]);
-
 });
 
 test('displayGrid should turn an array matrix into a string matrix, the input argument should be an array', () => {
     const gridArrayA = [['-', '-', '-'], ['&', '&', '&'], ['#', '#', '#']];
-    const expectetGridasStringA = 
-            '- - - \n' + 
+    const expectetGridasStringA =
+            '- - - \n' +
             '& & & \n' +
             '# # # \n';
     expect(displayGrid(gridArrayA)).toBe(expectetGridasStringA);
     const gridArrayB = [['7', '8', '9'], ['1', '2', '3'], ['4', '6', '5']];
-    const expectetGridasStringB = 
-            '7 8 9 \n' + 
+    const expectetGridasStringB =
+            '7 8 9 \n' +
             '1 2 3 \n' +
             '4 6 5 \n';
     expect(displayGrid(gridArrayB)).toBe(expectetGridasStringB);
 
     const gridArrayC = [['0', '(', 'g'], ['=', '+', '_'], ['45', '!', '@']];
-    const expectetGridasStringC = 
-            '0 ( g \n' + 
+    const expectetGridasStringC =
+            '0 ( g \n' +
             '= + _ \n' +
             '45 ! @ \n';
     expect(displayGrid(gridArrayC)).toBe(expectetGridasStringC);
-
-
 });
-
 
 
 test('cellState returns the element in the coordinates given', () => {
@@ -62,7 +58,6 @@ test('direction function returns the direction of the ant as a number between 0 
     state = '*';
     preDir = '1';
     expect(direction(state, preDir)).toBe(0);
-
 });
 
 test('swState function turns a white state cell to a black state cell', ()=> {
@@ -74,36 +69,36 @@ test('swState function turns a white state cell to a black state cell', ()=> {
 
 
 test('move function returns new coordinates given a direction and previous coordinates', ()=> {
-var preDir = 0;
-var cdY = 5;
-var cdX = 5;
-var [cdYn,cdXn]=move(preDir,cdY,cdX)
-expect([cdYn,cdXn]).toStrictEqual([4,5]);
- preDir = 1;
- cdY = 5;
- cdX = 5;
-[cdYn,cdXn]=move(preDir,cdY,cdX)
-expect([cdYn,cdXn]).toStrictEqual([5,6]);
-preDir = 3;
-cdY = 5;
-cdX = 5;
-[cdYn,cdXn]=move(preDir,cdY,cdX)
-expect([cdYn,cdXn]).toStrictEqual([5,4]);
+    var preDir = 0;
+    var cdY = 5;
+    var cdX = 5;
+    var [cdYn, cdXn] = move(preDir, cdY, cdX);
+    expect([cdYn, cdXn]).toStrictEqual([4, 5]);
+    preDir = 1;
+    cdY = 5;
+    cdX = 5;
+    [cdYn, cdXn] = move(preDir, cdY, cdX);
+    expect([cdYn, cdXn]).toStrictEqual([5, 6]);
+    preDir = 3;
+    cdY = 5;
+    cdX = 5;
+    [cdYn, cdXn] = move(preDir, cdY, cdX);
+    expect([cdYn, cdXn]).toStrictEqual([5, 4]);
 });
 
 test('langtonAnt function returns the pattern of an ant given a number of steps,the size of the canvas and an initial direction', ()=>{
     var maxSteps = 5;
-    var hIght=10;
-    var wDth=10;
-    var nDir=0;
-    var antSteps=langtonAnt(maxSteps,hIght,wDth,nDir);
-    const expectedPatternA = 
-            '- - - - - - - - - - \n' + 
+    var hIght = 10;
+    var wDth = 10;
+    var nDir = 0;
+    var antSteps = langtonAnt(maxSteps, hIght, wDth, nDir);
+    const expectedPatternA =
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
-            '- - - - * - * - - - \n' + 
+            '- - - - - - - - - - \n' +
+            '- - - - * - * - - - \n' +
             '- - - - - * * - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
@@ -111,18 +106,18 @@ test('langtonAnt function returns the pattern of an ant given a number of steps,
             ;
     expect(antSteps).toBe(expectedPatternA);
 
-    var maxSteps = 20;
-    var hIght=10;
-    var wDth=10;
-    var nDir=2;
-    var antSteps=langtonAnt(maxSteps,hIght,wDth,nDir);
-    const expectedPatternB = 
-            '- - - - - - - - - - \n' + 
+    maxSteps = 20;
+    hIght = 10;
+    wDth = 10;
+    nDir = 2;
+    antSteps = langtonAnt(maxSteps, hIght, wDth, nDir);
+    const expectedPatternB =
+            '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - * - - \n' +
             '- - - - * - * - - - \n' +
-            '- - - - * - - * - - \n' + 
+            '- - - - * - - * - - \n' +
             '- - - - - * * - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
@@ -131,17 +126,17 @@ test('langtonAnt function returns the pattern of an ant given a number of steps,
     expect(antSteps).toBe(expectedPatternB);
 
     maxSteps = 10;
-    hIght=10;
-    wDth=10;
-    nDir=1;
-    antSteps=langtonAnt(maxSteps,hIght,wDth,nDir);
-    const expectedPatternC = 
-            '- - - - - - - - - - \n' + 
+    hIght = 10;
+    wDth = 10;
+    nDir = 1;
+    antSteps = langtonAnt(maxSteps, hIght, wDth, nDir);
+    const expectedPatternC =
+            '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - * - * - - - \n' +
-            '- - - - * * * - - - \n' + 
+            '- - - - * * * - - - \n' +
             '- - - - * * - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
@@ -149,17 +144,17 @@ test('langtonAnt function returns the pattern of an ant given a number of steps,
             ;
     expect(antSteps).toBe(expectedPatternC);
     maxSteps = 0;
-    hIght=10;
-    wDth=10;
-    nDir=1;
-    antSteps=langtonAnt(maxSteps,hIght,wDth,nDir);
-    const expectedPatternD = 
-            '- - - - - - - - - - \n' + 
+    hIght = 10;
+    wDth = 10;
+    nDir = 1;
+    antSteps = langtonAnt(maxSteps, hIght, wDth, nDir);
+    const expectedPatternD =
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
-            '- - - - - * - - - - \n' + 
+            '- - - - - - - - - - \n' +
+            '- - - - - * - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
@@ -167,17 +162,17 @@ test('langtonAnt function returns the pattern of an ant given a number of steps,
             ;
     expect(antSteps).toBe(expectedPatternD);
     maxSteps = -1;
-    hIght=10;
-    wDth=10;
-    nDir=1;
-    antSteps=langtonAnt(maxSteps,hIght,wDth,nDir);
-    const expectedPatternE = 
-            '- - - - - - - - - - \n' + 
+    hIght = 10;
+    wDth = 10;
+    nDir = 1;
+    antSteps = langtonAnt(maxSteps, hIght, wDth, nDir);
+    const expectedPatternE =
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
-            '- - - - - - - - - - \n' + 
+            '- - - - - - - - - - \n' +
+            '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
             '- - - - - - - - - - \n' +
@@ -185,6 +180,5 @@ test('langtonAnt function returns the pattern of an ant given a number of steps,
             ;
     expect(antSteps).toBe(expectedPatternE);
 });
-
 
 
