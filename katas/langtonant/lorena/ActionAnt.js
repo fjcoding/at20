@@ -1,19 +1,20 @@
 // Box color of grid
 
-export function colorBox (x, y, colorAct) {
+export function switchColorBox (colorAct) {
     var color = 0;
-    if (colorAct == 0) {
-        color = 1;
+    let white = 0;
+    let black = 1;
+    if (colorAct == white) {
+        color = black;
     } else {
-        color = 0;
+        color = white;
     }
     return color;
 }
 
-
 // Ant´s Orientation
 
-export function newOri (x, y, ori, colorAct) {
+export function newOri (ori, colorAct) {
     var newOri = 0;
     if (colorAct == 0) {
         newOri = (ori + 1) % 4;
@@ -41,5 +42,4 @@ export function mov (x, y, ori, wid, len) {
     newPositAnt = new Array (x, y, ori);
     return newPositAnt;
 }
-
 
