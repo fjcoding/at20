@@ -1,6 +1,6 @@
 import { showTable } from './table.js';
 
-const antMoves = (matriz = [[]], steps = undefined, sense = '', posX, posY, posBeforeA) => {
+const antMoves = (matriz = [[]], steps = undefined, direction = '', posX, posY, posBeforeA) => {
     const BLACK = 0;
     const WHITE = 1;
     const UP = 'U';
@@ -8,123 +8,122 @@ const antMoves = (matriz = [[]], steps = undefined, sense = '', posX, posY, posB
     const LEFT = 'L';
     const DOWN = 'D';
     if (posBeforeA === BLACK) {
-        if (sense === UP) {
+        if (direction === UP) {
             posBeforeA = matriz[posX][posY - 1];
             console.log(posBeforeA);
             matriz[posX][posY - 1] = 'a';
             matriz[posX][posY] = WHITE;
             steps--;
-            sense = LEFT;
-            console.log('New sense ' + sense, steps);
+            direction = LEFT;
+            console.log('New direction ' + direction, steps);
             console.log('**********');
             showTable(matriz);
             if (steps > 0) {
-                antMoves(matriz, steps, sense, posX, posY, posBeforeA);
+                antMoves(matriz, steps, direction, posX, posY, posBeforeA);
             }
         } else
-        if (sense === LEFT) {
+        if (direction === LEFT) {
             posBeforeA = matriz[posX + 1][posY];
             console.log(posBeforeA);
             matriz[posX + 1][posY - 1] = 'a';
             matriz[posX][posY - 1] = WHITE;
             steps--;
-            sense = DOWN;
+            direction = DOWN;
 
-            console.log('New sense ' + sense, steps);
+            console.log('New direction ' + direction, steps);
             console.log('**********');
             showTable(matriz);
             if (steps > 0) {
-                antMoves(matriz, steps, sense, posX, posY, posBeforeA);
+                antMoves(matriz, steps, direction, posX, posY, posBeforeA);
             }
         } else
-        if (sense === DOWN) {
+        if (direction === DOWN) {
             posBeforeA = matriz[posX][posY + 1];
             console.log(posBeforeA);
             matriz[posX + 1][posY] = 'a';
             matriz[posX + 1][posY - 1] = WHITE;
             steps--;
-            sense = RIGHT;
-            console.log('New sense ' + sense, steps);
+            direction = RIGHT;
+            console.log('New direction ' + direction, steps);
             console.log('**********');
             showTable(matriz);
             if (steps > 0) {
-                antMoves(matriz, steps, sense, posX, posY, posBeforeA);
+                antMoves(matriz, steps, direction, posX, posY, posBeforeA);
             }
         } else
-        if (sense === RIGHT) {
+        if (direction === RIGHT) {
             posBeforeA = matriz[posX][posY - 1];//1
             console.log(posBeforeA);
             matriz[posX][posY] = 'a';
             matriz[posX + 1][posY] = WHITE;
             steps--;
-            sense = UP;
-            console.log('New sense ' + sense, steps, posBeforeA);
+            direction = UP;
+            console.log('New direction ' + direction, steps);
             console.log('**********');
             showTable(matriz);
             if (steps > 0) {
-                antMoves(matriz, steps, sense, posX, posY, posBeforeA);
+                antMoves(matriz, steps, direction, posX, posY, posBeforeA);
             }
         }
     }
     //Grid WHITE
     if (posBeforeA === WHITE) {
-        if (sense === RIGHT) {
+        if (direction === RIGHT) {
             posBeforeA = matriz[posX][posY + 1];
             console.log(posBeforeA);
             matriz[posX + 1][posY + 1] = 'a';
             matriz[posX][posY + 1] = BLACK;
             steps--;
-            sense = DOWN;
-            console.log('New sense ' + sense, steps, posBeforeA);
+            direction = DOWN;
+            console.log('New direction ' + direction, steps);
             console.log('**********');
             showTable(matriz);
             if (steps > 0) {
-                antMoves(matriz, steps, sense, posX, posY, posBeforeA);
+                antMoves(matriz, steps, direction, posX, posY, posBeforeA);
             }
         } else
-        if (sense === UP) {
+        if (direction === UP) {
             posBeforeA = matriz[posX][posY + 1];//1
             console.log(posBeforeA);
             matriz[posX][posY + 1] = 'a';
             matriz[posX][posY] = BLACK;
             steps--;
-            sense = RIGHT;
-            console.log('New sense ' + sense, steps);
+            direction = RIGHT;
+            console.log('New direction ' + direction, steps);
             console.log('**********');
             showTable(matriz);
             if (steps > 0) {
-                antMoves(matriz, steps, sense, posX, posY, posBeforeA);
+                antMoves(matriz, steps, direction, posX, posY, posBeforeA);
             }
         } else
-        if (sense === LEFT) {
+        if (direction === LEFT) {
             posBeforeA = matriz[posX + 1][posY];
             console.log(posBeforeA);
             matriz[posX + 1][posY - 1] = 'a';
             matriz[posX][posY - 1] = BLACK;
             steps--;
-            sense = UP;
-            console.log('New sense ' + sense, steps);
+            direction = UP;
+            console.log('New direction ' + direction, steps);
             console.log('**********');
             showTable(matriz);
             if (steps > 0) {
-                antMoves(matriz, steps, sense, posX, posY, posBeforeA);
+                antMoves(matriz, steps, direction, posX, posY, posBeforeA);
             }
         } else
-        if (sense === DOWN) {
+        if (direction === DOWN) {
             posBeforeA = matriz[posX][posY + 1];
             console.log(posBeforeA);
             matriz[posX + 1][posY] = 'a';
             matriz[posX + 1][posY - 1] = BLACK;
             steps--;
-            sense = LEFT;
-            console.log('New sense ' + sense, steps);
+            direction = LEFT;
+            console.log('New direction ' + direction, steps);
             console.log('**********');
             showTable(matriz);
             if (steps > 0) {
-                antMoves(matriz, steps, sense, posX, posY, posBeforeA);
+                antMoves(matriz, steps, direction, posX, posY, posBeforeA);
             }
         }
-        return steps;
     }
 };
 export {antMoves};

@@ -39,4 +39,4 @@ const startProgram = (large = undefined, steps = undefined, direction = '') =>{
     antMoves(arr, steps, direction, positionX, positionY, posBeforeA);
 };
 
-startProgram(5, 3, 'U');
+startProgram(5, 4, 'U');
