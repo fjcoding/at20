@@ -12,11 +12,11 @@ let ant1 = new ant(initialPosition, initialDirection);
 let grid1 = new grid(defaultColor, sizeGrid, initialPosition);
 
 
-export function handleError(currentPosition) {
+export function handleError(currentPosition, maxSize) {
     for (const element of currentPosition) {
         if (element < 0) {
             return 'ant is outside of the grid';
-        } else if (element >= sizeGrid) {
+        } else if (element >= maxSize) {
             return 'ant is outside of the grid';
         }
     }
@@ -38,7 +38,7 @@ async function main() {
         console.log('STEP', i + 1);
         ant1.move(grid1.getColor());
 
-        if (handleError(ant1.positionAnt) === 1) {
+        if (handleError(ant1.positionAnt, sizeGrid) === 1) {
             grid1.track(ant1.positionAnt);
             grid1.show();
             console.log('Direction:', ant1.directionAnt, '||', 'Color:', grid1.getColor());
