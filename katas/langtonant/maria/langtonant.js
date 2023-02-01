@@ -37,10 +37,8 @@ export function ant(gridSize, steps) {
             steps--;
         } else {
             steps = 0;
-            console.log('off the grid');
         }
     }
-    console.log(gridRow);
     return {positionX, positionY, color, direction, steps};
 }
 
