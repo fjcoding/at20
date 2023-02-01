@@ -17,10 +17,10 @@ var colorGridInit = white;           //white or black
 
 //Start
 var grid = gridInit (len, wid, colorGridInit);
-var positAnt = posAndOriInit (len, wid);            // first box position
+var positAnt = posAndOriInit (len, wid);
 var x = positAnt[0];
 var y = positAnt[1];
-var ori = positAnt[2];
+var ori = positAnt[2];                          // Orientation: 0- Up, 1- Rigth, 2- Down, 3- Left
 
 while (steps > 0 && (colorGridInit == white || colorGridInit == black)) {
     ori = newOri(ori, colorAct);
@@ -32,5 +32,3 @@ while (steps > 0 && (colorGridInit == white || colorGridInit == black)) {
     y = positAnt[1];
     steps--;
 }
-
-console.log(grid);
