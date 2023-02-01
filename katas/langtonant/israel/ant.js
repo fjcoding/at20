@@ -11,7 +11,7 @@ left |0000| right
 In simple words ANT is like a vector so it has a position(x,y) and a direction(up,down,right,left)
 */
 
-module.exports = class ant {
+export class ant {
     constructor(positionAnt, directionAnt) {
         this.positionAnt = positionAnt;
         this.directionAnt = directionAnt;
@@ -63,4 +63,4 @@ module.exports = class ant {
         this.directionAnt = newDirection;
         this.positionAnt = newPosition;
     }
-};
+}
