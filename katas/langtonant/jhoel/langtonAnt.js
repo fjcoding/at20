@@ -1,12 +1,10 @@
-
-const { Color } = require('./colors.js');
-
 const WHITE = 0;
 const BLACK = 1;
 const UP = 2;
 const DOWN = 3;
 const LEFT = 4;
 const RIGHT = 5;
+const OUT_OF_BOUNDS_ERROR = new Error('The ant is out of bounds');
 
 class LangtonAnt {
     static get BLACK() {
@@ -37,12 +35,40 @@ class LangtonAnt {
 
     #ant = { x: 0, y: 0, direction: UP };
 
+    getAntPosition() {
+        return { x: this.#ant.x, y: this.#ant.y };
+    }
 
-    constructor(order, color, /*Ant Position*/{ x, y }) {
-        this.#grid = this.createGrid(order, color);
+    setAntPosition({ x, y }) {
         this.#ant.x = x;
         this.#ant.y = y;
     }
+
+    getAntDirection() {
+        return this.#ant.direction;
+    }
+
+    setAntDirection(direction) {
+        this.#ant.direction = direction;
+    }
+
+    getGrid() {
+        return this.#grid;
+    }
+
+    getGridDimension() {
+        return this.#grid.length;
+    }
+
+    getColorAntSquare() {
+        return this.#grid[this.#ant.y][this.#ant.x];
+    }
+
+    constructor(order, color, antPosition) {
+        this.createGrid(order, color);
+        this.setAntPosition(antPosition);
+    }
+
 
     createGrid(order, color) {
         const grid = [];
@@ -52,88 +78,59 @@ class LangtonAnt {
                 grid[i].push(color);
             }
         }
-        return grid;
+        this.#grid = grid;
     }
 
-    async run(steps) {
-        const time = 500;
-        await this.waiting(time, 0);
-
-        for (let step = 0; step < steps; step++) {
-            await this.waiting(time, step);
-
-            if (this.getAntSquare() == WHITE) {
-                this.turnRight();
-                await this.waiting(time, step);
-                this.setAntSquare(BLACK);
-            } else {
-                this.turnLeft();
-                await this.waiting(time, step);
-                this.setAntSquare(WHITE);
-            }
-            this.moveForward();
-            await this.waiting(time, step);
+    turnAnt(color) {
+        if (color == WHITE) {
+            this.turnAntRight();
+        } else {
+            this.turnAntLeft();
         }
-
-        console.log('========================================');
     }
 
-    waiting(time, step) {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                console.clear();
-                console.log(`Step ${step + 1} ${step == 0 ? ' (Initial State)' : ''}`);
-                console.log('========================================');
-                this.printOnConsole();
-                resolve();
-            }, time);
-        });
+
+    setColorAntSquare(color) {
+        const newColor = color == WHITE ? BLACK : WHITE;
+        this.#grid[this.#ant.y][this.#ant.x] = newColor;
     }
 
-    getAntSquare() {
-        return this.#grid[this.#ant.y][this.#ant.x];
-    }
-
-    setAntSquare(color) {
-        this.#grid[this.#ant.y][this.#ant.x] = color;
-    }
-
-    turnRight() {
-        switch (this.#ant.direction) {
+    turnAntRight() {
+        switch (this.getAntDirection()) {
         case UP:
-            this.#ant.direction = RIGHT;
+            this.setAntDirection(RIGHT);
             break;
         case DOWN:
-            this.#ant.direction = LEFT;
+            this.setAntDirection(LEFT);
             break;
         case LEFT:
-            this.#ant.direction = UP;
+            this.setAntDirection(UP);
             break;
         case RIGHT:
-            this.#ant.direction = DOWN;
+            this.setAntDirection(DOWN);
             break;
         }
     }
 
-    turnLeft() {
-        switch (this.#ant.direction) {
+    turnAntLeft() {
+        switch (this.getAntDirection()) {
         case UP:
-            this.#ant.direction = LEFT;
+            this.setAntDirection(LEFT);
             break;
         case DOWN:
-            this.#ant.direction = RIGHT;
+            this.setAntDirection(RIGHT);
             break;
         case LEFT:
-            this.#ant.direction = DOWN;
+            this.setAntDirection(DOWN);
             break;
         case RIGHT:
-            this.#ant.direction = UP;
+            this.setAntDirection(UP);
             break;
         }
     }
 
-    moveForward() {
-        switch (this.#ant.direction) {
+    moveAntForward() {
+        switch (this.getAntDirection()) {
         case UP:
             this.#ant.y--;
             break;
@@ -148,40 +145,15 @@ class LangtonAnt {
             break;
         }
 
-        if (this.#ant.x < 0 || this.#ant.y < 0 || this.#ant.x >= this.#grid.length || this.#ant.y >= this.#grid.length) {
-            throw new Error('Ant out of grid');
+        if (!this.isAntValidPosition(this.getAntPosition())) {
+            throw OUT_OF_BOUNDS_ERROR;
         }
     }
 
-    printOnConsole() {
-        console.log(Color.BgGreen, Color.FgGreen, Array(this.#grid.length * 3 - 1).fill('-').join('') + Color.BgBlack);
-        for (let row = 0; row < this.#grid.length; row++) {
-            const rowi = this.#grid[row];
-            const rowToPrint = [];
-            for (let col = 0; col < rowi.length; col++) {
-                rowToPrint.push(Color.BgGreen, ' ');
 
-                const RIGHTARROW = '●➤';
-                const LEFTARROW = '◀●';
-                const UPARROW = '●⬆';
-                const DOWNARROW = '●⬇';
-
-                const direction = this.#ant.direction == UP ? UPARROW : this.#ant.direction == DOWN ? DOWNARROW : this.#ant.direction == LEFT ? LEFTARROW : RIGHTARROW;
-
-                const text = (row == this.#ant.y && col == this.#ant.x) ? Color.FgRed + direction : '__';
-
-
-                const element = rowi[col];
-                rowToPrint.push((element == WHITE) ? (Color.BgWhite + Color.FgWhite + text) : (Color.BgBlack + Color.FgBlack + text));
-            }
-
-            rowToPrint.push(Color.BgGreen, ' ' + Color.BgBlack);
-            console.log(rowToPrint.join(''));
-            console.log(Color.BgGreen, Color.FgGreen, Array(rowi.length * 3 - 1).fill('-').join('') + Color.BgBlack);
-        }
-
-        console.log(Color.BgBlack, Color.FgWhite,);
+    isAntValidPosition({ x, y }) {
+        return x >= 0 && y >= 0 && x < this.#grid.length && y < this.#grid.length;
     }
 }
 
-module.exports = LangtonAnt;
+export default LangtonAnt;
