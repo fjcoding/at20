@@ -1,5 +1,10 @@
-import { ant } from './langtonant';
+import { initializeGrid } from './langtonant';
 
-test('Step antX', () => {
-    expect(ant()).toBe(52 || 50);
+test('initializeGrid should return a grid with size n x n, all cells set to 0', () => {
+    const size = 3;
+    const expectedGrid = [    [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ];
+    expect(initializeGrid(size)).toEqual(expectedGrid);
 });
