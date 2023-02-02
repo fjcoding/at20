@@ -20,34 +20,34 @@ for (let step = 0; step < 100; step++) {
 }
 
 export function findNewdirection(currentColor, antDirection) {
-    let new_antdirection = '';
+    let newAntdirection = '';
     if (currentColor === 0) {
         if (antDirection === 'up') {
-            new_antdirection = 'right';
+            newAntdirection = 'right';
         } else if (antDirection === 'right') {
-            new_antdirection = 'down';
+            newAntdirection = 'down';
         } else if (antDirection === 'down') {
-            new_antdirection = 'left';
+            newAntdirection = 'left';
         } else if (antDirection === 'left') {
-            new_antdirection = 'up';
+            newAntdirection = 'up';
         }
     } else {
         if (antDirection === 'up') {
-            new_antdirection = 'left';
+            newAntdirection = 'left';
         } else if (antDirection === 'left') {
-            new_antdirection = 'down';
+            newAntdirection = 'down';
         } else if (antDirection === 'down') {
-            new_antdirection = 'right';
+            newAntdirection = 'right';
         } else if (antDirection === 'right') {
-            new_antdirection = 'up';
+            newAntdirection = 'up';
         }
     }
-    return new_antdirection;
+    return newAntdirection;
 }
 
-export function antMoveCorrectDir(antDirection){
-    let newAntcMove =50;
-    let newAntrMove =50;
+export function antMoveCorrectDir(antDirection) {
+    let newAntcMove = 50;
+    let newAntrMove = 50;
     if (antDirection === 'up') {
         newAntrMove--;
     } else if (antDirection === 'right') {
