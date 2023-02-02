@@ -58,6 +58,6 @@ export function runLangtonAnt(size, steps) {
 }
 
 // Example usage
-const grid = runLangtonAnt(5, 10);
-console.log(grid);
+//const grid = runLangtonAnt(5, 10);
+//console.log(grid);
 
