@@ -1,4 +1,4 @@
-export class cardDeck {
+export class cardExistence {
     static suitValue = {
         '2' : {
             'C' :'2C',
@@ -105,6 +105,6 @@ export class cardDeck {
     }
 
     asCard() {
-        return cardDeck.suitValue[this.#value][this.#suit];
+        return cardExistence.suitValue[this.#value][this.#suit];
     }
 }
