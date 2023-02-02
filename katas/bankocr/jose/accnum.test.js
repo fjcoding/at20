@@ -18,4 +18,13 @@ describe('Tests for account number class', () => {
         expect(accNum.digits[7].asNumber()).toBe(8);
         expect(accNum.digits[8].asNumber()).toBe(9);
     });
+
+    it('should be able to generate numeric value of an account number', () => {
+        const topLine = ' _  _        _  _  _  _  _ ';
+        const midLine = '  | _|  ||_||_ |_ | ||_|| |';
+        const botLine = '  ||_   |  | _||_||_||_||_|';
+        const accNum = new AccountNumber(topLine, midLine, botLine);
+
+        expect(accNum.asNumber()).toBe(721456080);
+    });
 });

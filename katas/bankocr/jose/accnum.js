@@ -20,6 +20,15 @@ export class AccountNumber {
         return this.#digits;
     }
 
+    asNumber() {
+        let number = 0;
+        this.#digits.forEach(digit => {
+            number *= 10;
+            number += digit.asNumber();
+        });
+        return number;
+    }
+
     #parseDigits() {
         this.#digits = [];
         for (var index = 0; index < 27; index += 3) {
