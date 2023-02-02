@@ -17,6 +17,4 @@ const Color = {
     BgWhite: '\x1b[47m'
 };
 
-module.exports = {
-    Color
-};
+export default Color;
