@@ -10,40 +10,52 @@ for (let i = 0; i < 100; i++) {
 let antRow = 50;
 let antCol = 50;
 let antDirection = 'up';
-for (let step = 0; step < 10000; step++) {
+for (let step = 0; step < 100; step++) {
     let currentColor = grid[antRow][antCol];
     grid[antRow][antCol] = currentColor === 0 ? 1 : 0;
 
+    antDirection = findNewdirection(currentColor, antDirection);
+
+    antDirection = antMoveCorrectDir(antDirection);
+}
+
+export function findNewdirection(currentColor, antDirection) {
+    let new_antdirection = '';
     if (currentColor === 0) {
         if (antDirection === 'up') {
-            antDirection = 'right';
+            new_antdirection = 'right';
         } else if (antDirection === 'right') {
-            antDirection = 'down';
+            new_antdirection = 'down';
         } else if (antDirection === 'down') {
-            antDirection = 'left';
+            new_antdirection = 'left';
         } else if (antDirection === 'left') {
-            antDirection = 'up';
+            new_antdirection = 'up';
         }
     } else {
         if (antDirection === 'up') {
-            antDirection = 'left';
+            new_antdirection = 'left';
         } else if (antDirection === 'left') {
-            antDirection = 'down';
+            new_antdirection = 'down';
         } else if (antDirection === 'down') {
-            antDirection = 'right';
+            new_antdirection = 'right';
         } else if (antDirection === 'right') {
-            antDirection = 'up';
+            new_antdirection = 'up';
         }
     }
+    return new_antdirection;
+}
 
-
+export function antMoveCorrectDir(antDirection){
+    let newAntcMove =50;
+    let newAntrMove =50;
     if (antDirection === 'up') {
-        antRow--;
+        newAntrMove--;
     } else if (antDirection === 'right') {
-        antCol++;
+        newAntcMove++;
     } else if (antDirection === 'down') {
-        antRow++;
+        newAntrMove++;
     } else if (antDirection === 'left') {
-        antCol--;
+        newAntcMove--;
     }
+    return newAntcMove, newAntrMove;
 }
