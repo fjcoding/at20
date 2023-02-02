@@ -1,4 +1,4 @@
-import LangtonAnt from './langtonant.js';
+import LangtonAnt from './langtonAnt.js';
 
 describe('LangtonAnt Class', () => {
     test('the class constructor should create the grid with the passed params ', () => {
