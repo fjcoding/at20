@@ -32,8 +32,11 @@ describe('Tests for account number class', () => {
 
 describe('Tests for an account to a true account', () => {
     it('should be able to parse a digit to numeric 0 given three string lines for OCR 0', () => {
+        const topLine = ' _     _  _  _  _  _  _  _ ';
+        const midLine = ' _||_||_ |_| _ |_ | ||_|| |';
+        const botLine = ' _|  | _||  | _||_||_||_||_|';
         const input = '3 4 5 8 8 2 8 6 5';
-        const digit = new Digit(topLine, midLine, botLine);
+        const digit = new accNum(topLine, midLine, botLine);
         expect(digit.verifyAccount()).toBe(0);
     });
 });

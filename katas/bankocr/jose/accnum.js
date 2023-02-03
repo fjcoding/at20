@@ -38,17 +38,18 @@ export class AccountNumber {
             this.#digits.push(new Digit(topLineDigit, midLineDigit, botLineDigit));
         }
     }
-    #isValid(){
+
+    isValid() {
         let number = this.asNumber();
         let instring = number.toString();
         let result = 0;
         for (let i = instring.lenght - 1; i >= 0; i--) {
-            const element = array[i];
-            element*
-        };
-        if ((d1 + 2*d2 + 3*d3 + 4*d4 + 5*d5 + 6*d6 + 7*d7 + 8*d8 + 9*d9) % 11 == 0)
-        {
-
+            result = result + instring[i] * (9 - i);
+        }
+        if ((result % 11) === 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
