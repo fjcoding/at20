@@ -1,21 +1,24 @@
-import { asNumber } from './accnum';
+//import { asNumber } from './accnum';
 
-export class checkSum{
-    #lastNumber
+export class checkSum {
+    #lastNumber;
+
     constructor(lastNumber) {
-        this.#lastNumber=lastNumber;
+        this.#lastNumber = lastNumber;
     }
-    sameNum(){
+
+    sameNum() {
         return this.#lastNumber;
-        }
+    }
 
     outSum () {
-         const numNew = String(this.#lastNumber);
-         const size = numNew.length;
-         var suma = 0;
-         for (let i = (size - 1); i >= 0; i-- ) {
-                suma = suma + numNew[i];
-         }
+        const numNew = String(this.#lastNumber);
+        const size = numNew.length;
+        var suma = 0;
+        for (let i = (size - 1); i >= 0; i--) {
+            suma = suma + (size - i) * parseInt(numNew[i]);
+        }
+        let check = suma % 11;
+        return check;
     }
-
 }
