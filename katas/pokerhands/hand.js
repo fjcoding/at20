@@ -30,6 +30,9 @@ class Hand {
 
     #rank;
 
+    //When is a tie, the hand with the highest value card wins.
+    #rankValues;
+
     constructor(handString) {
         //hand shoul be 5 cards and each card should be 2 characters
         //exapmle -> '2H 3D 5S 9C KD'
@@ -104,17 +107,17 @@ class Hand {
 
     isFourOfAKind() {
         const cardValuesCount = this.#getArrayCount(this.getValues());
-        return cardValuesCount.length === 2 && cardValuesCount.includes(4) && cardValuesCount.includes(1);
+        return cardValuesCount.length === 2 && cardValuesCount.includes(4) && cardValuesCount.includes(1) && this.#assignedRankValues(this.getValuesNumber(), Hand.FOUR_OF_A_KIND);
     }
 
     isFullHouse() {
         const cardValuesCount = this.#getArrayCount(this.getValues());
-        return cardValuesCount.length === 2 && cardValuesCount.includes(3) && cardValuesCount.includes(2);
+        return cardValuesCount.length === 2 && cardValuesCount.includes(3) && cardValuesCount.includes(2) && this.#assignedRankValues(this.getValuesNumber(), Hand.FULL_HOUSE);
     }
 
     isFlush() {
         const cardSuitsCount = [...new Set(this.getSuits())];
-        return cardSuitsCount.length === 1;
+        return cardSuitsCount.length === 1 && this.#assignedRankValues(this.getValuesNumber(), Hand.FLUSH);
     }
 
     isStraight() {
@@ -126,22 +129,24 @@ class Hand {
                 return false;
             }
         }
+
+        this.#assignedRankValues(cardValuesOrdered, Hand.STRAIGHT);
         return true;
     }
 
     isThreeOfAKind() {
         const cardValuesCount = this.#getArrayCount(this.getValues());
-        return cardValuesCount.length === 3 && cardValuesCount.includes(3) && cardValuesCount.includes(1);
+        return cardValuesCount.length === 3 && cardValuesCount.includes(3) && cardValuesCount.includes(1) && this.#assignedRankValues(this.getValuesNumber(), Hand.THREE_OF_A_KIND);
     }
 
     isTwoPair() {
         const cardValuesCount = this.#getArrayCount(this.getValues());
-        return cardValuesCount.length === 3 && cardValuesCount.includes(2) && cardValuesCount.includes(1);
+        return cardValuesCount.length === 3 && cardValuesCount.includes(2) && cardValuesCount.includes(1) && this.#assignedRankValues(this.getValuesNumber(), Hand.TWO_PAIR);
     }
 
     isOnePair() {
         const cardValuesCount = this.#getArrayCount(this.getValues());
-        return cardValuesCount.length === 4 && cardValuesCount.includes(2) && cardValuesCount.includes(1);
+        return cardValuesCount.length === 4 && cardValuesCount.includes(2) && cardValuesCount.includes(1) && this.#assignedRankValues(this.getValuesNumber(), Hand.ONE_PAIR);
     }
 
     #getArrayCount(array) {
@@ -157,6 +162,32 @@ class Hand {
         return Object.values(arrayCount);
     }
 
+    //This assigned the rank values to the rankValues property in descending order of importance
+    #assignedRankValues(cardValues, rank) {
+        if (rank === Hand.STRAIGHT || rank === Hand.FLUSH || rank === Hand.STRAIGHT_FLUSH) {
+            const orderedValuesDesc = cardValues.sort((a, b) => (b - a));
+            this.#rankValues = orderedValuesDesc;
+        } else if (rank === Hand.FOUR_OF_A_KIND || rank === Hand.THREE_OF_A_KIND || rank === Hand.FULL_HOUSE) {
+            this.#rankValues = cardValues.find((value, index, self) => self.indexOf(value) !== index);
+        } else if (rank === Hand.TWO_PAIR) {
+            const firstPair = cardValues.find((value, index, self) => self.indexOf(value) !== index);
+            const secondPair = cardValues.find((value, index, self) => self.indexOf(value) !== index && value !== firstPair);
+            const restCard = cardValues.filter((value) => value !== firstPair && value !== secondPair);
+            const restCardOrdered = restCard.sort((a, b) => (b - a));
+            const highestPair = firstPair > secondPair ? firstPair : secondPair;
+            const lowestPair = firstPair < secondPair ? firstPair : secondPair;
+            this.#rankValues = [highestPair, lowestPair, ...restCardOrdered];
+        } else if (rank === Hand.PAIR) {
+            const pair = cardValues.find((value, index, self) => self.indexOf(value) !== index);
+            const restCards = cardValues.filter((value) => value !== pair);
+            const restCardsOrdered = restCards.sort((a, b) => (b - a));
+            this.#rankValues = [pair, ...restCardsOrdered];
+        } else {
+            const orderedValuesDesc = cardValues.sort((a, b) => (b - a));
+            this.#rankValues = orderedValuesDesc;
+        }
+    }
+
     compareWith(otherHand) {
         if (this.getRank() > otherHand.getRank()) {
             return 1;
@@ -168,16 +199,12 @@ class Hand {
     }
 
     #compareWithSameRank(otherHand) {
-        const cardValues = this.getValuesNumber();
-        const otherCardValues = otherHand.getValuesNumber();
+        const rankValues = this.#rankValues;
+        let card1;
+        let card2;
 
-        for (let index = 0; index < cardValues.length; index++) {
-            if (cardValues[index] > otherCardValues[index]) {
-                return 1;
-            }
-            if (cardValues[index] < otherCardValues[index]) {
-                return -1;
-            }
+        for (let index = 0; index < rankValues.length; index++) {
+            let card1 = new Card(rankValues[index]);
         }
         return 0;
     }
