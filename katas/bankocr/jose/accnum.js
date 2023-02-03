@@ -38,4 +38,12 @@ export class AccountNumber {
             this.#digits.push(new Digit(topLineDigit, midLineDigit, botLineDigit));
         }
     }
+    #isValid(){
+        let number = this.asNumber();
+        let instring = number.toString();
+        for (let i = 1; i < 9; i++) {
+            const element = array[i];
+            
+        }
+    }
 }
