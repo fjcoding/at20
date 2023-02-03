@@ -47,4 +47,22 @@ export class Hands {
         }
         return false;
     }
+
+    highStraightCard() {
+        const dist = this.distribution();
+        let cont = 0;
+        for (let i = 0; i < dist.length; i++) {
+            for (let j = 0; j < 4; j++) {
+                if (dist[i + j] == 1) {
+                    cont++;
+                }
+            }
+            if (cont == 4) {
+                return i + 3;
+            } else {
+                cont = 0;
+            }
+        }
+        return false;
+    }
 }

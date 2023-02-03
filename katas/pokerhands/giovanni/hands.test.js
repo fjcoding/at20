@@ -29,4 +29,10 @@ describe('Test for Hands class', () => {
         expect(Hand.countPosition(2)).toEqual(false);
         expect(Hand.countPosition(4)).toEqual(false);
     });
+    it('should be able to obtain the place, in the distribution, of the highest card in a straight of four cards', () => {
+        const testhand = '2H 7H 6S 4D, 5S';
+        const Hand = new Hands(testhand);
+        const result = 5;
+        expect(Hand.highStraightCard()).toEqual(result);
+    });
 });
