@@ -37,4 +37,14 @@ export class Hands {
         }
         return dist;
     }
+
+    countPosition(num) {
+        const dist = this.distribution();
+        for (let i = 0; i < 13; i++) {
+            if (dist[i] == num) {
+                return i;
+            }
+        }
+        return false;
+    }
 }
