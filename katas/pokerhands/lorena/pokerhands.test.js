@@ -1,4 +1,5 @@
-import { Card } from './pokerhands';
+import { Card, Player } from './pokerhands';
+
 
 describe('Test for Card class', () => {
     it('Should be able to identify a specific card', () => {
@@ -23,3 +24,19 @@ describe('Test for Card class', () => {
     });
 });
 
+describe('Test for Player class', () => {
+    it('should be able read a poker hand', () => {
+        const name = 'White';
+        var pokerhand = '5D 7D QC JH 3S';
+        const player1 = new Player(name, pokerhand);
+        expect(player1.readHand()).toBe(pokerhand);
+    });
+
+    it('should be able identify pokerhand`s cards', () => {
+        const name = 'White';
+        var pokerhand = '5D 7D QC JH 3S';
+        const player1 = new Player(name, pokerhand);
+        var pokerhandArra = pokerhand.split(' ');
+        expect(player1.handToCards()).toStrictEqual(pokerhandArra);
+    });
+});
