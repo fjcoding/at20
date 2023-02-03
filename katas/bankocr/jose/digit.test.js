@@ -90,4 +90,4 @@ describe('Tests for digit class', () => {
         const digit = new Digit(topLine, midLine, botLine);
         expect(digit.asNumber()).toBe(9);
     });
-
+});

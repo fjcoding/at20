@@ -45,6 +45,5 @@ export class Digit {
     asNumber() {
         return Digit.ocrChain[this.#topLine][this.#midLine][this.#botLine];
     }
-
 }
 
