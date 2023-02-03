@@ -28,3 +28,12 @@ describe('Tests for account number class', () => {
         expect(accNum.asNumber()).toBe(721456080);
     });
 });
+
+
+describe('Tests for an account to a true account', () => {
+    it('should be able to parse a digit to numeric 0 given three string lines for OCR 0', () => {
+        const input = '3 4 5 8 8 2 8 6 5';
+        const digit = new Digit(topLine, midLine, botLine);
+        expect(digit.verifyAccount()).toBe(0);
+    });
+});
