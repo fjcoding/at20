@@ -48,10 +48,9 @@ export class AccountNumber {
             acc = parseInt(number) * index + acc;
             index ++;
         }
-        if( acc % 11 == 0){
+        if (acc % 11 == 0) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
