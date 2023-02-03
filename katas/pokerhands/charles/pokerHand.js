@@ -18,6 +18,7 @@ export class PokerHand {
     };
 
     #cards;
+    #pairs;
 
     constructor(pokerHand) {
         this.#cards = [];
@@ -30,11 +31,15 @@ export class PokerHand {
         return this.#cards;
     }
 
+    getPairs() {
+        return this.#pairs;
+    }
+
     getCardsLength() {
         return this.#cards.length;
     }
 
-    isRepeted(currentCard, pokerHand) {
+    countValues(currentCard, pokerHand) {
         let count = 0;
         pokerHand.forEach(card => {
             if (currentCard.getValueCard() == card.getValueCard()) {
@@ -47,8 +52,30 @@ export class PokerHand {
     isHighCard() {
         let resp;
         this.getCards().forEach(card => {
-            resp = this.isRepeted(card, this.getCards()) > 1 ? false : true;
+            resp = this.countValues(card, this.getCards()) > 1 ? false : true;
         });
         return resp;
+    }
+
+    countPairs() {
+        this.#pairs = [];
+        this.getCards().forEach(card => {
+            if(this.countValues(card, this.getCards()) == 2) {
+                if(!this.existPair(card.getValueCard())){
+                    this.#pairs.push(card.getValueCard());
+                }
+            }
+        });
+        return this.#pairs.length;
+    }
+
+    existPair(pair) {
+        let isExist = false;
+        this.#pairs.forEach( value => {
+            if(pair == value) {
+                isExist = true;
+            }
+        });
+        return isExist;
     }
 }
