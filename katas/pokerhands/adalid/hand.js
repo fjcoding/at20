@@ -10,5 +10,13 @@ export class Hand {
     constructor(hand) {
         this.hand = hand;
     }
-    //separatorInPairs(){}
+
+    // get hand() {
+    //     return this.hand;
+    // }
+
+    separatorInPairs(String) {
+        let separator = String.split(' ');
+        return separator;
+    }
 }

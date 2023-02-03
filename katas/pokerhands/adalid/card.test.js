@@ -1,5 +1,5 @@
 import { Card } from './card';
-//import { Hand } from './hand';
+import { Hand } from './hand';
 
 describe('Tests for card class', () => {
     it('should be able to parse a  numeric to string input', () => {
@@ -36,12 +36,12 @@ describe('Tests for card class', () => {
     });
 });
 
-// describe('Tests for hand class', () => {
-//     it('should be able to separate an string in pairs', () => {
-//         const input = '2H 3D 5S 9C KD';
-//         let separator = input.split('');
-//         let playHand = separator;
-//         const hand = new Hand(playHand);
-//         expect(hand.separatorInPairs()).toBe(['2H', '3D', '5S', '9C', 'KD']);
-//     });
-// });
+describe('Tests for hand class', () => {
+    it('should be able to separate an string in pairs', () => {
+        const input = '2H 3D 5S 9C KD';
+        let separator = input.split('');
+        let playHand = separator;
+        const hand = new Hand(playHand);
+        expect(hand.separatorInPairs()).toBe(['2H', '3D', '5S', '9C', 'KD']);
+    });
+});
