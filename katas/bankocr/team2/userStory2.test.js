@@ -6,8 +6,8 @@ describe('Tests for verifNumber funtion', () => { 
         const midLine = '  | _| _||_||_ |_   ||_||_|';
         const botLine = '  ||_  _|  | _||_|  ||_| _|';
         const accNum = new AccountNumber(topLine, midLine, botLine);
-        const entryNum = 34;
+        const entryNum = 345882865;
         // const accountNum = new AccountNumber (topLine, midLine, botLine)
         //expect (accNum.verifyNumber(entryNum)).toBe(0);
-        expect (accNum.verifyNumber(entryNum)).toBe(10);
+        expect (accNum.verifyNumber(entryNum)).toBe(true);
      });});
