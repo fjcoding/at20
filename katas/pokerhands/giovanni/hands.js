@@ -89,9 +89,23 @@ export class Hands {
         if (this.countPosition(3) != false) {
             return 3;
         }
-        if (this.countPosition(2) != false) {
+        const pair = this.countPosition(2);
+        if (pair != false) {
+            if (this.secondPair(pair) != false) {
+                return 2;
+            }
             return 1;
         }
         return 0;
+    }
+
+    secondPair(num) {
+        const dist = this.distribution();
+        for (let i = num + 1; i < 14; i++) {
+            if (dist[i] == 2) {
+                return i;
+            }
+        }
+        return false;
     }
 }

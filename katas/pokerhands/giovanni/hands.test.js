@@ -84,4 +84,10 @@ describe('Test for Hands class', () => {
         const rank = 0;
         expect(Hand.handRank()).toEqual(rank);
     });
+    it('should be able to return a value  2 that represents the rank of the hand', () => {
+        const testhand = '2C 3D 4S 3H 2D';
+        const Hand = new Hands(testhand);
+        const rank = 2;
+        expect(Hand.handRank()).toEqual(rank);
+    });
 });
