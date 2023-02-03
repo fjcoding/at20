@@ -30,8 +30,8 @@ describe('Tests for account number class', () => {
 });
 
 
-describe('Tests for an account to a true account', () => {
-    it('should be able to parse a digit to numeric 0 given three string lines for OCR 0', () => {
+describe('Tests for account number class', () => {
+    it('should be able to verify an account to is a valid account', () => {
         const topLine = ' _  _        _  _  _  _  _ ';
         const midLine = '  | _|  ||_||_ |_ | ||_|| |';
         const botLine = '  ||_   |  | _||_||_||_||_|';
