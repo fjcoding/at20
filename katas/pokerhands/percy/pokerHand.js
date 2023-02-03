@@ -7,7 +7,9 @@ export class pokerHand {
     #value;
     #value2;
     #winningMove;
-    #objectValues
+    #winningMove1;
+    #winningMove2;
+    objectValues;
     constructor(handCards) {
         this.#handCards = handCards;
         this.asValuePokerHand();
@@ -38,20 +40,20 @@ export class pokerHand {
         var equalKNumbers=0;
         var equalANumbers=0;
         var pair=0;
-        var threeOfAKind;
-        var pos2;
-        var pos3;
-        var pos4;
-        var pos5;
-        var pos6;
-        var pos7;
-        var pos8;
-        var pos9
-        var posT;
-        var posJ;
-        var posQ;
-        var posK;
-        var posA;
+        var threeOfAKind=0;
+        var pos2=[];
+        var pos3=[];
+        var pos4=[];
+        var pos5=[];
+        var pos6=[];
+        var pos7=[];
+        var pos8=[];
+        var pos9=[];
+        var posT=[];
+        var posJ=[];
+        var posQ=[];
+        var posK=[];
+        var posA=[];
         this.#value2 = [];
             for (let i = 0; i < 5; i++) {
 
@@ -60,65 +62,70 @@ export class pokerHand {
             for (let i = 0; i < 5; i++) {
                     if(this.#value2[i]=="2"){
                         equalTwoNumbers++;
-                        pos2=i;
+                        pos2.push(i);
+
                     }
                         if(this.#value2[i]=="3") {
                         equalThreeNumbers++;
-                        pos3=i;
+                        pos3.push(i);
                     }
                         if(this.#value2[i]=="4") {
                         equalFourNumbers++;
-                        pos4=i;
+                        pos4.push(i);
                     }
                         if(this.#value2[i]=="5") {
                         equalFiveNumbers++;
-                        pos5=i;
+                        pos5.push(i);
                    }
                         if(this.#value2[i]=="6") {
                         equalSixNumbers++;
-                        pos6=i;
+                        pos6.push(i);
                     }
                         if(this.#value2[i]=="7") {
                         equalSevenNumbers++;
-                        pos7=i;
+                        pos7.push(i);
                     }
                         if(this.#value2[i]=="8") {
                         equalEightNumbers++;
-                        pos8=i;
+                        pos8.push(i);
                     }
                         if(this.#value2[i]=="9") {
                         equalNineNumbers++;
-                        pos9=i;
+                        pos9.push(i);
                     }
                         if(this.#value2[i]=="T") {
                         equalTNumbers++;
-                        posT=i;
+                        posT.push(i);
                     }
                         if(this.#value2[i]=="J") {
                         equalJNumbers++;
-                        posJ=i;
+                        posJ.push(i);
                     }
                         if(this.#value2[i]=="Q") {
                         equalQNumbers++;
-                        posQ=i;
+                        posQ.push(i);
                     }
                     if(this.#value2[i]=="K") {
                         equalKNumbers++;
-                        posK=i;
+                        posK.push(i);
                     }
                     if(this.#value2[i]=="A") {
                         equalANumbers++;
-                        posA=i;
+                        posA.push(i);
                     }
         }
 
 //object values
-                this.#objectValues={
+                this.objectValues={
                     howMany:{
                         numberTwo:equalTwoNumbers,
                         numberThree:equalThreeNumbers,
                         numberFour:equalFourNumbers,
                         numberFive:equalFiveNumbers,
+                        numberSix:equalSixNumbers,
+                        numberSeven:equalSevenNumbers,
+                        numberEight:equalEightNumbers,
+                        numberNine:equalNineNumbers,
                         numberT:equalTNumbers,
                         numberJ:equalJNumbers,
                         numberQ:equalQNumbers,
@@ -130,6 +137,10 @@ export class pokerHand {
                         numberThree:equalThreeNumbers*2,
                         numberFour:equalFourNumbers*3,
                         numberFive:equalFiveNumbers*4,
+                        numberSix:equalSixNumbers*5,
+                        numberSeven:equalSevenNumbers*6,
+                        numberEight:equalEightNumbers*7,
+                        numberNine:equalNineNumbers*8,
                         numberT:equalTNumbers*9,
                         numberJ:equalJNumbers*10,
                         numberQ:equalQNumbers*11,
@@ -141,6 +152,10 @@ export class pokerHand {
                         numberThree:2,
                         numberFour:3,
                         numberFive:4,
+                        numberFive:5,
+                        numberFive:6,
+                        numberFive:7,
+                        numberFive:8,
                         numberT:9,
                         numberJ:10,
                         numberQ:11,
@@ -150,25 +165,165 @@ export class pokerHand {
 
                 };
 
+//pairs
+               /* if(this.objectValues.howMany.numberTwo==2 && (this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+                        this.#winningMove1=this.#handCards[pos2].concat(' '+this.#handCards[pos2])
+
+                    }*/
+
+
+//Three of a kind
+                    if(this.objectValues.howMany.numberA==3) {
+                        const a=posA[0];
+                        const b= posA[1];
+                        const c=posA[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberK==3) {
+                        const a=posK[0];
+                        const b= posK[1];
+                        const c=posK[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberQ==3) {
+                        const a=posQ[0];
+                        const b= posQ[1];
+                        const c=posQ[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberJ==3) {
+                        const a=posJ[0];
+                        const b= posJ[1];
+                        const c=posJ[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberT==3) {
+                        const a=posT[0];
+                        const b= posT[1];
+                        const c=posT[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberNine==3) {
+                        const a=pos9[0];
+                        const b= pos9[1];
+                        const c=pos9[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberEight==3) {
+                        const a=pos8[0];
+                        const b= pos8[1];
+                        const c=pos8[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberSeven==3) {
+                        const a=pos7[0];
+                        const b= pos7[1];
+                        const c=pos7[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberSix==3) {
+                        const a=pos6[0];
+                        const b= pos6[1];
+                        const c=pos6[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberFive==3) {
+                        const a=pos5[0];
+                        const b= pos5[1];
+                        const c=pos5[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberFour==3) {
+                        const a=pos4[0];
+                        const b= pos4[1];
+                        const c=pos4[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberThree==3) {
+                        const a=pos3[0];
+                        const b= pos3[1];
+                        const c=pos3[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }else if(this.objectValues.howMany.numberTwo==3) {
+                        const a=pos2[0];
+                        const b= pos2[1];
+                        const c=pos2[2];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
+                    }
+                  //pair
+                  else if(this.objectValues.howMany.numberA==2) {
+                        const a=posA[0];
+                        const b= posA[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberK==2) {
+                        const a=posK[0];
+                        const b= posK[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberQ==2) {
+                        const a=posQ[0];
+                        const b= posQ[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberJ==2) {
+                        const a=posJ[0];
+                        const b= posJ[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberT==2) {
+                        const a=posT[0];
+                        const b= posT[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberNine==2) {
+                        const a=pos9[0];
+                        const b= pos9[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberEight==2) {
+                        const a=pos8[0];
+                        const b= pos8[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberSeven==2) {
+                        const a=pos7[0];
+                        const b= pos7[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberSix==2) {
+                        const a=pos6[0];
+                        const b= pos6[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberFive==2) {
+                        const a=pos5[0];
+                        const b= pos5[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberFour==2) {
+                        const a=pos4[0];
+                        const b= pos4[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberThree==2) {
+                        const a=pos3[0];
+                        const b= pos3[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else if(this.objectValues.howMany.numberTwo==2) {
+                        const a=pos2[0];
+                        const b= pos2[1];
+                        this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+ ' pair winning move');
+                    }else
+
 //high Card
-//this.#winningMove=this.#objectValues;
+//this.#winningMove=pos2[1];
 
-                if(this.#objectValues.howMany.numberA != 0){
+                if(this.objectValues.howMany.numberA != 0){
                     this.#winningMove=this.#handCards[posA].concat(' High Card Win');
-                }else if(this.#objectValues.howMany.numberK != 0) {
-                    this.#winningMove=this.#handCards[posK];
-                }else if(this.#objectValues.howMany.numberQ != 0) {
-                    this.#winningMove=this.#handCards[posQ];
-                }else if(this.#objectValues.howMany.numberJ != 0) {
-                    this.#winningMove=this.#handCards[posJ];
-                }else if(this.#objectValues.howMany.numberT != 0) {
-                    this.#winningMove=this.#handCards[posT];
-                }else if(this.#objectValues.howMany.numberFour != 0) {
-
+                }else if(this.objectValues.howMany.numberK != 0) {
+                    this.#winningMove=this.#handCards[posK].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberQ != 0) {
+                    this.#winningMove=this.#handCards[posQ].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberJ != 0) {
+                    this.#winningMove=this.#handCards[posJ].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberT != 0) {
+                    this.#winningMove=this.#handCards[posT].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberNine != 0) {
+                    this.#winningMove=this.#handCards[pos9].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberEight != 0) {
+                    this.#winningMove=this.#handCards[pos8].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberSeven != 0) {
+                    this.#winningMove=this.#handCards[pos7].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberSix != 0) {
+                    this.#winningMove=this.#handCards[pos6].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberFive != 0) {
+                    this.#winningMove=this.#handCards[pos5].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberFour != 0) {
+                    this.#winningMove=this.#handCards[pos4].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberThree != 0) {
+                    this.#winningMove=this.#handCards[pos3].concat(' High Card Win');;
+                }else if(this.objectValues.howMany.numberTwo != 0) {
+                    this.#winningMove=this.#handCards[pos2].concat(' High Card Win');;
                 }
-
-//pairs or threeOfAKind
-
 
     }
 
@@ -178,6 +333,9 @@ export class pokerHand {
     get asHandCard1() {
         return  this.#value;
     }
+    /*get asHandCard2() {
+        return  this.#winningMove;
+    }*/
 
 
 }
