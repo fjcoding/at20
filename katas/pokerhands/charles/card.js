@@ -1,6 +1,7 @@
 export class Card {
-    static allowedValues = ['2','3','4','5','6','7','8','9','T','J','Q','K','A'];
-    static allowedSuits = ['C','D','H','S'];
+    static allowedValues = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+
+    static allowedSuits = ['C', 'D', 'H', 'S'];
 
     #value;
 

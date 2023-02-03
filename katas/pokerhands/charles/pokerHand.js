@@ -17,11 +17,11 @@ export class PokerHand {
         A: 13
     };
 
-    #cards
+    #cards;
 
     constructor(pokerHand) {
         this.#cards = [];
-        pokerHand.forEach( card => {
+        pokerHand.forEach(card => {
             this.#cards.push(new Card(card));
         });
     }
@@ -36,8 +36,8 @@ export class PokerHand {
 
     isRepeted(currentCard, pokerHand) {
         let count = 0;
-        pokerHand.forEach( card => {
-            if(currentCard.getValueCard() == card.getValueCard()) {
+        pokerHand.forEach(card => {
+            if (currentCard.getValueCard() == card.getValueCard()) {
                 count++;
             }
         });
