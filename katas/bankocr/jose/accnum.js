@@ -41,9 +41,14 @@ export class AccountNumber {
     #isValid(){
         let number = this.asNumber();
         let instring = number.toString();
-        for (let i = 1; i < 9; i++) {
+        let result = 0;
+        for (let i = instring.lenght - 1; i >= 0; i--) {
             const element = array[i];
-            
+            element*
+        };
+        if ((d1 + 2*d2 + 3*d3 + 4*d4 + 5*d5 + 6*d6 + 7*d7 + 8*d8 + 9*d9) % 11 == 0)
+        {
+
         }
     }
 }
