@@ -1,17 +1,17 @@
 export class Deck{
     #deck;
-    constructor(deck){
+    constructor(deck) {
         this.#deck = deck;
     }
 
-    dealDeck(){
+    dealDeck() {
         var newDeck = this.#deck.split(' ');
         return newDeck
     }
 
-    isHandOne(arrayCards){
+    isHandOne(arrayCards) {
         var handOne = new Array();
-        var arrayNumeber = ['2','3','4','5','6','7','8','9'];
+        var arrayNumeber = ['2', '3', '4', '5', '6', '7', '8', '9'];
         for (let i = 0; i < 5 ; i++){
             var caracter = arrayCards[i+1].charAt(0);
             if(arrayNumeber.includes(caracter) ){
@@ -40,7 +40,7 @@ export class Deck{
 
     isHandTwo(arrayCards){
         var handTwo = new Array();
-        var arrayNumeber = ['2','3','4','5','6','7','8','9'];
+        var arrayNumeber = ['2', '3', '4', '5', '6', '7', '8', '9'];
         for (let i = 0; i < 5 ; i++){
             var caracter = arrayCards[i+8].charAt(0);
             if(arrayNumeber.includes(caracter) ){
@@ -71,6 +71,4 @@ export class Deck{
        var max =  Math.max(...hand)
        return max
     }
-  
 }
-
