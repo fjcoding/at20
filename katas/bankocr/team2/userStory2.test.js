@@ -7,7 +7,7 @@ describe('Tests for verifNumber funtion', () => { 
         const botLine = '  ||_  _|  | _||_|  ||_| _|';
         const accNum = new AccountNumber(topLine, midLine, botLine);
         const entryNum = 345882865;
-        const accountNum = new AccountNumber (topLine, midLine, botLine)
+        // const accountNum = new AccountNumber (topLine, midLine, botLine)
         //expect (accNum.verifyNumber(entryNum)).toBe(0);
-        expect (accNum.verifyNumber(entryNum)).toBe('345882865');
+        expect (accNum.verifyNumber(entryNum)).toBe('568288543');
      });});

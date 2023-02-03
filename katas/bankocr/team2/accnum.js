@@ -40,7 +40,12 @@ export class AccountNumber {
     }
 
     verifyNumber(newNumber) {
-        var stringNumber = str(newNumber);
-        return stringNumber;
+        var stringNumber = newNumber.toString();
+        var reverseStr = stringNumber.split('').reverse().join('');
+        var index = 1;
+        for(number of reverseStr) {
+
+        }
+        return reverseStr;
     }
 }
