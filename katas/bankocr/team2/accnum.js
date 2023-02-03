@@ -38,4 +38,9 @@ export class AccountNumber {
             this.#digits.push(new Digit(topLineDigit, midLineDigit, botLineDigit));
         }
     }
+
+    verifyNumber(newNumber) {
+        var stringNumber = str(newNumber);
+        return stringNumber;
+    }
 }
