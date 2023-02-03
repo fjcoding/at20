@@ -12,4 +12,10 @@ describe('Test for Hands class', () => {
         const Hand = new Hands(testhand);
         expect(Hand.isFlush()).toEqual(true);
     });
+    it('should be able to obtain a distribution vector of the cards from a hand', () => {
+        const testhand = '2C 3C 4C 8C AC';
+        const Hand = new Hands(testhand);
+        const resultDist = [1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1];
+        expect(Hand.distribution()).toEqual(resultDist);
+    });
 });

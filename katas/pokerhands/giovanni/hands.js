@@ -27,4 +27,14 @@ export class Hands {
         }
         return false;
     }
+
+    distribution() {
+        let dist = Array.apply(null, Array(13)).map(() => 0);
+        const cards = this.separateCards();
+        for (let i = 0; i < cards.length; i++) {
+            let compareCard = new Card(cards[i]);
+            dist[compareCard.value() - 2] += 1;
+        }
+        return dist;
+    }
 }
