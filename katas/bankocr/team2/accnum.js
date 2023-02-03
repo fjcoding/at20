@@ -43,9 +43,11 @@ export class AccountNumber {
         var stringNumber = newNumber.toString();
         var reverseStr = stringNumber.split('').reverse().join('');
         var index = 1;
-        for(number of reverseStr) {
-
+        var acc = 0;
+        for (let number of reverseStr) {
+            acc = parseInt(number) * index + acc;
+            index ++;
         }
-        return reverseStr;
+        return acc;
     }
 }
