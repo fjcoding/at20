@@ -120,6 +120,12 @@ export class PokerHand {
         return numCards == sameSuit ? true : false;
     }
 
+    isFullHouse() {
+        const isThreeKind = this.isThreeKind();
+        const isPair = this.countPairs();
+        return isThreeKind != 0 && isPair == 1 ? true : false;
+    }
+
     generateSecuence(initialValue) {
         let result = '';
         let value = PokerHand.valueCards[initialValue];

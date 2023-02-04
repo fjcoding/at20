@@ -56,10 +56,10 @@ describe('Tests for hand class', () => {
         hand = new PokerHand(pokerHand[1].split(' '));
         expect(hand.isThreeKind()).toBe(0);
 
-        cardList = 'Black: 2H 3D 2S 2C 3H';
+        cardList = 'Black: 2H 3D 3S 2C 3H';
         pokerHand = cardList.split(': ');
         hand = new PokerHand(pokerHand[1].split(' '));
-        expect(hand.isThreeKind()).toBe(2);
+        expect(hand.isThreeKind()).toBe(3);
     });
 
     it('should be able to show if the poker hand is straight', () => {
@@ -117,5 +117,34 @@ describe('Tests for hand class', () => {
         pokerHand = cardList.split(': ');
         hand = new PokerHand(pokerHand[1].split(' '));
         expect(hand.isFlush()).toBe(true);
+    });
+
+    it('should be able to show if the poker hand is full house', () => {
+        // let cardList = 'Black: 8H 3D 9S 5C 2D';
+        // let cardList = 'Black: 8H 6D 9S 5C 7D';
+        let cardList = 'Black: 2H 4S 4C 2D 4H';
+        let pokerHand = cardList.split(': ');
+        let hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isFullHouse()).toBe(true);
+
+        cardList = 'Black: 9H AD TS 2C KD';
+        pokerHand = cardList.split(': ');
+        hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isFullHouse()).toBe(false);
+
+        cardList = 'Black: 2H 4D 4S 6C 4H';
+        pokerHand = cardList.split(': ');
+        hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isFullHouse()).toBe(false);
+
+        // cardList = 'Black: JH TH AS KH QH';
+        // pokerHand = cardList.split(': ');
+        // hand = new PokerHand(pokerHand[1].split(' '));
+        // expect(hand.isFullHouse()).toBe(false);
+
+        // cardList = 'Black: 9D AD TD 2D KD';
+        // pokerHand = cardList.split(': ');
+        // hand = new PokerHand(pokerHand[1].split(' '));
+        // expect(hand.isFullHouse()).toBe(true);
     });
 });
