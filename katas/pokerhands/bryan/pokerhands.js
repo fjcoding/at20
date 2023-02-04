@@ -118,22 +118,24 @@ export class readHand {
 
                 if (keyCM2 != keyCM1) {
                     if (current == pivot) {//
+                        //console.log(keyCM1,keyCM2);
                         if (matchCount == 0) {
                             posTag.push([keyCM1, keyCM2]);
-                            match1 = current;
-                            matchCount += 1;
-                            init = keyCM1;
+                            match1 = current;//Q
+                            matchCount += 1;//1
+                            init = keyCM1;//0
                         } else if (matchCount < 3) {
                             for (var keyTag1 = 0; keyTag1 < posTag.length; keyTag1++) {
                                 if (keyCM1 == init) {
                                     if (posTag[keyTag1][1] != keyCM2) {
                                         cm1 += 1;
+                                        //console.log(posTag);
                                     }
                                     if (cm1 == posTag.length) {
                                         posTag.push([keyCM1, keyCM2]);
-                                        outs = [0, [0, 0]];
+                                        // console.log(posTag);
                                         cm1 = 0;
-                                        if (current == match1) {
+                                        if (current == match1) {//'QC 3S 9C QD QH' 03
                                             match2 = match1;
                                             match1 = current;
                                             matchCount += 1;
@@ -144,13 +146,13 @@ export class readHand {
                                     }
                                 } else {
                                     if (((posTag[keyTag1][0] != keyCM1) && (posTag[keyTag1][1] != keyCM2)) && ((posTag[keyTag1][0] != keyCM2) && (posTag[keyTag1][1] != keyCM1))) {
-                                        cm2 += 1;//1
+                                        cm2 += 1;//
                                     }
 
 
                                     if (cm2 == posTag.length) {//1
                                         posTag.push([keyCM1, keyCM2]);//
-                                        console.log(posTag);
+                                        //console.log(posTag);
                                         cm2 = 0;
                                         if (current == match1) {
                                             match2 = match1;//obs
@@ -163,7 +165,7 @@ export class readHand {
                                     }
                                 }
                             }
-                            cm1 = 0;
+                            cm1 = 0;//maybe not here
                             cm2 = 0;
                         }
                     }
