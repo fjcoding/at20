@@ -18,7 +18,7 @@ describe('Tests for card class', () => {
         expect(handler).toThrow(new Error('(A) Invalid Suit Value'));
     });
     //TODO: return something }}}fit solo corre el test q se indica
-    fit('should throw an error when card input has more than 2 caracters', () => {
+    it('should throw an error when card input has more than 2 caracters', () => {
         const input = '16A';
         const handler = ()=>{
             new Card(input);
