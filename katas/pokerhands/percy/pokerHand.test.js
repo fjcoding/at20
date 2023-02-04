@@ -18,6 +18,22 @@ describe('Tests for value in my pokerHand ', () => {
         expect(Hand.asHandCard1[1]).toBe('3');
     });
 });
+/*
+describe('Tests for suit in my pokerHand ', () => {
+    it('first suit card', () => {
+        const handCards = '2H 3D 5S 9C KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asCardSuit);
+        expect(Hand.asCardSuit[0]).toBe('H');
+    });
+
+    it('second suit card', () => {
+        const handCards = '2H 3D 5S 9C KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asCardSuit);
+        expect(Hand.asCardSuit[1]).toBe('D');
+    });
+});*/
 
 
 describe('Tests for type of Win ', () => {
@@ -45,6 +61,25 @@ describe('Tests for type of Win ', () => {
         const Hand = new pokerHand(handCard1.asHandCard);
         expect(Hand.asValueCard).toBe('3D 3C pair winning move with 2H 2S pair winning move two pair winning move');
     });
+
+    it('full flush', () => {
+        const handCards = '2H 3D 2S 3C 2D';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asHandCard);
+        expect(Hand.asValueCard).toBe('Full House');
+    });
+    it('for of a kind', () => {
+        const handCards = '2H 2D 2S 3C 2D';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asHandCard);
+        expect(Hand.asValueCard).toBe('four of a kind');
+    });
+    /*it('Straigh', () => {
+        const handCards = '2H 3D 2S 3C KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asHandCard);
+        expect(Hand.asValueCard).toBe('3D 3C pair winning move with 2H 2S pair winning move two pair winning move');
+    });*/
 
 });
 

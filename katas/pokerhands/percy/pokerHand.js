@@ -2,18 +2,18 @@ import { handCard } from './cardsPokerHand';
 export class pokerHand {
     //2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
     #handCards;
-    #typePokerHand
     #suit;
     #value;
     #value2;
     #winningMove;
-    #winningMove1;
-    #winningMove2;
     objectValues;
+    #suits;
     constructor(handCards) {
         this.#handCards = handCards;
+        this.#suits=handCards;
         this.asValuePokerHand();
         this.asGame();
+       // this.asSuitPokerHand();
     }
     // '2H 3D 5S 9C KD';
 
@@ -24,6 +24,14 @@ export class pokerHand {
             this.#value.push(cardValue);
         }
     }
+/*
+    asSuitPokerHand() {
+        this.#suit = [];
+        for (let i = 0; i < 5; i++) {
+            const cardValue = this.#suits[i].substring(1, 2);
+            this.#suit.push(cardValue);
+        }
+    }*/
 
     asGame(){
         var equalTwoNumbers=0;
@@ -166,7 +174,73 @@ export class pokerHand {
 
                 };
 
+
+
+
+
+//four of a kind
+            if(this.#winningMove==undefined){
+                if(this.objectValues.howMany.numberA==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberK==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberQ==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberJ==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberT==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberNine==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberEight==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberSeven==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberSix==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberFive==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberFour==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberThree==4) {
+                    this.#winningMove='four of a kind';
+                }else if(this.objectValues.howMany.numberTwo==4) {
+                    this.#winningMove='four of a kind';
+                }
+            }
+
+//full house
+    if(this.#winningMove==undefined){
+        if(this.objectValues.howMany.numberA==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberK==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberQ==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberJ==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberT==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberNine==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberEight==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberSeven==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberSix==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberFive==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberFour==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberThree==3 && (this.objectValues.howMany.numberTwo==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }else if(this.objectValues.howMany.numberTwo==3 && (this.objectValues.howMany.numberThree==2 || this.objectValues.howMany.numberFour==2 || this.objectValues.howMany.numberFive==2 || this.objectValues.howMany.numberSix==2 || this.objectValues.howMany.numberSeven==2 || this.objectValues.howMany.numberEight==2 || this.objectValues.howMany.numberNine==2 || this.objectValues.howMany.numberT==2 || this.objectValues.howMany.numberJ==2 || this.objectValues.howMany.numberQ==2 || this.objectValues.howMany.numberK==2 || this.objectValues.howMany.numberA==2)) {
+            this.#winningMove='Full House';
+        }
+    }
 //Three of a kind
+            if(this.#winningMove==undefined){
                     if(this.objectValues.howMany.numberA==3) {
                         const a=posA[0];
                         const b= posA[1];
@@ -233,6 +307,7 @@ export class pokerHand {
                         const c=pos2[2];
                         this.#winningMove=this.#handCards[a].concat(' '+this.#handCards[b]+' '+this.#handCards[c]+ ' Three of a kind winning move');
                     }
+                }
                   //pair
                 if(this.#winningMove==undefined){
                    if(this.objectValues.howMany.numberA==2) {
@@ -333,13 +408,14 @@ export class pokerHand {
                     this.#winningMove=this.#handCards[pos2].concat(' High Card Win');;
                 }
             }
+
+
+
+
 //two pair
                 const lenght=twoPair.length;
                 if(lenght>1){
                 this.#winningMove=twoPair[0].concat(' with '+twoPair[1] + ' two pair winning move');
-                    //this.#winningMove=twoPair[0];
-                    //this.#winningMove=twoPair.length;
-
                 }
 
 
@@ -351,9 +427,8 @@ export class pokerHand {
     get asHandCard1() {
         return  this.#value;
     }
-    /*get asHandCard2() {
-        return  this.#winningMove;
+   /* get asCardSuit() {
+        return  this.#suit;
     }*/
-
 
 }
