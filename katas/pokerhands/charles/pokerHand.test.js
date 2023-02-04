@@ -89,4 +89,33 @@ describe('Tests for hand class', () => {
         hand = new PokerHand(pokerHand[1].split(' '));
         expect(hand.isStraight()).toBe(true);
     });
+
+    it('should be able to show if the poker hand is flush', () => {
+        // let cardList = 'Black: 8H 3D 9S 5C 2D';
+        // let cardList = 'Black: 8H 6D 9S 5C 7D';
+        let cardList = 'White: 2S 8S AS QS 3S';
+        let pokerHand = cardList.split(': ');
+        let hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isFlush()).toBe(true);
+
+        cardList = 'Black: 9H AD TS 2C KD';
+        pokerHand = cardList.split(': ');
+        hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isFlush()).toBe(false);
+
+        cardList = 'Black: 2H 3D 5S 6C 4H';
+        pokerHand = cardList.split(': ');
+        hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isFlush()).toBe(false);
+
+        cardList = 'Black: JH TH AS KH QH';
+        pokerHand = cardList.split(': ');
+        hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isFlush()).toBe(false);
+
+        cardList = 'Black: 9D AD TD 2D KD';
+        pokerHand = cardList.split(': ');
+        hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isFlush()).toBe(true);
+    });
 });

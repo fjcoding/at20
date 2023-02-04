@@ -39,15 +39,16 @@ export class PokerHand {
             this.#cards.push(new Card(card));
         });
         this.#threeKind = 0;
+        this.ordering();
     }
 
     getCards() {
         return this.#cards;
     }
 
-    countEqualValues(currentCard, pokerHand) {
+    countEqualValues(currentCard) {
         let count = 0;
-        pokerHand.forEach(card => {
+        this.getCards().forEach(card => {
             if (currentCard.getValueCard() == card.getValueCard()) {
                 count++;
             }
@@ -68,7 +69,7 @@ export class PokerHand {
     isHighCard() {
         let resp = true;
         this.getCards().forEach(card => {
-            if (this.countEqualValues(card, this.getCards()) != 1) {
+            if (this.countEqualValues(card) != 1) {
                 resp = false;
             }
         });
@@ -99,13 +100,24 @@ export class PokerHand {
     isStraight() {
         let cardsOrdered = '';
         const especialCase = 'A5432';
-        this.ordering();
         this.getCards().forEach(card => {
             cardsOrdered += card.getValueCard();
         });
         const firstValue = cardsOrdered.charAt(0);
         const idealOrder = this.generateSecuence(firstValue);
         return cardsOrdered == idealOrder || cardsOrdered == especialCase ? true : false;
+    }
+
+    isFlush() {
+        let sameSuit = 0;
+        const firstValueSuit = this.getCards()[0].getSuitCard();
+        const numCards = this.getCards().length;
+        for (let index = 0; index < numCards; index++) {
+            if (this.getCards()[index].getSuitCard() == firstValueSuit) {
+                sameSuit++;
+            }
+        }
+        return numCards == sameSuit ? true : false;
     }
 
     generateSecuence(initialValue) {
