@@ -9,12 +9,48 @@ describe('Tests for value in my pokerHand ', () => {
         const Hand = new pokerHand(handCard1.asHandCard);
         expect(Hand.asHandCard1[0]).toBe('2');
     });
+    it('first card', () => {
+        const handCards = '4H 3D 5S 9C KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asHandCard);
+        expect(Hand.asHandCard1[0]).toBe('4');
+    });
+    it('first card', () => {
+        const handCards = '7H 3D 5S 9C KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asHandCard);
+        expect(Hand.asHandCard1[0]).toBe('7');
+    });
+    it('first card', () => {
+        const handCards = 'QH 3D 5S 9C KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asHandCard);
+        expect(Hand.asHandCard1[0]).toBe('Q');
+    });
 
     it('second card', () => {
-        const handCards = '2H 3D 5S 9C KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCards = 'QH 3D 5S 9C KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
         const handCard1 = new handCard(handCards);
         const Hand = new pokerHand(handCard1.asHandCard);
         expect(Hand.asHandCard1[1]).toBe('3');
+    });
+    it('third card', () => {
+        const handCards = '2H 3D 6S 9C KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asHandCard);
+        expect(Hand.asHandCard1[2]).toBe('6');
+    });
+    it('fourth card', () => {
+        const handCards = '2H 3D 5S JC KD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asHandCard);
+        expect(Hand.asHandCard1[3]).toBe('J');
+    });
+    it('five card', () => {
+        const handCards = '2H 3D 5S 9C TD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
+        const handCard1 = new handCard(handCards);
+        const Hand = new pokerHand(handCard1.asHandCard);
+        expect(Hand.asHandCard1[4]).toBe('T');
     });
 });
 
@@ -71,13 +107,13 @@ describe('Tests for type of Win ', () => {
         const handCards = '2H 2D 2S 3C 2D';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
         const handCard1 = new handCard(handCards);
         const Hand = new pokerHand(handCard1.asHandCard);
-        expect(Hand.asValueCard).toBe('four of a kind');
+        expect(Hand.asValueCard[0]).toBe('four of a kind');
     });
     it('flush', () => {
         const handCards = '2S 3S 5S 8S KS';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
         const handCard1 = new handCard(handCards);
         const Hand = new pokerHand(handCard1.asHandCard);
-        expect(Hand.asValueCard).toBe('flush');
+        expect(Hand.asValueCard[0]).toBe('flush');
     });
 });
 
