@@ -28,14 +28,3 @@ describe('Tests for account number class', () => {
         expect(accNum.asNumber()).toBe(721456080);
     });
 });
-
-
-describe('Tests for account number class', () => {
-    it('should be able to verify an account to is a valid account', () => {
-        const topLine = ' _  _        _  _  _  _  _ ';
-        const midLine = '  | _|  ||_||_ |_ | ||_|| |';
-        const botLine = '  ||_   |  | _||_||_||_||_|';
-        const accNum = new AccountNumber(topLine, midLine, botLine);
-        expect(accNum.isValid()).toBe(true);
-    });
-});

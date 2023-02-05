@@ -38,18 +38,4 @@ export class AccountNumber {
             this.#digits.push(new Digit(topLineDigit, midLineDigit, botLineDigit));
         }
     }
-
-    isValid() {
-        let number = this.asNumber();
-        let instring = number.toString();
-        let result = 0;
-        for (let i = instring.lenght - 1; i >= 0; i--) {
-            result = result + instring[i] * (9 - i);
-        }
-        if ((result % 11) === 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
