@@ -126,6 +126,15 @@ export class PokerHand {
         return isThreeKind != 0 && isPair == 1 ? true : false;
     }
 
+    isFourKing() {
+        this.getCards().forEach(card => {
+            if (this.countEqualValues(card, this.getCards()) == 4) {
+                this.#threeKind = card.getValueCard();
+            }
+        });
+        return parseInt(this.#threeKind);
+    }
+
     generateSecuence(initialValue) {
         let result = '';
         let value = PokerHand.valueCards[initialValue];
