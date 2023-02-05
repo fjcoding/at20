@@ -65,7 +65,7 @@ describe('Tests for type of Win ', () => {
         const handCards = 'AH 3D AS 3C AD';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
         const handCard1 = new handCard(handCards);
         const Hand = new pokerHand(handCard1.asHandCard);
-        expect(Hand.asValueCard).toStrictEqual(['Full House','A']);
+        expect(Hand.asValueCard).toStrictEqual(['Full House', 'A']);
     });
     it('for of a kind', () => {
         const handCards = '2H 2D 2S 3C 2D';//2=0 3=1 4=2 5=3 6=4 7=5 8=6 9=7 T=8 J=9 Q=10 K=11 A=12
@@ -79,6 +79,5 @@ describe('Tests for type of Win ', () => {
         const Hand = new pokerHand(handCard1.asHandCard);
         expect(Hand.asValueCard).toBe('flush');
     });
-
 });
 
