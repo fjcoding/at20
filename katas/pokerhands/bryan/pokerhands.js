@@ -34,12 +34,43 @@ export class readHand {
         return card;
     }
 
+    turnNum(strn) {//return the values as integer as 2 3 4 5 6 7 8 9 10 11 12 13 14
+        var nums = 0;
+        var comp = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+        var sizec = comp.length;
+        for (var keyl1 = 0; keyl1 < sizec; keyl1++) {//turn them to numbers
+            if (strn == comp[keyl1]) {
+                nums = keyl1 + 2;
+            }
+        }
+        return nums;
+    }
+
+    turnStr(numI) {// return a list of numbers as the previous format
+        var nums = '';
+        var comp = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+        var sizec = comp.length;// 13
+        for (var keyl1 = 0; keyl1 < sizec; keyl1++) {//turn them to numbers
+            if (numI == comp[keyl1]) {
+                if (numI == 14) {
+                    nums = 'A';
+                } else if (numI == 13) {
+                    nums = 'K';
+                } else if (numI == 12) {
+                    nums = 'Q';
+                } else if (numI == 11) {
+                    nums = 'J';
+                } else if (numI == 10) {
+                    nums = 'T';
+                } else {
+                    nums = numI.toString();
+                }
+            }
+        }
+        return nums;
+    }
+
     highest(hand) {
-        var T = 10;
-        var J = 11;
-        var Q = 12;
-        var K = 13;
-        var A = 14;
         var size;
         var outs = [];
         var cardCH = this.pickOne(hand);
@@ -47,27 +78,14 @@ export class readHand {
 
         var highest = 0;
         var  number = 0;
-        for (var keyCH = 0; keyCH < size; keyCH++) {
-            if (cardCH[keyCH][0] == 'A') {
-                number = A;
-            } else if (cardCH[keyCH][0] == 'J') {
-                number = J;
-            } else if (cardCH[keyCH][0] == 'Q') {
-                number = Q;
-            } else if  (cardCH[keyCH][0] == 'K') {
-                number = K;
-            } else if  (cardCH[keyCH][0] == 'T') {
-                number = T;
-            } else {
-                number = parseInt(cardCH[keyCH][0]);
-            }
 
+        for (var keyCH = 0; keyCH < size; keyCH++) {
+            number = this.turnNum(cardCH[keyCH][0]);
             if (number >= highest) {
                 highest = number;
             }
         }
-
-        if (highest < 9) {
+        if (highest <= 9) {
             outs.push(1);
             outs.push([highest.toString(), highest.toString()]);
         } else {
@@ -102,8 +120,7 @@ export class readHand {
         var match1 = '';   //
         var match2 = '';
         var matchCount = 0;
-        //var result = '';
-        var posTag = [];//matches colletion
+        var posTag = [];
         var cm1 = 0;
         var cm2 = 0;
         var init = 0;
@@ -118,24 +135,22 @@ export class readHand {
 
                 if (keyCM2 != keyCM1) {
                     if (current == pivot) {//
-                        //console.log(keyCM1,keyCM2);
                         if (matchCount == 0) {
                             posTag.push([keyCM1, keyCM2]);
-                            match1 = current;//Q
+                            match1 = current;//2
                             matchCount += 1;//1
                             init = keyCM1;//0
-                        } else if (matchCount < 3) {
+                        } else if (matchCount <= 3) {
                             for (var keyTag1 = 0; keyTag1 < posTag.length; keyTag1++) {
                                 if (keyCM1 == init) {
-                                    if (posTag[keyTag1][1] != keyCM2) {
+                                    if (posTag[keyTag1][1] != keyCM2) {//
                                         cm1 += 1;
-                                        //console.log(posTag);
                                     }
                                     if (cm1 == posTag.length) {
                                         posTag.push([keyCM1, keyCM2]);
-                                        // console.log(posTag);
+
                                         cm1 = 0;
-                                        if (current == match1) {//'QC 3S 9C QD QH' 03
+                                        if (current == match1) {
                                             match2 = match1;
                                             match1 = current;
                                             matchCount += 1;
@@ -146,7 +161,7 @@ export class readHand {
                                     }
                                 } else {
                                     if (((posTag[keyTag1][0] != keyCM1) && (posTag[keyTag1][1] != keyCM2)) && ((posTag[keyTag1][0] != keyCM2) && (posTag[keyTag1][1] != keyCM1))) {
-                                        cm2 += 1;//
+                                        cm2 += 1;//here the issue with full
                                     }
 
 
@@ -165,15 +180,15 @@ export class readHand {
                                     }
                                 }
                             }
-                            cm1 = 0;//maybe not here
+
                             cm2 = 0;
                         }
                     }
                 }
             }
         }
-        cm1 = 0;
-        cm2 = 0;
+        //cm1 = 0;
+        //cm2 = 0;
         if (matchCount == 0) {
             outs = [0, [0, 0]];
             //result = 'No matches';
@@ -187,34 +202,30 @@ export class readHand {
             //result = 'Three of a kind of ' + match2;
         } else if (matchCount == 2 && (match1 != match2)) {
             outs.push(3);
-            outs.push([match1, match2]);
+            outs.push([match1, match2]);//
             //  result = 'Two pairs of ' + match1 + ' and ' + match2;
         } else if (matchCount == 3 && (match1 == match2)) {
             outs.push(8);
             outs.push([match1, match1]);
             // result = 'A poker hand of ' + match2;
-        } else if (matchCount == 3 && (match1 != match2)) {
+        } else if (matchCount == 3 && (match1 != match2))  {//
             outs.push(7);
             outs.push([match1, match2]);
-            // result = 'A Full house of ' +match1+' and '+match2;
-        } else if (matchCount == 4) {
-
-            //result = 'OOR';
+            // result = 'A Full house of ' +match1+' and '+match2; full criteria is wrogs
         }
+
         //console.log(outs);
         return outs;
     }
 
-
-    checkSuits() {  // '2C', '3C', '4C', '8C', 'AC'
-        var hand;
+    checkSuits(hand) {
         var size;
         var outs = [];
-        hand = this.cards;
         var cardCS = this.pickOne(hand);
         size = cardCS.length;
+        var maxSuit = [];
         var suitC = 0;
-        var pivot = cardCS[0][1];//C
+        var pivot = cardCS[0][1];
         for (var keySb = 1; keySb < size; keySb++) {
             if (pivot == cardCS[keySb][1]) {
                 suitC += 1;
@@ -223,7 +234,8 @@ export class readHand {
         if (suitC == 4) {
             suitC = 0;
             outs.push(6);
-            outs.push([pivot, pivot]);
+            maxSuit = this.highest(cardCS);//[a[b,b]]
+            outs.push([maxSuit[1][0], maxSuit[1][0]]);
         } else {
             suitC = 0;
             outs = [0, [0, 0]];
@@ -231,23 +243,65 @@ export class readHand {
         return outs;
     }
 
-    checkHand() {   //in the function where we check if there are pairs or three of a kind or a poker we can look for the same
+    checkStraights() {
+        var hand;
+        var size;
+        hand = this.cards;
+        var cardSt = this.pickOne(hand);
+        size = cardSt.length;//  hand = '2H 4S 5H 3H 6K'
+        var higs = 0;
+        var outst = [];
+        var pivot = [];
+        var list = [];
+
+        var secount = 0;
+        for (var keys1 = 0; keys1 < size; keys1++) {
+            higs = this.turnNum(cardSt[keys1][0]);
+            pivot.push(higs);
+        }
+        pivot.sort(function(a, b) {
+            return a - b;
+        });
+        for (var keys2 = 0; (keys2 + 1) < size; keys2++) {
+            if ((pivot[keys2] + 1) == pivot[keys2 + 1]) {
+                secount += 1;
+            }
+        }
+        if (secount == 4) {
+            var max = pivot.reduce((a, b) => Math.max(a, b), -Infinity);
+            var maxString = this.turnStr(max);
+            list = this.checkSuits(hand);
+
+            if (list[0] == 6) {
+                outst.push(9);
+                outst.push([maxString, maxString]);
+            } else {
+                outst.push(5);
+                outst.push([maxString, maxString]);
+            }
+        } else {
+            outst = [0, [0, 0]];
+        }
+        //console.log(outst);
+        return outst;
+    }
+
+    checkHand() {
         var hand;
         hand = this.cards;
-        var handHan = this.pickOne(hand);
-        var high = this.highest(handHan);
+        var high = this.highest(hand);
         var matches = this.checkMatches();
-        var color = this.checkSuits();
-        // the array format for the codes is [value,[suits,suits]]
+        var color = this.checkSuits(hand);
+        var straight = this.checkStraights(); // the array format for the codes is [value,[suits,suits]]
+
         var highestCH = 0;
-        //var  number = 0;
         var codes = [];
 
         if (high[0] > highestCH) {
             highestCH = high[0];
             codes = [];
             codes.push(high[0]);
-            codes.push([high[1][0], high[1][1]]);// creando un codigo para probar los resultados
+            codes.push([high[1][0], high[1][1]]);
         }
 
         if (matches[0] > highestCH) {
@@ -263,7 +317,12 @@ export class readHand {
             codes.push(color[0]);
             codes.push([color[1][0], color[1][1]]);
         }
-        //console.log(codes);
+        if (straight[0] > highestCH) {
+            highestCH = straight[0];
+            codes = [];
+            codes.push(straight[0]);
+            codes.push([straight[1][0], straight[1][1]]);
+        }
         return codes;
     }
 }

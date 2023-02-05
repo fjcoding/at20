@@ -23,11 +23,11 @@ test('Returns the hand turned into an array', () => {
 
 test('Return the highest card in the player\'s hand', () =>{
     var handW = '10C 10H 4S 8C AH';
-    var handB = '2H 3D 5S 9C 10D';
+    var handB = '2H 3D 5S 9C 9D';
     const white = new readHand(handW);
     const black = new readHand(handB);
     expect(white.highest(handW)).toStrictEqual([1, ['A', 'A']]);
-    expect(black.highest(handB)).toStrictEqual([1, ['T', 'T']]);
+    expect(black.highest(handB)).toStrictEqual([1, ['9', '9']]);
 });
 
 
@@ -59,18 +59,29 @@ test('Verify that checkSuits method works', () => {
     var handY = 'QC 3C 9C 4C KC';
     const green = new readHand(handG);
     const yellow = new readHand(handY);
-    expect(green.checkSuits()).toStrictEqual([0, [0, 0]]);
-    expect(yellow.checkSuits()).toStrictEqual([6, ['C', 'C']]);
+    expect(green.checkSuits(handG)).toStrictEqual([0, [0, 0]]);
+    expect(yellow.checkSuits(handY)).toStrictEqual([6, ['K', 'K']]);// return the highest value of flush
 });
 
+test('Verify that straights method works', () => {
+    var handG = '6H 7S 8H 9H 10K';
+    var handY = 'QC JC 9C 8C 10C';
+    const green = new readHand(handG);
+    const yellow = new readHand(handY);
+    expect(green.checkStraights()).toStrictEqual([5, ['T', 'T']]);
+    expect(yellow.checkStraights()).toStrictEqual([9, ['Q', 'Q']]);
+});
+
+
 test('Test the outs on the checkHand method', () => {
-    var handW = '2C AH AS AC AH';
+    var handW = 'AC 2H AS AC AH';
     var handB = '3H 3D 5S 5C KD';
     var handG = 'JC 5C 5C 4C 4C';//to check
-    var handY = 'QC 3S 9C QD QH';
-    var handP = 'KH KS JC JD KH';
+    var handY = '3C QS 9C QD QH';
+    var handP = '9D 9S 5C 5D 9H';//priority to the three but not the other way
     var handR = 'QH 3C 9S 4C QC';
-
+    var handBl = '6H 7S 8H 9H 10K';
+    const blue = new readHand(handBl);
     const white = new readHand(handW);
     const black = new readHand(handB);
     const green = new readHand(handG);
@@ -81,8 +92,9 @@ test('Test the outs on the checkHand method', () => {
     expect(red.checkHand()).toStrictEqual([2, ['Q', 'Q']]);
     expect(white.checkHand()).toStrictEqual([8, ['A', 'A']]);
     expect(black.checkHand()).toStrictEqual([3, ['3', '5']]);//respect the order of the cardss
-    expect(pink.checkHand()).toStrictEqual([7, ['K', 'J']]);
-    expect(green.checkHand()).toStrictEqual([6, ['C', 'C']]);
+    expect(pink.checkHand()).toStrictEqual([7, ['9', '5']]);//check full
+    expect(green.checkHand()).toStrictEqual([6, ['J', 'J']]);
     expect(yellow.checkHand()).toStrictEqual([4, ['Q', 'Q']]);
+    expect(blue.checkHand()).toStrictEqual([5, ['T', 'T']]);
 });
 
