@@ -21,24 +21,24 @@ export class PokerHand {
 
     #pairs;
 
-    #threeKind;
+    #sameKind;
 
-    #straight;
+    // #straight;
 
-    #flush;
+    // #flush;
 
-    #fullHouse;
+    // #fullHouse;
 
-    #fourKind;
+    // #fourKind;
 
-    #straightFlush;
+    // #straightFlush;
 
     constructor(pokerHand) {
         this.#cards = [];
         pokerHand.forEach(card => {
             this.#cards.push(new Card(card));
         });
-        this.#threeKind = 0;
+        this.#sameKind = 0;
         this.ordering();
     }
 
@@ -56,14 +56,54 @@ export class PokerHand {
         return count;
     }
 
-    existPair(pair) {
-        let isExist = false;
-        this.#pairs.forEach(value => {
-            if (pair == value) {
-                isExist = true;
+    generateSecuence(initialValue) {
+        let result = '';
+        let value = PokerHand.valueCards[initialValue];
+        for (let index = value; index > value - 5; index--) {
+            let aux = '';
+            switch (index) {
+                case 14:
+                    aux = 'A';
+                    break;
+                case 13:
+                    aux = 'K';
+                    break;
+                case 12:
+                    aux = 'Q';
+                    break;
+                case 11:
+                    aux = 'J';
+                    break;
+                case 10:
+                    aux = 'T';
+                    break;
+                default:
+                    aux = PokerHand.valueCards[index];
+                    break;
             }
-        });
-        return isExist;
+            result += aux;
+        }
+        return result;
+    }
+
+    ordering() {
+        const lenCards = this.getCards().length;
+        for (let index = 1; index < lenCards; index++) {
+            for (let indexLeft = 0; indexLeft < (lenCards - index); indexLeft++) {
+                let indexRight = indexLeft + 1;
+                if (PokerHand.valueCards[this.getCards()[indexLeft].getValueCard()] < PokerHand.valueCards[this.getCards()[indexRight].getValueCard()]) {
+                    this.changeValues(indexLeft, indexRight);
+                }
+            }
+        }
+    }
+
+    changeValues(value1, value2) {
+        if (value1 != value2) {
+            const temp = this.getCards()[value1];
+            this.getCards()[value1] = this.getCards()[value2];
+            this.getCards()[value2] = temp;
+        }
     }
 
     isHighCard() {
@@ -74,6 +114,16 @@ export class PokerHand {
             }
         });
         return resp;
+    }
+
+    existPair(pair) {
+        let isExist = false;
+        this.#pairs.forEach(value => {
+            if (pair == value) {
+                isExist = true;
+            }
+        });
+        return isExist;
     }
 
     countPairs() {
@@ -88,13 +138,13 @@ export class PokerHand {
         return this.#pairs.length;
     }
 
-    isThreeKind() {
+    countSameKind(searchVal) {
         this.getCards().forEach(card => {
-            if (this.countEqualValues(card, this.getCards()) == 3) {
-                this.#threeKind = card.getValueCard();
+            if (this.countEqualValues(card) == searchVal) {
+                this.#sameKind = card.getValueCard();
             }
         });
-        return parseInt(this.#threeKind);
+        return parseInt(this.#sameKind);
     }
 
     isStraight() {
@@ -121,67 +171,12 @@ export class PokerHand {
     }
 
     isFullHouse() {
-        const isThreeKind = this.isThreeKind();
+        const isThreeKind = this.countSameKind(3);
         const isPair = this.countPairs();
         return isThreeKind != 0 && isPair == 1 ? true : false;
     }
 
-    isFourKing() {
-        this.getCards().forEach(card => {
-            if (this.countEqualValues(card, this.getCards()) == 4) {
-                this.#threeKind = card.getValueCard();
-            }
-        });
-        return parseInt(this.#threeKind);
-    }
-
-    generateSecuence(initialValue) {
-        let result = '';
-        let value = PokerHand.valueCards[initialValue];
-        for (let index = value; index > value - 5; index--) {
-            let aux = '';
-            switch (index) {
-            case 14:
-                aux = 'A';
-                break;
-            case 13:
-                aux = 'K';
-                break;
-            case 12:
-                aux = 'Q';
-                break;
-            case 11:
-                aux = 'J';
-                break;
-            case 10:
-                aux = 'T';
-                break;
-            default:
-                aux = PokerHand.valueCards[index];
-                break;
-            }
-            result += aux;
-        }
-        return result;
-    }
-
-    ordering() {
-        const lenCards = this.getCards().length;
-        for (let index = 1; index < lenCards; index++) {
-            for (let indexLeft = 0; indexLeft < (lenCards - index); indexLeft++) {
-                let indexRight = indexLeft + 1;
-                if (PokerHand.valueCards[this.getCards()[indexLeft].getValueCard()] < PokerHand.valueCards[this.getCards()[indexRight].getValueCard()]) {
-                    this.changeValues(indexLeft, indexRight);
-                }
-            }
-        }
-    }
-
-    changeValues(value1, value2) {
-        if (value1 != value2) {
-            const temp = this.getCards()[value1];
-            this.getCards()[value1] = this.getCards()[value2];
-            this.getCards()[value2] = temp;
-        }
+    isStraightFlush() {
+        return this.isStraight() && this.isFlush() ? true : false;
     }
 }

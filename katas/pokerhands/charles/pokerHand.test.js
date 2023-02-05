@@ -40,26 +40,27 @@ describe('Tests for hand class', () => {
         expect(hand.countPairs()).toBe(1);
     });
 
-    it('should be able to show if there is three of a kind in the poker hand', () => {
+    it('should be able to show if how many are same kind in the poker hand', () => {
         let cardList = 'Black: 2H 3D 5S 9C KD';
         let pokerHand = cardList.split(': ');
+        const sameKind = 3;
         let hand = new PokerHand(pokerHand[1].split(' '));
-        expect(hand.isThreeKind()).toBe(0);
+        expect(hand.countSameKind(sameKind)).toBe(0);
 
         cardList = 'Black: 2H 3D 5S 2C KD';
         pokerHand = cardList.split(': ');
         hand = new PokerHand(pokerHand[1].split(' '));
-        expect(hand.isThreeKind()).toBe(0);
+        expect(hand.countSameKind(sameKind)).toBe(0);
 
         cardList = 'Black: 2H 3D 5S 2C 3H';
         pokerHand = cardList.split(': ');
         hand = new PokerHand(pokerHand[1].split(' '));
-        expect(hand.isThreeKind()).toBe(0);
+        expect(hand.countSameKind(sameKind)).toBe(0);
 
         cardList = 'Black: 2H 3D 3S 2C 3H';
         pokerHand = cardList.split(': ');
         hand = new PokerHand(pokerHand[1].split(' '));
-        expect(hand.isThreeKind()).toBe(3);
+        expect(hand.countSameKind(sameKind)).toBe(3);
     });
 
     it('should be able to show if the poker hand is straight', () => {
@@ -134,19 +135,42 @@ describe('Tests for hand class', () => {
     });
 
     it('should be able to show if the poker hand is four of a king', () => {
-        let cardList = 'Black: 2H 4S 4C 4D 4H';
+        let cardList = 'Black: 2H 6S 6C 6D 6H';
         let pokerHand = cardList.split(': ');
+        const sameKind = 4;
         let hand = new PokerHand(pokerHand[1].split(' '));
-        expect(hand.isFourKing()).toBe(4);
+        expect(hand.countSameKind(sameKind)).toBe(6);
 
         cardList = 'Black: 9H AD TS 2C KD';
         pokerHand = cardList.split(': ');
         hand = new PokerHand(pokerHand[1].split(' '));
-        expect(hand.isFourKing()).toBe(0);
+        expect(hand.countSameKind(sameKind)).toBe(0);
 
         cardList = 'Black: 2H 3D 3S 2C 3H';
         pokerHand = cardList.split(': ');
         hand = new PokerHand(pokerHand[1].split(' '));
-        expect(hand.isFourKing()).toBe(0);
+        expect(hand.countSameKind(sameKind)).toBe(0);
+    });
+
+    it('should be able to show if the poker hand is straight flush', () => {
+        let cardList = 'Black: 2H 6H 4H 3H 5H';
+        let pokerHand = cardList.split(': ');
+        let hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isStraightFlush()).toBe(true);
+
+        cardList = 'Black: 9H AD TS 2C KD';
+        pokerHand = cardList.split(': ');
+        hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isStraightFlush()).toBe(false);
+
+        cardList = 'Black: 2H 3H 9H TH KH';
+        pokerHand = cardList.split(': ');
+        hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isStraightFlush()).toBe(false);
+
+        cardList = 'Black: 6H 3H 2D 4H 5H';
+        pokerHand = cardList.split(': ');
+        hand = new PokerHand(pokerHand[1].split(' '));
+        expect(hand.isStraightFlush()).toBe(false);
     });
 });
