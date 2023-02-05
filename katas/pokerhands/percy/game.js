@@ -64,17 +64,17 @@ export class game {
         } else if (gameBlack == 'four of a kind') {
             blackValue = 7;
         }
-        this.#asWinner=[whiteValue,blackValue];
+        this.#asWinner = [whiteValue, blackValue];
         if (whiteValue === blackValue) {
-            whiteValue=whiteValue+whiteHand.asValueCard[1];
-            blackValue=blackValue+BlackHand.asValueCard[1];
+            whiteValue = whiteValue + whiteHand.asValueCard[1];
+            blackValue = blackValue + BlackHand.asValueCard[1];
             if (whiteValue > blackValue) {
                 this.#asWinner = 'White wins : ' + gameWhite;
             } else if (blackValue > whiteValue) {
                 this.#asWinner = 'Black wins : ' + gameBlack;
-            }else if(whiteValue === blackValue){
-            this.#asWinner = 'Tie';
-        }
+            } else if (whiteValue === blackValue) {
+                this.#asWinner = 'Tie';
+            }
         } else if (whiteValue > blackValue) {
             this.#asWinner = 'White wins : ' + gameWhite;
         } else if (blackValue > whiteValue) {

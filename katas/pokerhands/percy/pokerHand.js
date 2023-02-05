@@ -193,47 +193,47 @@ export class pokerHand {
             }
 
         };
-         //Flush
-         if (this.#winningMove == undefined) {
+        //Flush
+        if (this.#winningMove == undefined) {
             const array1 = this.#suit2;
             //this.#winningMove1=this.#suit;
             const allEqual = !!array1.reduce(function(a, b) {
                 return (a === b) ? a : NaN;
             });
             if (allEqual == true) {
-                this.#winningMove = ['flush','0'];
+                this.#winningMove = ['flush', '0'];
             }
         }
 
         //four of a kind
         if (this.#winningMove == undefined) {
             if (this.objectValues.howMany.numberA == 4) {
-                this.#winningMove = ['four of a kind','A'];
+                this.#winningMove = ['four of a kind', 'A'];
             } else if (this.objectValues.howMany.numberK == 4) {
-                this.#winningMove = ['four of a kind','K'];
-             } else if (this.objectValues.howMany.numberQ == 4) {
-                this.#winningMove = ['four of a kind','Q'];
-           } else if (this.objectValues.howMany.numberJ == 4) {
-            this.#winningMove = ['four of a kind','J'];
-        } else if (this.objectValues.howMany.numberT == 4) {
-            this.#winningMove = ['four of a kind','T'];
-        } else if (this.objectValues.howMany.numberNine == 4) {
-            this.#winningMove = ['four of a kind','9'];
-        } else if (this.objectValues.howMany.numberEight == 4) {
-            this.#winningMove = ['four of a kind','8'];
-        } else if (this.objectValues.howMany.numberSeven == 4) {
-            this.#winningMove = ['four of a kind','7'];
-        } else if (this.objectValues.howMany.numberSix == 4) {
-            this.#winningMove = ['four of a kind','6'];
-        } else if (this.objectValues.howMany.numberFive == 4) {
-            this.#winningMove = ['four of a kind','5'];
-        } else if (this.objectValues.howMany.numberFour == 4) {
-            this.#winningMove = ['four of a kind','4'];
-        } else if (this.objectValues.howMany.numberThree == 4) {
-            this.#winningMove = ['four of a kind','3'];
-        } else if (this.objectValues.howMany.numberTwo == 4) {
-            this.#winningMove = ['four of a kind','2'];
-        }
+                this.#winningMove = ['four of a kind', 'K'];
+            } else if (this.objectValues.howMany.numberQ == 4) {
+                this.#winningMove = ['four of a kind', 'Q'];
+            } else if (this.objectValues.howMany.numberJ == 4) {
+                this.#winningMove = ['four of a kind', 'J'];
+            } else if (this.objectValues.howMany.numberT == 4) {
+                this.#winningMove = ['four of a kind', 'T'];
+            } else if (this.objectValues.howMany.numberNine == 4) {
+                this.#winningMove = ['four of a kind', '9'];
+            } else if (this.objectValues.howMany.numberEight == 4) {
+                this.#winningMove = ['four of a kind', '8'];
+            } else if (this.objectValues.howMany.numberSeven == 4) {
+                this.#winningMove = ['four of a kind', '7'];
+            } else if (this.objectValues.howMany.numberSix == 4) {
+                this.#winningMove = ['four of a kind', '6'];
+            } else if (this.objectValues.howMany.numberFive == 4) {
+                this.#winningMove = ['four of a kind', '5'];
+            } else if (this.objectValues.howMany.numberFour == 4) {
+                this.#winningMove = ['four of a kind', '4'];
+            } else if (this.objectValues.howMany.numberThree == 4) {
+                this.#winningMove = ['four of a kind', '3'];
+            } else if (this.objectValues.howMany.numberTwo == 4) {
+                this.#winningMove = ['four of a kind', '2'];
+            }
         }
 
         //full house
@@ -423,7 +423,7 @@ export class pokerHand {
             } else if (this.objectValues.howMany.numberT != 0) {
                 this.#winningMove = ['High Card Win', 9];
             } else if (this.objectValues.howMany.numberNine != 0) {
-                this.#winningMove = ['High Card Win',8];
+                this.#winningMove = ['High Card Win', 8];
             } else if (this.objectValues.howMany.numberEight != 0) {
                 this.#winningMove = ['High Card Win', 7];
             } else if (this.objectValues.howMany.numberSeven != 0) {
