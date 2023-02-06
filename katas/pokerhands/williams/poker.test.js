@@ -1,12 +1,7 @@
-import { findPokerr} from './poker';
-describe('findPokerr', () => {
-    it('should return the value of the card that repeats 4 times in the hand', () => {
-        const hand = [{ value: 2 }, { value: 3 }, { value: 2 }, { value: 2 }, { value: 2 },];
-        expect(findPokerr(hand)).toBe(2);
-    });
+import { comparePokerHands} from './poker';
 
-    it('should return null if no card repeats 4 times in the hand', () => {
-        const hand = [{ value: 2 }, { value: 3 }, { value: 4 }, { value: 5 }, { value: 6 },];
-        expect(findPokerr(hand)).toBe(null);
-    });
+test('comparePokerHands returns the correct winner', () => {
+    const hand1 = '2H 3H 8H 5H 6H';
+    const hand2 = 'AH KH QH JH TH';
+    expect(comparePokerHands(hand1, hand2)).toBe('AH KH QH JH TH wins with a Straight Flush');
 });
