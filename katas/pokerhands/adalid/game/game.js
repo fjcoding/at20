@@ -7,7 +7,8 @@ export class Game {
 
     constructor(stringHands) {
         const mappedHands = this.getMappedHands(stringHands);
-        this.hands = mappedHands;
+        const sortedCardsHands = this.getSortedHands(mappedHands);
+        this.hands = sortedCardsHands;
     }
 
     getMappedHands(stringHands) {
@@ -20,10 +21,24 @@ export class Game {
         });
         return hands;
     }
+
+    getSortedHands(hands) {
+        const hand1 = hands[0];
+        const hand2 = hands[1];
+        const compareFunction = (cardA, cardB) => {
+            return cardA.getNumericValue() - cardB.getNumericValue();
+        };
+        hand1.cards = hand1.cards.sort(compareFunction);
+        hand2.cards = hand2.cards.sort(compareFunction);
+        return [hand1, hand2];
+    }
+
+    compareHands() {
+        const hand1 = this.hands[0];
+        const hand2 = this.hands[1];
+        if (hand1.getScore() > hand2.getScore()) {
+            return hand1;
+        }
+        return hand2;
+    }
 }
-
-
-const game = new Game(['2H 3D 5S 9C KD', '2C 3H 4S 8C AH']);
-
-console.log(game);
-

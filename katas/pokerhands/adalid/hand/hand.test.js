@@ -2,8 +2,7 @@ import { Hand } from './hand';
 import { Card } from '../card/card';
 
 describe('Tests for hand class', () => {
-    // TODO: REVIEW IT TEXT
-    it('should be able to receive a string with cards', () => {
+    it('should be able to receive a string with 5 cards', () => {
         const card1 = new Card('2H');
         const card2 = new Card('3D');
         const card3 = new Card('4S');
@@ -13,8 +12,7 @@ describe('Tests for hand class', () => {
         const hand = new Hand(cards);
         expect(hand.cards.length).toBe(5);
     });
-    // TODO: REVIEW IT TEXT
-    it('should be able to receive a string with cards', () => {
+    it('should throw an error when receive less than 5 cards', () => {
         const card1 = new Card('2H');
         const card2 = new Card('3D');
         const card3 = new Card('4S');
@@ -25,8 +23,7 @@ describe('Tests for hand class', () => {
         };
         expect(handler).toThrow(new Error('A hand should start with 5 cards'));
     });
-    // TODO: REVIEW IT TEXT
-    it('should be able to receive a string with cards', () => {
+    it('should throw an error when receive more than 5 cards', () => {
         const card1 = new Card('2H');
         const card2 = new Card('3D');
         const card3 = new Card('4S');
