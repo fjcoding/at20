@@ -22,6 +22,7 @@ export class game {
 
     // '2H 3D 5S 9C KD';
     #gamePoker() {
+        let blackValue = 0;
         let whiteValue = 0;
         const handCardsWhite = this.#white;
         const handCard1White = new handCard(handCardsWhite);
@@ -39,11 +40,11 @@ export class game {
             whiteValue = 5;
         } else if (gameWhite == 'Full House') {
             whiteValue = 6;
-        } else if (gameWhite == 'for of a kind') {
+        } else if (gameWhite == 'four of a kind') {
             whiteValue = 7;
         }
 
-        let blackValue = 0;
+
         const handCardsBlack = this.#black;
         const handCard1Black = new handCard(handCardsBlack);
         const BlackHand = new pokerHand(handCard1Black.asHandCard);
@@ -60,12 +61,20 @@ export class game {
             blackValue = 5;
         } else if (gameBlack == 'Full House') {
             blackValue = 6;
-        } else if (gameBlack == 'for of a kind') {
+        } else if (gameBlack == 'four of a kind') {
             blackValue = 7;
         }
-
-        if (whiteValue == blackValue) {
-            this.#asWinner = 'Tie';
+        this.#asWinner = [whiteValue, blackValue];
+        if (whiteValue === blackValue) {
+            whiteValue = whiteValue + whiteHand.asValueCard[1];
+            blackValue = blackValue + BlackHand.asValueCard[1];
+            if (whiteValue > blackValue) {
+                this.#asWinner = 'White wins : ' + gameWhite;
+            } else if (blackValue > whiteValue) {
+                this.#asWinner = 'Black wins : ' + gameBlack;
+            } else if (whiteValue === blackValue) {
+                this.#asWinner = 'Tie';
+            }
         } else if (whiteValue > blackValue) {
             this.#asWinner = 'White wins : ' + gameWhite;
         } else if (blackValue > whiteValue) {
