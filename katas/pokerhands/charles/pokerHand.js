@@ -21,17 +21,9 @@ export class PokerHand {
 
     #pairs;
 
+    #pokerHandRest;
+
     #sameKind;
-
-    // #straight;
-
-    // #flush;
-
-    // #fullHouse;
-
-    // #fourKind;
-
-    // #straightFlush;
 
     constructor(pokerHand) {
         this.#cards = [];
@@ -44,6 +36,18 @@ export class PokerHand {
 
     getCards() {
         return this.#cards;
+    }
+
+    getPairs() {
+        return this.#pairs;
+    }
+
+    getPokerHandRest() {
+        return this.#pokerHandRest;
+    }
+
+    getSameKind() {
+        return this.#sameKind;
     }
 
     countEqualValues(currentCard) {
@@ -62,24 +66,24 @@ export class PokerHand {
         for (let index = value; index > value - 5; index--) {
             let aux = '';
             switch (index) {
-                case 14:
-                    aux = 'A';
-                    break;
-                case 13:
-                    aux = 'K';
-                    break;
-                case 12:
-                    aux = 'Q';
-                    break;
-                case 11:
-                    aux = 'J';
-                    break;
-                case 10:
-                    aux = 'T';
-                    break;
-                default:
-                    aux = PokerHand.valueCards[index];
-                    break;
+            case 14:
+                aux = 'A';
+                break;
+            case 13:
+                aux = 'K';
+                break;
+            case 12:
+                aux = 'Q';
+                break;
+            case 11:
+                aux = 'J';
+                break;
+            case 10:
+                aux = 'T';
+                break;
+            default:
+                aux = PokerHand.valueCards[index];
+                break;
             }
             result += aux;
         }
@@ -128,11 +132,14 @@ export class PokerHand {
 
     countPairs() {
         this.#pairs = [];
+        this.#pokerHandRest = [];
         this.getCards().forEach(card => {
-            if (this.countEqualValues(card, this.getCards()) == 2) {
+            if (this.countEqualValues(card) == 2) {
                 if (!this.existPair(card.getValueCard())) {
                     this.#pairs.push(card.getValueCard());
                 }
+            } else {
+                this.#pokerHandRest.push(card.getValueCard());
             }
         });
         return this.#pairs.length;
