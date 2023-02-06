@@ -27,7 +27,6 @@ export class Card {
 
     suit;
 
-    //completeSuit;
     constructor (stringValue) {
         this.validateInput(stringValue);
         const mappedValue = this.mapStringToValue(stringValue);
@@ -36,7 +35,7 @@ export class Card {
     }
 
     mapStringToValue(stringValue) {
-        const [value, suit] = stringValue; // [2,H]  const value = stringValue[0], const suit = stringValue[1]
+        const [value, suit] = stringValue;
         const validSuit = this.validateSuit(suit);
         const validValue = this.validateValue(value);
 
