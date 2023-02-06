@@ -1,4 +1,4 @@
-import { PokerHand } from "./pokerHand";
+import { PokerHand } from './pokerHand';
 
 export class Play {
     static rankingPH = {
@@ -11,7 +11,7 @@ export class Play {
         'FH': 7,
         'FK': 8,
         'SF': 9,
-    }
+    };
 
     #players;
 
@@ -31,7 +31,7 @@ export class Play {
                 'pokerHand': cardsPlayer,
                 // 'rankPH': this.rankingPokerHand(valPlayer[1].split(' '))
                 'rankPH': this.rankingPokerHand(cardsPlayer)
-            }
+            };
             countPlayers++;
         });
     }
@@ -194,21 +194,21 @@ export class Play {
 
     rankingPokerHand(cardsPlayer) {
         let rankPH;
-        if(cardsPlayer.isStraightFlush()){
+        if (cardsPlayer.isStraightFlush()) {
             rankPH = 'SF';
-        } else if(cardsPlayer.countSameKind(4) != 0) {
+        } else if (cardsPlayer.countSameKind(4) != 0) {
             rankPH = '4K';
-        } else if(cardsPlayer.isFullHouse()) {
+        } else if (cardsPlayer.isFullHouse()) {
             rankPH = 'FH';
-        } else if(cardsPlayer.isFlush()) {
+        } else if (cardsPlayer.isFlush()) {
             rankPH = 'FL';
-        } else if(cardsPlayer.isStraight()) {
+        } else if (cardsPlayer.isStraight()) {
             rankPH = 'ST';
-        } else if(cardsPlayer.countSameKind(3) != 0) {
+        } else if (cardsPlayer.countSameKind(3) != 0) {
             rankPH = '3K';
-        } else if(cardsPlayer.countPairs(2) == 2) {
+        } else if (cardsPlayer.countPairs(2) == 2) {
             rankPH = '2P';
-        } else if(cardsPlayer.countPairs(1) == 1) {
+        } else if (cardsPlayer.countPairs(1) == 1) {
             rankPH = 'PA';
         } else {
             rankPH = 'HC';
