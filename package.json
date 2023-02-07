@@ -17,7 +17,11 @@
   "scripts": {
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --fix",
-    "test": "jest --passWithNoTests"
+    "test": "jest",
+    "test:katas": "jest katas",
+    "test:checkers": "jest --passWithNoTests src/checkers",
+    "test:nmm": "jest --passWithNoTests src/nmm",
+    "test:reversi": "jest --passWithNoTests src/reversi"
   },
   "repository": {
     "type": "git",
