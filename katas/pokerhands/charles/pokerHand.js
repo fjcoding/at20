@@ -21,91 +21,43 @@ export class PokerHand {
 
     #pairs;
 
-    #threeKind;
+    #pokerHandRest;
 
-    #straight;
-
-    #flush;
-
-    #fullHouse;
-
-    #fourKind;
-
-    #straightFlush;
+    #sameKind;
 
     constructor(pokerHand) {
         this.#cards = [];
         pokerHand.forEach(card => {
             this.#cards.push(new Card(card));
         });
-        this.#threeKind = 0;
+        this.#sameKind = 0;
+        this.ordering();
     }
 
     getCards() {
         return this.#cards;
     }
 
-    countEqualValues(currentCard, pokerHand) {
+    getPairs() {
+        return this.#pairs;
+    }
+
+    getPokerHandRest() {
+        return this.#pokerHandRest;
+    }
+
+    getSameKind() {
+        return this.#sameKind;
+    }
+
+    countEqualValues(currentCard) {
         let count = 0;
-        pokerHand.forEach(card => {
+        this.getCards().forEach(card => {
             if (currentCard.getValueCard() == card.getValueCard()) {
                 count++;
             }
         });
         return count;
-    }
-
-    existPair(pair) {
-        let isExist = false;
-        this.#pairs.forEach(value => {
-            if (pair == value) {
-                isExist = true;
-            }
-        });
-        return isExist;
-    }
-
-    isHighCard() {
-        let resp = true;
-        this.getCards().forEach(card => {
-            if (this.countEqualValues(card, this.getCards()) != 1) {
-                resp = false;
-            }
-        });
-        return resp;
-    }
-
-    countPairs() {
-        this.#pairs = [];
-        this.getCards().forEach(card => {
-            if (this.countEqualValues(card, this.getCards()) == 2) {
-                if (!this.existPair(card.getValueCard())) {
-                    this.#pairs.push(card.getValueCard());
-                }
-            }
-        });
-        return this.#pairs.length;
-    }
-
-    isThreeKind() {
-        this.getCards().forEach(card => {
-            if (this.countEqualValues(card, this.getCards()) == 3) {
-                this.#threeKind = card.getValueCard();
-            }
-        });
-        return parseInt(this.#threeKind);
-    }
-
-    isStraight() {
-        let cardsOrdered = '';
-        const especialCase = 'A5432';
-        this.ordering();
-        this.getCards().forEach(card => {
-            cardsOrdered += card.getValueCard();
-        });
-        const firstValue = cardsOrdered.charAt(0);
-        const idealOrder = this.generateSecuence(firstValue);
-        return cardsOrdered == idealOrder || cardsOrdered == especialCase ? true : false;
     }
 
     generateSecuence(initialValue) {
@@ -156,5 +108,82 @@ export class PokerHand {
             this.getCards()[value1] = this.getCards()[value2];
             this.getCards()[value2] = temp;
         }
+    }
+
+    isHighCard() {
+        let resp = true;
+        this.getCards().forEach(card => {
+            if (this.countEqualValues(card) != 1) {
+                resp = false;
+            }
+        });
+        return resp;
+    }
+
+    existPair(pair) {
+        let isExist = false;
+        this.#pairs.forEach(value => {
+            if (pair == value) {
+                isExist = true;
+            }
+        });
+        return isExist;
+    }
+
+    countPairs() {
+        this.#pairs = [];
+        this.#pokerHandRest = [];
+        this.getCards().forEach(card => {
+            if (this.countEqualValues(card) == 2) {
+                if (!this.existPair(card.getValueCard())) {
+                    this.#pairs.push(card.getValueCard());
+                }
+            } else {
+                this.#pokerHandRest.push(card.getValueCard());
+            }
+        });
+        return this.#pairs.length;
+    }
+
+    countSameKind(searchVal) {
+        this.getCards().forEach(card => {
+            if (this.countEqualValues(card) == searchVal) {
+                this.#sameKind = card.getValueCard();
+            }
+        });
+        return parseInt(this.#sameKind);
+    }
+
+    isStraight() {
+        let cardsOrdered = '';
+        const especialCase = 'A5432';
+        this.getCards().forEach(card => {
+            cardsOrdered += card.getValueCard();
+        });
+        const firstValue = cardsOrdered.charAt(0);
+        const idealOrder = this.generateSecuence(firstValue);
+        return cardsOrdered == idealOrder || cardsOrdered == especialCase ? true : false;
+    }
+
+    isFlush() {
+        let sameSuit = 0;
+        const firstValueSuit = this.getCards()[0].getSuitCard();
+        const numCards = this.getCards().length;
+        for (let index = 0; index < numCards; index++) {
+            if (this.getCards()[index].getSuitCard() == firstValueSuit) {
+                sameSuit++;
+            }
+        }
+        return numCards == sameSuit ? true : false;
+    }
+
+    isFullHouse() {
+        const isThreeKind = this.countSameKind(3);
+        const isPair = this.countPairs();
+        return isThreeKind != 0 && isPair == 1 ? true : false;
+    }
+
+    isStraightFlush() {
+        return this.isStraight() && this.isFlush() ? true : false;
     }
 }
