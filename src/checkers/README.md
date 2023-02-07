@@ -7,3 +7,9 @@ Game: https://toytheater.com/checkers/
 ```
 npm run test:checkers
 ```
+
+## Team
+Adalid
+Jhoel
+Williams
+Carlos

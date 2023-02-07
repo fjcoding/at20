@@ -7,3 +7,9 @@ Game: https://toytheater.com/nine-mens-morris/
 ```
 npm run test:nmm
 ```
+
+## Team
+Israel
+Daniel
+Maria
+Charles

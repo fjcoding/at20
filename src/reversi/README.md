@@ -7,3 +7,9 @@ Game: https://toytheater.com/reversi/
 ```
 npm run test:reversi
 ```
+
+## Team
+Lorena
+Percy
+Bryan
+Giovanni
