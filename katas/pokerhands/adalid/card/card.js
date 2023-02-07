@@ -27,18 +27,15 @@ export class Card {
 
     suit;
 
-    completeSuit;
-
     constructor (stringValue) {
         this.validateInput(stringValue);
         const mappedValue = this.mapStringToValue(stringValue);
         this.value = mappedValue.value;
         this.suit = mappedValue.suit;
-        this.completeSuit = this.suitResult();
     }
 
     mapStringToValue(stringValue) {
-        const [value, suit] = stringValue; // [2,h]  const value = stringValue[0], const suit = stringValue[1]
+        const [value, suit] = stringValue;
         const validSuit = this.validateSuit(suit);
         const validValue = this.validateValue(value);
 
@@ -46,6 +43,10 @@ export class Card {
             return { value, suit };
         }
         return null;
+    }
+
+    getNumericValue() {
+        return Card.valueChain[this.value];
     }
 
     validateSuit(suit) {
@@ -68,17 +69,5 @@ export class Card {
         if (input.length > 2) {
             throw new Error(`(${input}) is not valid input`);
         }
-    }
-
-    valueResult() {
-        return Card.valueChain[this.value];
-    }
-
-    suitResult() {
-        return Card.suitChain[this.suit];
-    }
-
-    cardValueAndSuit() {
-        return (this.valueResult, this.suitResult);
     }
 }
