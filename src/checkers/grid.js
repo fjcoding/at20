@@ -1,46 +1,52 @@
-const WIDTH = 800;
-const HEIGHT = 800;
+export class grid {
+    WIDTH = 800;
+    HEIGHT = 800;
 
-const COLUMNS = 8;
-const ROWS = 8;
+    COLUMNS = 8;
+    ROWS = 8;
 
-const CELL_WIDTH = WIDTH / COLUMNS;
-const CELL_HEIGHT = HEIGHT / ROWS;
+    CELL_WIDTH = WIDTH / COLUMNS;
+    CELL_HEIGHT = HEIGHT / ROWS;
 
-const $canvas = document.createElement('canvas');
-const context = $canvas.getContext('2d');
+    theme = {
+        light : '#eeeed2',
+        dark : '#5F9EA0',
+    };
 
-const theme = {
-    light : '#eeeed2',
-    dark : '#5F9EA0',
-};
+    constructor ($canvas, context){
+        $canvas = document.createElement('canvas');
+        context = $canvas.getContext('2d');
 
-$canvas.width = WIDTH;
-$canvas.height = HEIGHT;
+        $canvas.width = WIDTH;
+        $canvas.height = HEIGHT;
 
-context.textBaseline = 'middle';
-context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.textAlign = 'center';
 
-const boardMatrix = [];
-for (let ejex = 0; ejex < COLUMNS; ejex += 1) {
-    boardMatrix[ejex] = [];
-    for (let ejey = 0; ejey < ROWS; ejey += 1) {
-        boardMatrix[ejex][ejey] = null;
+        document.body.appendChild($canvas);
+    }
+    
+    startGrid () {
+        const boardMatrix = [];
+        for (let ejeX = 0; ejeX < COLUMNS; ejex += 1) {
+            boardMatrix[ejeX] = [];
+            for (let ejeY = 0; ejeY < ROWS; ejeY += 1) {
+                boardMatrix[ejeX][ejeY] = null;
 
-        let rectColor = theme.light;
-        let textColor = theme.dark;
+                let rectColor = theme.light;
+                let textColor = theme.dark;
 
-        if ((ejex + ejey) % 2) {
-            rectColor = theme.dark;
-            textColor = theme.light;
+                if ((ejeX + ejeY) % 2) {
+                    rectColor = theme.dark;
+                    textColor = theme.light;
+                }
+
+                context.fillStyle = rectColor;
+                context.fillRect(ejeX * CELL_WIDTH, ejeY * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+
+                context.fillStyle = textColor;
+                context.fillText(`[${ejeX}; ${ejeY}]`, ejeX * CELL_WIDTH + CELL_WIDTH / 2, ejeY * CELL_HEIGHT + CELL_HEIGHT / 2);
+            }
         }
-
-        context.fillStyle = rectColor;
-        context.fillRect(ejex * CELL_WIDTH, ejey * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
-
-        context.fillStyle = textColor;
-        context.fillText(`[${ejex}; ${ejey}]`, ejex * CELL_WIDTH + CELL_WIDTH / 2, ejey * CELL_HEIGHT + CELL_HEIGHT / 2);
     }
 }
-
-document.body.appendChild($canvas);
