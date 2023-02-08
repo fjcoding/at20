@@ -1,31 +1,36 @@
 import { Piece } from './piece';
 
-describe('Tests for piece class', () => {
-    it('should be able to parse a color and type to string input', () => {
-        const input = 'BL';
-        const piece = new Piece(input);
-        expect(piece.color).toBe('B');
-        expect(piece.type).toBe('L');
+describe('Piece attributes and methods', () => {
+    let piece;
+
+    beforeEach(() => {
+        piece = new Piece('red', 3, 4);
     });
-    it('should throw an error when piece color has a diferent to B, W', () => {
-        const input = 'AP';
-        const handler = ()=>{
-            new Piece(input);
-        };
-        expect(handler).toThrow(new Error('(A) Invalid color'));
+
+    it('should have the correct color', () => {
+        expect(piece.color).toBe('red');
     });
-    it('should throw an error when piece type has a diferent to L, P', () => {
-        const input = 'WA';
-        const handler = ()=>{
-            new Piece(input);
-        };
-        expect(handler).toThrow(new Error('(A) Invalid type'));
+
+    it('should have the correct initial x position', () => {
+        expect(piece.x).toBe(3);
     });
-    it('should throw an error when piece input has more than 2 characters', () => {
-        const input = 'BBL';
-        const handler = ()=>{
-            new Piece(input);
-        };
-        expect(handler).toThrow(new Error('(BBL) is not valid input'));
+
+    it('should have the correct initial y position', () => {
+        expect(piece.y).toBe(4);
+    });
+
+    it('should not be a queen initially', () => {
+        expect(piece.getTypeChain()).toBe('pawn');
+    });
+
+    it('should be able to move to a new position', () => {
+        piece.currentlyPosition(5, 6);
+        expect(piece.x).toBe(5);
+        expect(piece.y).toBe(6);
+    });
+
+    it('should be able to become a queen', () => {
+        piece.makeLady();
+        expect(piece.getTypeChain()).toBe('lady');
     });
 });
