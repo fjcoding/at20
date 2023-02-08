@@ -3,19 +3,19 @@ export class Piece {
         this.color = color;
         this.x = x;
         this.y = y;
-        this.queen = false;
+        this.typeChain = 'pawn';
     }
 
-    move(newX, newY) {
+    currentlyPosition(newX, newY) {
         this.x = newX;
         this.y = newY;
     }
 
-    isQueen() {
-        return this.queen;
+    getTypeChain() {
+        return this.typeChain;
     }
 
-    makeQueen() {
-        this.queen = true;
+    makeLady() {
+        this.typeChain = 'lady';
     }
 }
