@@ -15,6 +15,10 @@ export class Card {
     get value() {
         return this.#value;
     }
+
+    compareTo(anotherCard) {
+        return this.#value.numeric - anotherCard.value.numeric;
+    }
 }
 
 export const CardValue = {
