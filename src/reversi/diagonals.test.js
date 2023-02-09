@@ -103,7 +103,7 @@ test('Check for coincidences in the negative diagonal where 1 match with a cheat
         [' ', ' ', ' ', ' ', 'B', ' ', ' ', ' '],
         [' ', ' ', 'B', 'W', ' ', ' ', 'W', ' '],
         [' ', ' ', 'B', ' ', 'B', ' ', ' ', ' '],
-        ['B', 'W', 'B', 'W', 'B', 'B', 'B', ' '],// here 
+        ['B', 'W', 'B', 'W', 'B', 'B', 'B', ' '], // here
         ['B', ' ', 'B', 'B', 'B', ' ', ' ', ' '],
         ['B', 'B', ' ', 'W', 'B', 'W', ' ', ' '],
         ['W', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
@@ -122,7 +122,7 @@ test('Check for coincidences in the negative diagonal where 1 match with a cheat
         [' ', ' ', ' ', ' ', 'B', ' ', ' ', ' '],
         [' ', ' ', 'B', 'W', ' ', 'W', 'W', ' '],
         [' ', ' ', 'B', ' ', 'B', ' ', ' ', ' '],
-        ['B', 'W', 'B', 'W', 'B', 'B', 'B', ' '],// here 
+        ['B', 'W', 'B', 'W', 'B', 'B', 'B', ' '], // here
         ['B', ' ', 'B', 'B', 'B', ' ', ' ', ' '],
         ['B', 'B', ' ', 'W', 'B', 'W', ' ', ' '],
         [' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
