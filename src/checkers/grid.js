@@ -1,30 +1,43 @@
-export class grid {
-    #gridBoard;
+export class Grid {
+    static COLUMN = 8;
+    static ROW = 8;
+    
+    #gridBoard = [];
 
-    constructor () {
-        this.#gridBoard = [];
-        for (let i = 0; i < 8; i++) {
-            this.#gridBoard[i] = [];
-            for (let j = 0; j < 8; j++) {
-                this.#gridBoard [i][j] = null;
+    get gridBoard () {
+        return this.#gridBoard;
+    }
+
+    createGrid (gridBoard) {
+        for (let i = 0; i < Grid.COLUMN; i += 1) {
+            gridBoard [i] = [];
+            for (let j = 0; j < Grid.ROW; j += 1) {
+                gridBoard [i][j] = null;
             }
         }
     }
 
-    showGrid () {
-        console.log('  A B C D E F G H');
-        console.log('------------------');
-        for (let i = 0; i < 8; i++) {
-            let row = `${i}|`;
-            for (let j = 0; j < 8; j++) {
+    toString() {
+        let letter = ' A B C D E F G H';
+        let board = ' ------------------';
+        for (let i = 0; i < Grid.COLUMN; i += 1) {
+            let box = `${i}|`;
+            for (let j = 0; j < Grid.ROW; j += 1) {
                 if ((i + j) % 2 === 0) {
-                    row += '■|';
-                } else if (this.#gridBoard[i][j] === null) {
-                    row += ' |';
+                    box += '■|';
+                }
+                else if (gridBoard [i] [j] === null)
+                {
+                    box += ' |';
                 }
             }
-            console.log(row);
         }
-        console.log('------------------');
+
+        let initGrid = letter + '/n' + board + '/n' + box + '/n' + board;
+        return initGrid;
+    }
+
+    constructor () {
+        this.createGrid(this.#gridBoard);       
     }
 }
