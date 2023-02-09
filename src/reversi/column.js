@@ -1,34 +1,49 @@
 export class Column {
-    #gridYmax = 8;
+    #gridYmax = 7;
 
-    constructor(newToken, grid) {
-        this.newToken = newToken;
-        this.grid = grid;
+    #grid;
+
+    #x;
+
+    #y;
+
+    #player;
+
+    constructor(position, grid, player) {
+        this.#grid = grid;
+        this.#x = position[0];
+        this.#y = position[1];
+        this.#player = player;
     }
 
-    checkColumn() {
-        let ntxCoor = this.newToken[0];
-        let ntyCoor = this.newToken[1];
-        let ntValue = this.newToken[3];//
-        let newColumns = [];
-
-        for (let keyf = 0; keyf < this.#gridYmax; keyf++) {
-            if ((ntValue == this.grid[keyf][ntyCoor]) && (keyf != ntxCoor)) {// assuming that the token has already been palced,
-                newColumns.push([[ntxCoor, ntyCoor], [keyf, ntyCoor], ntValue]);// for the flip function // return the coordinates to flip the values in that tange
-            }
-        }
-        return newColumns;
-    }
-
-    flipColumn (columnCords) {
-        console.log(columnCords.length);
-        for (let i = 0; i < columnCords.length; i++) {
-            for (let j = 0; j < this.#gridYmax; j++) {
-                if (this.grid[j][columnCords[i][1]]) {
-
+    checkColumn(array) {
+        this.#grid[this.#x][this.#y] = this.#player;
+        let CordstoFlip = [];
+        let checkPieces = [];
+        for (let keyf1 = this.#x + 1; keyf1 < this.#gridYmax; keyf1++) {//find pieces in a column down
+            if ((this.#grid[keyf1][this.#y]) == this.#player || (this.#grid[keyf1][this.#y] == 0)) {
+                if (this.#grid[keyf1][this.#y] == this.#player) {
+                    CordstoFlip = checkPieces;
                 }
+                break;
+            } else {
+                array = [keyf1, this.#y];
+                checkPieces.push(array);
             }
         }
-        return 0;
+
+        for (var keyf2 = this.#x - 1; keyf2 > 0; keyf2--) {//find pieces in a column up
+            if ((this.#grid[keyf2][this.#y]) == this.#player || (this.#grid[keyf2][this.#y] == 0)) {
+                if (this.#grid[keyf2][this.#y] === this.#player) {
+                    CordstoFlip = checkPieces;
+                }
+                break;
+            } else {
+                array = [keyf2, this.#y];
+                checkPieces.push(array);
+            }
+        }
+
+        return CordstoFlip;
     }
 }
