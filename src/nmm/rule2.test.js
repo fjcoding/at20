@@ -15,9 +15,11 @@ describe('Tests for rule2 class', () => {
         const Rule2 = new rule2();
         const option1 =  [positions.a6.row, positions.a6.col];
         const option2 =  [positions.a0.row, positions.a0.col];
+        const option3 =  [positions.b3.row, positions.b3.col];
         const testPosition = [positions.b5.row, positions.b5.col];
         expect(Rule2.a3Options(option1)).toEqual(true);
         expect(Rule2.a3Options(option2)).toEqual(true);
+        expect(Rule2.a3Options(option3)).toEqual(true);
         expect(Rule2.a3Options(testPosition)).toEqual(false);
     });
     it('Tests for "a6" position it shuld be just 2 possibilities ', () => {
@@ -33,9 +35,11 @@ describe('Tests for rule2 class', () => {
         const Rule2 = new rule2();
         const option1 =  [positions.g6.row, positions.g6.col];
         const option2 =  [positions.a6.row, positions.a6.col];
+        const option3 =  [positions.d5.row, positions.d5.col];
         const testPosition = [positions.b5.row, positions.b5.col];
         expect(Rule2.d6Options(option1)).toEqual(true);
         expect(Rule2.d6Options(option2)).toEqual(true);
+        expect(Rule2.d6Options(option3)).toEqual(true);
         expect(Rule2.d6Options(testPosition)).toEqual(false);
     });
     it('Tests for "g6" position it shuld be just 2 possibilities ', () => {

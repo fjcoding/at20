@@ -18,7 +18,8 @@ export class rule2 {
     a3Options(newPosition) {
         const option1 =  [positions.a6.row, positions.a6.col].join();
         const option2 =  [positions.a0.row, positions.a0.col].join();
-        if (newPosition.join() === option1 || newPosition.join() === option2) {
+        const option3 =  [positions.b3.row, positions.b3.col].join();
+        if (newPosition.join() === option1 || newPosition.join() === option2 || newPosition.join() === option3) {
             return true;
         }
         return false;
@@ -36,7 +37,8 @@ export class rule2 {
     d6Options(newPosition) {
         const option1 =  [positions.g6.row, positions.g6.col].join();
         const option2 =  [positions.a6.row, positions.a6.col].join();
-        if (newPosition.join() === option1 || newPosition.join() === option2) {
+        const option3 =  [positions.d5.row, positions.d5.col].join();
+        if (newPosition.join() === option1 || newPosition.join() === option2 || newPosition.join() === option3) {
             return true;
         }
         return false;
