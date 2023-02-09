@@ -1,76 +1,85 @@
-import { findPositionOnBoard } from './checkAndFlipRow';
-
-
-describe('looking places that are going to change for player', () => {
-    it('White ', () => { //black=2 white=1
-        const board = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', 'W', 'B', ' ', ' ', ' '],
-            [' ', ' ', 'W', 'B', 'B', 'W', ' ', ' '], //move that the W player did on 2,4
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];
+import {Player} from './player';
+import {checkAndFlipRow} from './checkAndFlipRow';
+describe('Check for coincidences in rows with a new piece on the board', () => {
+    it('black piece on 3,2', () => {
+        const player = 'B';
+        // const newToken = whitePlace.setToken(3, 2);// [posx,posy,tokens left,playerTag]
+        const x = 3;
         const y = 2;
-        const x = 4;
-        const player = 'W';
-        const changedPlaces = new findPositionOnBoard(x, y, player, board);
-
-
-        expect(changedPlaces.asChecker()).toStrictEqual([{x:4, y:3}, {x:4, y:4}]);
+        const initialMap = [
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', 'W', 'W', 'B', 'W', ' '],
+            [' ', ' ', ' ', 'B', 'W', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        ];
+        const newFlip = new checkAndFlipRow(x, y, initialMap, player);//
+        expect(newFlip.checkRow()).toStrictEqual([[3, 3], [3, 4]]);//
     });
 });
 
-describe('flip the pieces for', () => {
-    it('White ', () => { //black=2 white=1
-        const y = 2;
-        const x = 4;
-        const player = 'W';
-        const InitialBoard =  [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', 'W', 'B', ' ', ' ', ' '],
-            [' ', ' ', 'W', 'W', 'W', 'W', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];
-        const changedPlaces = new findPositionOnBoard(x, y, player, InitialBoard);
 
-        const objectiveBoard = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', 'W', 'B', ' ', ' ', ' '],
-            [' ', ' ', 'W', 'W', 'W', 'W', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];
+describe('Check for coincidences in rows and flip them', () => {
+    it('black piece on 3,2', () => {
+        const player = new Player('B');
+        const newPosition = player.setToken(3, 2);// [posx,posy,tokens left,playerTag]
 
-        expect(changedPlaces.asflip()).toStrictEqual(objectiveBoard);
+        const initialMap = [
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', 'W', 'W', 'B', 'W', ' '],
+            [' ', ' ', ' ', 'B', 'W', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        ];
+
+        const resultMap = [
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', 'B', 'B', 'B', 'B', 'W', ' '],
+            [' ', ' ', ' ', 'B', 'W', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        ];
+
+        const newFlip = new checkAndFlipRow(newPosition[0], newPosition[1], initialMap, player.playerTag);//
+        expect(newFlip.asFlip()).toStrictEqual(resultMap);//
     });
 
-    it('black ', () => { //black=2 white=1
-        const y = 2;
-        const x = 3;
-        const player = 'B';
-        const InitialBoard =  [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', 'B', 'W', 'B', ' ', ' ', ' '],
-            [' ', ' ', 'W', 'W', 'W', 'W', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];
-        const changedPlaces = new findPositionOnBoard(x, y, player, InitialBoard);
+    it('Check rows and flip', () => {
+        const black = new Player('W');
+        const newPosition = black.setToken(4, 5);// [posx,posy,tokens left,playerTag]
 
-        const objectiveBoard = [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        const initialMap = [
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', 'W', 'W', 'B', ' ', ' '],
             [' ', ' ', 'B', 'B', 'B', ' ', ' ', ' '],
-            [' ', ' ', 'W', 'W', 'W', 'W', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        ];
 
-        expect(changedPlaces.asflip()).toStrictEqual(objectiveBoard);
+        const resultMap = [
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', 'W', 'W', 'B', ' ', ' '],
+            [' ', ' ', 'B', 'B', 'B', 'W', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        ];
+
+        const newFlip = new checkAndFlipRow(newPosition[0], newPosition[1], initialMap, black.playerTag);//
+        expect(newFlip.asFlip()).toStrictEqual(resultMap);
     });
 });

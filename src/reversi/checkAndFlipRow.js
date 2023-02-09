@@ -1,96 +1,73 @@
+export class checkAndFlipRow {
+    #grid;
 
-export class findPositionOnBoard {
-    #xPosition;
-
-    #board;
-
-    #yPosition;
-
-    #player;
-
-
-    constructor(xPosition, yPosition, player, board) {
-        this.#xPosition = xPosition;
-        this.#yPosition = yPosition;
-        this.#board = board;
-        this.#player = player;
+    constructor(x, y, grid, player) {
+        // this.newToken = newToken;
+        this.#grid = grid;
+        this.x = x;
+        this.y = y;
+        this.player = player;
+        this.checkRow();
     }
 
+    checkRow() {
+        var gridXmax = 7;
 
-    asChecker() {
-        /*  const board =  [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', 'W', 'B', ' ', ' ', ' '],
-                        [' ', ' ', 'W', 'B', 'B', 'W', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];
-*/
-        //row right
-        var changedList = [];
-        var flipList = [];
-        var yPosition = this.#yPosition;
+        /*var ntxCoor = this.newToken[0];
+        var ntyCoor = this.newToken[1];
+        var ntValue = this.newToken[3];*/
+        var y = this.y;
 
-        while (yPosition < 7) {
-            yPosition += 1;
-            var valueNextToX = this.#board[this.#xPosition][yPosition];
-            if (valueNextToX == ' ' || valueNextToX == this.#player) {
-                if (valueNextToX == this.#player) {
-                    flipList = flipList.concat(changedList);
+        var flip = [];
+        var checkPieces = [];//[0,0,0,0,1,2,2,1]
+        for (var index = y + 1; index < gridXmax; index++) {//find pieces in a row to the right
+            if ((this.#grid[this.x][index]) == this.player || (this.#grid[this.x][index] == 0)) {
+                if (this.#grid[this.x][index] == this.player) {
+                    flip = checkPieces;
                 }
+                break;
             } else {
-                var newLocation = {x:this.#xPosition, y:yPosition};
-                changedList.push(newLocation);
+                var arr = [];
+                arr = [this.x, index];
+                checkPieces.push(arr);
             }
         }
 
-        //row left
-        if (flipList == []) {
-            changedList = [];
-            flipList = [];
-            yPosition = this.#yPosition;
+        for (var keyf1 = y - 1; keyf1 > 0; keyf1--) {//find pieces in a row to the left
+            if ((this.#grid[this.x][keyf1]) == this.player || (this.#grid[this.x][keyf1] == 0)) {
+                if (this.#grid[this.x][keyf1] === this.player) {
+                    flip = checkPieces;
+                }
+                break;
+            } else {
+                var arr1 = [];
+                arr1 = [this.x, keyf1];
+                checkPieces.push(arr1);
+            }
+        }
 
-            while (yPosition > 0) {
-                yPosition -= 1;
-                valueNextToX = this.#board[this.#xPosition][yPosition];
-                if (valueNextToX == ' ' || valueNextToX == this.#player) {
-                    if (valueNextToX == this.#player) {
-                        flipList = flipList.concat(changedList);
-                    }
+        return flip;
+    }
+
+
+    asFlip() {
+        if (this.checkRow() == []) {
+            return this.#grid;
+        } else {
+            this.#grid[this.x][this.y] = this.player;
+            var lengthFlip = this.checkRow().length;
+            var arr = [];
+            arr = this.checkRow();
+            for (var i = 0; i < lengthFlip; i++) {
+                var x = arr[i][0];
+                var y = arr[i][1];
+                if (this.#grid[x][y] == 'W') {
+                    this.#grid[x][y] = 'B';
                 } else {
-                    newLocation = {x:this.#xPosition, y:yPosition};
-                    changedList.push(newLocation);
+                    this.#grid[x][y] = 'W';
                 }
             }
+            return this.#grid;
         }
-        return flipList;
-    }
-
-    asflip() {
-        /* const board =  [[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', 'W', 'B', ' ', ' ', ' '],
-                        [' ', ' ', 'W', 'B', 'B', 'W', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']];*/
-
-        var flipLenght = this.asChecker().length;
-        for (var index = 0; index < flipLenght; index++) {
-            var flipList = this.asChecker();
-            var x = flipList[index].x;
-            var y = flipList[index].y;
-            if (this.#board[x][y] == 'B') {
-                this.#board[x][y] = 'W';
-            } else {
-                this.#board[x][y] = 'B';
-            }
-        }
-
-        return this.#board;
     }
 }
-
-
