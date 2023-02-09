@@ -9,7 +9,6 @@ export class grid {
             }            
         }
     }
-
     showGrid () {
         console.log('  A B C D E F G H');
         console.log('------------------');
@@ -27,7 +26,6 @@ export class grid {
         }
     }
 }
-
-let grip = new grid();
-grip.showGrid();
+let gridview = new grid();
+gridview.showGrid();
 console.log('------------------');
