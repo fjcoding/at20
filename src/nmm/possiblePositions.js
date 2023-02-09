@@ -95,4 +95,4 @@ export const positions = {
         row : 6,
         col : 6
     },
-}
+};
