@@ -21,7 +21,7 @@ export const positions = {
     },
     f5 : {
         row : 1,
-        col : 4
+        col : 5
     },
     c4 : {
         row : 2,
