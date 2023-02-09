@@ -10,13 +10,14 @@ export class Grid {
             ['|', '|', '*', '*', '*', '|', '|'],
             ['|', '*', '-', '*', '-', '*', '|'],
             ['*', '-', '-', '*', '-', '-', '*']
-        ]
+        ];
     }
- 
+
     get gridInit() {
         return this.#gridInit;
     }
-    set gridInit(gridNew){
+
+    set gridInit(gridNew) {
         this.#gridInit = gridNew;
     }
 }
