@@ -25,8 +25,6 @@ export class grid {
             }
             console.log(row);
         }
+        console.log('------------------');
     }
 }
-let gridview = new grid();
-gridview.showGrid();
-console.log('------------------');
