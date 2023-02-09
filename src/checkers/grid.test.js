@@ -4,7 +4,7 @@ describe('Test for Grid Class', () => {
     it('should be able to create the grid with the initial positions of the pieces ', () => {
         const grid = new Grid();
         const strGrid = grid.toString();
-        const expectedGrid = '  0 1 2 3 4 5 6 7 \n' +
+        const expectedGrid = '  A B C D E F G H \n' +
                              ' ---------------  \n' +
                              '0|■| |■| |■| |■| |\n' +
                              '1| |■| |■| |■| |■|\n' +
