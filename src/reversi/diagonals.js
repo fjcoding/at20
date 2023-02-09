@@ -1,159 +1,225 @@
 export class Diagonals {
-    constructor(newToken, grid) {
-        this.newToken = newToken;
-        this.grid = grid;
+    #newTokenpos;
+
+    #grid;
+
+    #playtag;
+
+
+    constructor(newTokenpos, playtag, grid) {
+        this.#newTokenpos = newTokenpos;
+        this.#grid = grid;
+        this.#playtag = playtag;
     }
 
-
-    checkDpos() { //barrido positivo
-        var ntxCoor = this.newToken[0];
-        var ntyCoor = this.newToken[1];
-        var ntValue = this.newToken[3];
+    checkDpos() {
+        var ntxCoor = this.#newTokenpos[0];
+        var ntyCoor = this.#newTokenpos[1];
+        var ntValue = this.#playtag;
         var newDiags = [];
+        var traDiags = [];
 
+        if (ntValue == 'B') {
+            var max = Math.max(...this.#newTokenpos);//   1.2  [[2, 3], [3, 4], [4, 5], [5, 6]]);
 
-        if (ntyCoor >= ntxCoor) {
-            var keydx = 0;
-            var keydy = ntyCoor - ntxCoor;
+            var step = 1;
+            var steps = 7 - max;
 
-            while (keydy < 8) { // in other case the grid's max size can be introduced
-                if (keydy > 8) { //|| newDiags.length >1
+            while (step <= steps) {
+                if (step > steps) {
                     break;
-                } else if ((ntValue == this.grid[keydx][keydy]) && (keydx != ntxCoor) && (keydy != ntyCoor)) {
-                    newDiags.push([[ntxCoor, ntyCoor], [keydx, keydy], ntValue]);
                 }
-                keydx += 1;
-                keydy += 1;
+                if (this.#grid[ntxCoor + step][ntyCoor + step] == 'W') {
+                    traDiags.push([ntxCoor + step, ntyCoor + step]);
+                } else if (this.#grid[ntxCoor + step][ntyCoor + step] == ntValue) {
+                    newDiags = newDiags.concat(traDiags);
+                    traDiags = [];
+
+                    break;
+                } else if (this.#grid[ntxCoor + step][ntyCoor + step] == ' ') {
+                    traDiags = [];
+                    break;
+                }
+                step += 1;
             }
-        } else if (ntyCoor < ntxCoor) {
-            keydx = ntxCoor - ntyCoor;
-            keydy = 0;
 
+            var min = Math.min(...this.#newTokenpos);
+            step = 1;
+            steps = min;
 
-            while (keydx < 8) { // in other case the grid's max size can be introduced
-                if (keydx > 8) { //|| newDiags.length !=0
+            while (step <= steps) {
+                if (step > steps) {
                     break;
-                } else if ((ntValue == this.grid[keydx][keydy]) && (keydx != ntxCoor) && (keydy != ntyCoor)) {
-                    newDiags.push([[ntxCoor, ntyCoor], [keydx, keydy], ntValue]);
                 }
-                keydx += 1;
-                keydy += 1;
+                if (this.#grid[ntxCoor - step][ntyCoor - step] == 'W') {
+                    traDiags.push([ntxCoor - step, ntyCoor - step]);
+                } else if (this.#grid[ntxCoor - step][ntyCoor - step] == ntValue) {
+                    newDiags = newDiags.concat(traDiags);
+                    traDiags = [];
+                    break;
+                } else if (this.#grid[ntxCoor - step][ntyCoor - step] == ' ') {
+                    traDiags = [];
+                    break;
+                }
+                step += 1;
+            }
+        } else if (ntValue == 'W') {
+            max = Math.max(...this.#newTokenpos);
+            step = 1;
+            steps = 7 - max;
+            while (step <= steps) {
+                if (step > steps) {
+                    break;
+                }
+                if (this.#grid[ntxCoor + step][ntyCoor + step] == 'B') {
+                    traDiags.push([ntxCoor + step, ntyCoor + step]);
+                } else if (this.#grid[ntxCoor + step][ntyCoor + step] == ntValue) {
+                    newDiags = newDiags.concat(traDiags);
+                    traDiags = [];
+
+                    break;
+                } else if (this.#grid[ntxCoor + step][ntyCoor + step] == ' ') {
+                    traDiags = [];
+                    break;
+                }
+
+                step += 1;
+            }
+
+            min = Math.min(...this.#newTokenpos);
+            step = 1;
+            steps = min;
+            while (step <= steps) {
+                if (step > steps) {
+                    break;
+                }
+                if (this.#grid[ntxCoor - step][ntyCoor - step] == 'B') {
+                    traDiags.push([ntxCoor - step, ntyCoor - step]);
+                } else if (this.#grid[ntxCoor - step][ntyCoor - step] == ntValue) {
+                    newDiags = newDiags.concat(traDiags);
+
+                    traDiags = [];
+                    break;
+                } else if (this.#grid[ntxCoor - step][ntyCoor - step] == ' ') {
+                    traDiags = [];
+                    break;
+                }
+                step += 1;
             }
         }
-        //console.log(newDiags);
+
         return newDiags;
     }
 
 
     checkDneg() {
-        var ntxCoor = this.newToken[0];
-        var ntyCoor = this.newToken[1];//check for the values at the limits
-        var ntValue = this.newToken[3];
+        var ntxCoor = this.#newTokenpos[0];
+        var ntyCoor = this.#newTokenpos[1];
+        var ntValue = this.#playtag;
         var newDiags = [];
+        var traDiags = [];
 
-
-        if ((ntxCoor + ntyCoor) <= 6) {
-            var keydx = 0;
-            var keydy = ntyCoor + ntxCoor;
-
-            while (keydy >= 0) { // in other case the grid's max size can be introduced
-                if (keydy < 0) {//|| newDiags.length !=0
-                    break;
-                } else if ((ntValue == this.grid[keydx][keydy]) && (keydx != ntxCoor) && (keydy != ntyCoor)) {
-                    newDiags.push([[ntxCoor, ntyCoor], [keydx, keydy], ntValue]);
-                }
-                keydx += 1;
-                keydy -= 1;
+        if (ntValue == 'B') {
+            if (ntxCoor + ntyCoor <= 7) {
+                var min = Math.min(...this.#newTokenpos);
+                var step = 1;
+                var steps = min;
+            } else if (ntxCoor + ntyCoor > 7) {
+                var max = Math.max(...this.#newTokenpos);
+                step = 1;
+                steps = 7 - max;
             }
-        } else if ((ntxCoor + ntyCoor) > 6) {
-            keydx = ntyCoor + ntxCoor - 7;
-            keydy = 7;
-
-            while (keydx <= 7) {
-                if (keydx > 7) { //|| newDiags.length !=0
+            while (step <= steps) {
+                if (step > steps) {
                     break;
-                } else if ((ntValue == this.grid[keydx][keydy]) && (keydx != ntxCoor) && (keydy != ntyCoor)) {
-                    newDiags.push([[ntxCoor, ntyCoor], [keydx, keydy], ntValue]);
                 }
-                keydx += 1;
-                keydy -= 1;
+                if (this.#grid[ntxCoor + step][ntyCoor - step] == 'W') {
+                    traDiags.push([ntxCoor + step, ntyCoor - step]);
+                } else if (this.#grid[ntxCoor + step][ntyCoor - step] == ntValue) {
+                    newDiags = newDiags.concat(traDiags);
+                    traDiags = [];
+                    break;
+                } else if (this.#grid[ntxCoor + step][ntyCoor - step] == ' ') {
+                    traDiags = [];
+                    break;
+                }
+                step += 1;
+            }
+            if (ntxCoor + ntyCoor <= 7) {
+                max = Math.max(...this.#newTokenpos);
+                step = 1;
+                steps = max;
+            } else if (ntxCoor + ntyCoor > 7) {
+                min = Math.min(...this.#newTokenpos);
+                step = 1;
+                steps = 7 - min;
+            }
+            while (step <= steps) {
+                if (step > steps) {
+                    break;
+                }
+                if (this.#grid[ntxCoor - step][ntyCoor + step] == 'W') {
+                    traDiags.push([ntxCoor - step, ntyCoor + step]);
+                } else if (this.#grid[ntxCoor - step][ntyCoor + step] == ntValue) {
+                    newDiags = newDiags.concat(traDiags);
+                    traDiags = [];
+                    break;
+                } else if (this.#grid[ntxCoor - step][ntyCoor + step] == ' ') {
+                    traDiags = [];
+                    break;
+                }
+                step += 1;
+            }
+        } else if (ntValue == 'W') {
+            if (ntxCoor + ntyCoor <= 7) {
+                min = Math.min(...this.#newTokenpos);
+                step = 1;
+                steps = min;
+            } else if (ntxCoor + ntyCoor > 7) {
+                max = Math.max(...this.#newTokenpos);
+                step = 1;
+                steps = 7 - max;
+            }
+            while (step <= steps) {
+                if (step > steps) {
+                    break;
+                }
+                if (this.#grid[ntxCoor + step][ntyCoor - step] == 'B') {
+                    traDiags.push([ntxCoor + step, ntyCoor - step]);
+                } else if (this.#grid[ntxCoor + step][ntyCoor - step] == ntValue) {
+                    newDiags = newDiags.concat(traDiags);
+                    traDiags = [];
+                    break;
+                } else if (this.#grid[ntxCoor + step][ntyCoor - step] == ' ') {
+                    traDiags = [];
+                }
+                step += 1;
+            }
+            if (ntxCoor + ntyCoor <= 7) {
+                max = Math.max(...this.#newTokenpos);
+                step = 1;
+                steps = max;
+            } else if (ntxCoor + ntyCoor > 7) {
+                min = Math.min(...this.#newTokenpos);
+                step = 1;
+                steps = 7 - min;
+            }
+            while (step <= steps) {
+                if (step > steps) {
+                    break;
+                }
+                if (this.#grid[ntxCoor - step][ntyCoor + step] == 'B') {
+                    traDiags.push([ntxCoor - step, ntyCoor + step]);
+                } else if (this.#grid[ntxCoor - step][ntyCoor + step] == ntValue) {
+                    newDiags = newDiags.concat(traDiags);
+                    traDiags = [];
+                    break;
+                } else if (this.#grid[ntxCoor - step][ntyCoor + step] == ' ') {
+                    traDiags = [];
+                }
+                step += 1;
             }
         }
-
-
-        //console.log(newDiags);
         return newDiags;
-    }
-
-    flipDiag(coordinates) {// coordinates
-        //stablish the points where we will make the flip
-        if (coordinates.length != 0) {
-            var gridToflip = this.grid;
-            const initPoint = coordinates[0][0]; //given as [xi,yi]
-            const initX = initPoint[0];
-            const inity = initPoint[1];
-            const sizeFlips = coordinates.length;
-
-
-            for (var keyFlip = 0; keyFlip < sizeFlips; keyFlip++) {
-                var toX = coordinates[keyFlip][1][0];
-                var toY = coordinates[keyFlip][1][1];
-                var intSymbol = coordinates[keyFlip][2];
-
-                console.log(initX, inity, toX, toY, intSymbol);
-
-                if ((initX < toX) && (inity < toY)) {
-                    var steps = toX - initX;
-                    var step = 1;
-
-                    while (step < steps) {
-                        if (step > steps) {
-                            break;
-                        }
-                        gridToflip[initX + step][inity + step] = intSymbol;
-                        step += 1;
-                    }
-                } else if ((initX > toX) && (inity > toY)) {
-                    steps = initX - toX;
-                    step = 1;
-
-                    while (step < steps) {
-                        if (step > steps) {
-                            break;
-                        }
-                        gridToflip[initX - step][inity - step] = intSymbol;
-
-                        step += 1;
-                    }
-                } else if ((initX > toX) && (inity < toY)) {
-                    steps = initX - toX;
-                    step = 1;
-
-                    while (step < steps) {
-                        if (step > steps) {
-                            break;
-                        }
-                        gridToflip[initX - step][inity + step] = intSymbol;
-                        step += 1;
-                    }
-                } else if ((initX < toX) && (inity > toY)) {
-                    steps = inity - toY;
-                    step = 1;
-
-                    while (step < steps) {
-                        if (step > steps) {
-                            break;
-                        }
-                        gridToflip[initX + step][inity - step] = intSymbol;
-
-                        step += 1;
-                    }
-                }
-            }
-        } else {
-            gridToflip = 0;
-        }
-
-        return gridToflip;
     }
 }
