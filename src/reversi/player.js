@@ -1,4 +1,3 @@
-
 export class Player {
     #playerTag;
 
@@ -22,5 +21,4 @@ export class Player {
         return this.#playerTag;
     }
 }
-
 
