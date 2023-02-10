@@ -9,5 +9,5 @@ describe ('Test to know about a place with a *', () =>{
         const coin2 = new Coins('-');
         expect(coin2.symbol).toBe('-');
         expect(coin2.state).toBe('inactive');
-      });
+    });
 });
