@@ -1,21 +1,9 @@
 export class Grid {
-    // #posX;
-
-    // #posY;
-
-    // #color;
-
     #map;
 
     #black = 'b';
 
     #white = 'w';
-
-    // constructor(posX, posY, color) {
-    //     this.#posX = posX;
-    //     this.#posY = posY;
-    //     this.#color = color;
-    // }
 
     gridInit () {
         const mapDim = 8;
