@@ -20,4 +20,3 @@ test('Create a player and check how many tokens the player has', () => {
     expect(whitePlayer.tokenCount).toStrictEqual(28);
     expect(blackPlayer.tokenCount).toStrictEqual(28);
 });
-
