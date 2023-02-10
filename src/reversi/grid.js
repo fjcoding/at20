@@ -11,12 +11,6 @@ export class Grid {
 
     #white = 'w';
 
-    // constructor(posX, posY, color) {
-    //     this.#posX = posX;
-    //     this.#posY = posY;
-    //     this.#color = color;
-    // }
-
     gridInit () {
         const mapDim = 8;
         this.#map = new Array(mapDim).fill().map(() => Array(mapDim).fill(' '));

@@ -1,4 +1,5 @@
 
+import { Grid } from './grid';
 export class positionOnBoard {
     #posX;
 
@@ -6,18 +7,20 @@ export class positionOnBoard {
 
     #color;
 
-    #board = [];
+    #grid = new Grid();
+
+    #board = this.#grid.gridInit();
 
     constructor(board, color) {
         this.#board = board;
         this.#color = color;
     }
 
-    asPosition() {
+    asPositionOnBoard() {
         var arr = [];
-        const a = this.#board.length;
-        for (var i = 0; i < a; i++) {
-            for (var j = 0; j < a; j++) {
+        const boardLenght = this.#board.length;
+        for (var i = 0; i < boardLenght; i++) {
+            for (var j = 0; j < boardLenght; j++) {
                 if (this.#board[i][j] == this.#color) {
                     arr.push([i, j]);
                 }
