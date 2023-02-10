@@ -36,7 +36,7 @@ test('Check for coincidences where there is more than 1 match in the positive di
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
     const newFlip = new Diagonals(newToken, whiteTag, resultMap);
-    expect(newFlip.check()).toStrictEqual([[3, 4], [4, 5], [5, 6], [1, 2]]);//token to flip
+    expect(newFlip.check()).toStrictEqual([[3, 4], [4, 5], [5, 6], [1, 2]]);
 });
 
 test('Check for coincidences where there are none', () => {
