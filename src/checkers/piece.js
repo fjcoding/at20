@@ -1,9 +1,11 @@
 export class Piece {
-
     #color;
+
     #x;
+
     #y;
-    #typeChain; 
+
+    #typeChain;
 
     constructor(color, x, y) {
         this.#color = color;
@@ -12,17 +14,18 @@ export class Piece {
         this.#typeChain = 'pawn';
     }
 
-    getX(){
+    getX() {
         return this.#x;
     }
 
-    getY(){
+    getY() {
         return this.#y;
     }
 
-    getColor(){
+    getColor() {
         return this.#color;
     }
+
     currentlyPosition(newX, newY) {
         this.#x = newX;
         this.#y = newY;
