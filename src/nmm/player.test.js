@@ -22,7 +22,7 @@ describe('Tests for player class', () => {
     it('should be able to update color of player', () => {
         let colorPlayer = '*';
         let player = new Player(colorPlayer);
-        let newColorPlayer = 'White'
+        let newColorPlayer = 'White';
         player.colorPlayer = newColorPlayer;
         expect(player.colorPlayer).toBe('White');
     });
