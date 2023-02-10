@@ -1,10 +1,4 @@
 export class Grid {
-    // #posX;
-
-    // #posY;
-
-    // #color;
-
     #map;
 
     #black = 'b';
