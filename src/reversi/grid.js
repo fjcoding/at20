@@ -1,9 +1,9 @@
 export class Grid {
-    #posX;
+    // #posX;
 
-    #posY;
+    // #posY;
 
-    #color;
+    // #color;
 
     #map;
 
@@ -20,5 +20,10 @@ export class Grid {
         this.#map[4][4] = this.#white;
 
         return this.#map;
+    }
+
+    updateBoard (board) {
+        let actBoard = board;
+        return actBoard;
     }
 }
