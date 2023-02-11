@@ -9,11 +9,11 @@ describe ('Test middleCorners class', () =>{
         const f5 = [positions.f5.row, positions.f5.col];
         const f1 = [positions.f1.row, positions.f1.col];
         const e3 = [positions.e3.row, positions.e3.col];
-        expect(coner1.ismiddle(b5)).toBe(true);
-        expect(coner1.ismiddle(b1)).toBe(true);
-        expect(coner1.ismiddle(f5)).toBe(true);
-        expect(coner1.ismiddle(f1)).toBe(true);
-        expect(coner1.ismiddle(e3)).toBe(false);
+        expect(coner1.isMiddle(b5)).toBe(true);
+        expect(coner1.isMiddle(b1)).toBe(true);
+        expect(coner1.isMiddle(f5)).toBe(true);
+        expect(coner1.isMiddle(f1)).toBe(true);
+        expect(coner1.isMiddle(e3)).toBe(false);
     });
     it('should check move available', () =>{
         const coner1 = new middleCorners();

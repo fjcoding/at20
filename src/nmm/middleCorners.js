@@ -11,7 +11,7 @@ export class middleCorners {
         };
     }
 
-    ismiddle(position) {
+    isMiddle(position) {
         for (let coner in this.#middlePosition) {
             const row = this.#middlePosition[coner].row;
             const col = this.#middlePosition[coner].col;
@@ -26,7 +26,7 @@ export class middleCorners {
         const spaceRow = Math.abs(currentPosition[0] - newPosition[0]);
         const spaceCol = Math.abs(currentPosition[1] - newPosition[1]);
         if (spaceRow === 2 ^ spaceCol === 2) {
-            if (this.ismiddle(currentPosition)) {
+            if (this.isMiddle(currentPosition)) {
                 return true;
             }
         }
