@@ -1,6 +1,6 @@
-import { Card, CardValue } from "./card"
-import { PokerHand } from "./pokerhand"
-import { ValueCounter } from "./ValueCounter"
+import { Card, CardValue } from './card';
+import { PokerHand } from './pokerhand';
+import { ValueCounter } from './ValueCounter';
 
 describe('Value Counter class tests', () => {
     it('should be able to count 4 and 1 repeated values in a pokerhand', () => {
@@ -17,8 +17,8 @@ describe('Value Counter class tests', () => {
             'Q': 1
         };
         expect(counter.countRepeatedValues(hand)).toMatchObject(expectedCount);
-    })
-    
+    });
+
     it('should be able to count 3 and 2 repeated values in a pokerhand', () => {
         const hand = new PokerHand();
         hand.addCard(new Card('C', CardValue.Jack));
@@ -33,8 +33,8 @@ describe('Value Counter class tests', () => {
             '2': 2
         };
         expect(counter.countRepeatedValues(hand)).toMatchObject(expectedCount);
-    })
-    
+    });
+
     it('should be able to count 2, 2 and 1 repeated values in a pokerhand', () => {
         const hand = new PokerHand();
         hand.addCard(new Card('C', CardValue.Two));
@@ -50,8 +50,8 @@ describe('Value Counter class tests', () => {
             'A': 1
         };
         expect(counter.countRepeatedValues(hand)).toMatchObject(expectedCount);
-    })
-    
+    });
+
     it('should be able to count 2, 1, 1 and 1 repeated values in a pokerhand', () => {
         const hand = new PokerHand();
         hand.addCard(new Card('C', CardValue.Queen));
@@ -68,8 +68,8 @@ describe('Value Counter class tests', () => {
             '3': 1,
         };
         expect(counter.countRepeatedValues(hand)).toMatchObject(expectedCount);
-    })
-    
+    });
+
     it('should be able to count 1 for all values when values in a pokerhand are not repeated', () => {
         const hand = new PokerHand();
         hand.addCard(new Card('C', CardValue.Ace));
@@ -87,5 +87,5 @@ describe('Value Counter class tests', () => {
             '8': 1
         };
         expect(counter.countRepeatedValues(hand)).toMatchObject(expectedCount);
-    })
-})
+    });
+});
