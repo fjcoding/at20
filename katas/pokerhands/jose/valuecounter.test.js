@@ -1,6 +1,6 @@
 import { Card, CardValue } from './card';
 import { PokerHand } from './pokerhand';
-import { ValueCounter } from './ValueCounter';
+import { ValueCounter } from './valuecounter';
 
 describe('Value Counter class tests', () => {
     it('should be able to count 4 and 1 repeated values in a pokerhand', () => {
