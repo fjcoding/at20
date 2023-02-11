@@ -27,18 +27,20 @@ describe ('Test outsideCorners class', () =>{
         const d6 = [positions.d6.row, positions.d6.col];
         const g3 = [positions.g3.row, positions.g3.col];
         const d0 = [positions.d0.row, positions.d0.col];
+        const f3 = [positions.f3.row, positions.f3.col];
         expect(coner1.checkMove(a0, a3)).toBe(true);
-        expect(coner1.checkMove(a0, d6)).toBe(true);
         expect(coner1.checkMove(a6, a3)).toBe(true);
-        expect(coner1.checkMove(a6, g3)).toBe(true);
-        expect(coner1.checkMove(g0, d6)).toBe(true);
         expect(coner1.checkMove(g0, d0)).toBe(true);
         expect(coner1.checkMove(g6, g3)).toBe(true);
-        expect(coner1.checkMove(g6, d0)).toBe(true);
 
+        expect(coner1.checkMove(g6, d0)).toBe(false);
+        expect(coner1.checkMove(g0, d6)).toBe(false);
         expect(coner1.checkMove(a0, a6)).toBe(false);
         expect(coner1.checkMove(a6, g6)).toBe(false);
+        expect(coner1.checkMove(a6, g3)).toBe(false);
         expect(coner1.checkMove(g0, a0)).toBe(false);
         expect(coner1.checkMove(g6, a6)).toBe(false);
+        expect(coner1.checkMove(g6, f3)).toBe(false);
+        expect(coner1.checkMove(a0, d6)).toBe(false);
     });
 });

@@ -27,6 +27,7 @@ describe ('Test middleCorners class', () =>{
         const d5 = [positions.d5.row, positions.d5.col];
         const d1 = [positions.d1.row, positions.d1.col];
         const f3 = [positions.f3.row, positions.f3.col];
+        const a3 = [positions.a3.row, positions.a3.col];
         expect(coner1.checkMove(b5, b3)).toBe(true);
         expect(coner1.checkMove(b5, d5)).toBe(true);
         expect(coner1.checkMove(b1, b3)).toBe(true);
@@ -37,6 +38,7 @@ describe ('Test middleCorners class', () =>{
         expect(coner1.checkMove(f1, f3)).toBe(true);
 
         expect(coner1.checkMove(b5, b1)).toBe(false);
+        expect(coner1.checkMove(b5, a3)).toBe(false);
         expect(coner1.checkMove(b1, f1)).toBe(false);
         expect(coner1.checkMove(f5, b5)).toBe(false);
         expect(coner1.checkMove(f1, b1)).toBe(false);

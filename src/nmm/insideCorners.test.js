@@ -27,6 +27,7 @@ describe ('Test insideCorners class', () =>{
         const d4 = [positions.d4.row, positions.d4.col];
         const d2 = [positions.d2.row, positions.d2.col];
         const c3 = [positions.c3.row, positions.c3.col];
+        const f3 = [positions.f3.row, positions.f3.col];
         expect(coner1.checkMove(c2, d2)).toBe(true);
         expect(coner1.checkMove(e2, d2)).toBe(true);
         expect(coner1.checkMove(c4, d4)).toBe(true);
@@ -41,5 +42,6 @@ describe ('Test insideCorners class', () =>{
         expect(coner1.checkMove(e2, c2)).toBe(false);
         expect(coner1.checkMove(c4, c2)).toBe(false);
         expect(coner1.checkMove(e4, c4)).toBe(false);
+        expect(coner1.checkMove(e4, f3)).toBe(false);
     });
 });

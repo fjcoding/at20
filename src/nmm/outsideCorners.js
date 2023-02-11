@@ -25,7 +25,7 @@ export class outsideCorners {
     checkMove(currentPosition, newPosition) {
         const spaceRow = Math.abs(currentPosition[0] - newPosition[0]);
         const spaceCol = Math.abs(currentPosition[1] - newPosition[1]);
-        if (spaceRow === 3 ^ spaceCol === 3) {
+        if ((spaceRow === 3 ^ spaceCol === 3) && (spaceRow === 0 ^ spaceCol === 0)) {
             if (this.isOutside(currentPosition)) {
                 return true;
             }

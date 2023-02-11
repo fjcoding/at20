@@ -25,7 +25,7 @@ export class middleCorners {
     checkMove(currentPosition, newPosition) {
         const spaceRow = Math.abs(currentPosition[0] - newPosition[0]);
         const spaceCol = Math.abs(currentPosition[1] - newPosition[1]);
-        if (spaceRow === 2 ^ spaceCol === 2) {
+        if ((spaceRow === 2 ^ spaceCol === 2) && (spaceRow === 0 ^ spaceCol === 0)) {
             if (this.isMiddle(currentPosition)) {
                 return true;
             }

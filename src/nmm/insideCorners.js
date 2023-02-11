@@ -25,7 +25,7 @@ export class insideCorners {
     checkMove(currentPosition, newPosition) {
         const spaceRow = Math.abs(currentPosition[0] - newPosition[0]);
         const spaceCol = Math.abs(currentPosition[1] - newPosition[1]);
-        if (spaceRow === 1 ^ spaceCol === 1) {
+        if ((spaceRow === 1 ^ spaceCol === 1) && (spaceRow === 0 ^ spaceCol === 0)) {
             if (this.isInside(currentPosition)) {
                 return true;
             }
