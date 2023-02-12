@@ -68,6 +68,6 @@ describe('Test for Grid class', () => {
         grid[3][4] = 'B';
         let piecesPosForFlip = [[1, 4], [2, 4], [3, 4]];
         let lenArray = piecesPosForFlip.length;
-        expect(board.updateBoard(grid, piecesPosForFlip, lenArray, whitePiecePlayer)).toStrictEqual(actBoard);
+        expect(board.updateBoard(grid, piecesPosForFlip, lenArray,   whitePiecePlayer)).toStrictEqual(actBoard);
     });
 });
