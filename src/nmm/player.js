@@ -1,9 +1,5 @@
-// import { Grid } from './grid';
-
 export class Player {
     #colorPlayer;
-
-    #coins;
 
     #amountCoinsToPlay;
 
@@ -19,18 +15,6 @@ export class Player {
         this.#amountCoinsToPlay -= usedCoins;
         this.#amountCoinsPlayed += usedCoins;
         return this.#amountCoinsToPlay;
-    }
-
-    get colorPlayer() {
-        return this.colorPlayer;
-    }
-
-    get amountCoinsToPlay() {
-        return this.#amountCoinsToPlay;
-    }
-
-    get amountCoinsPlayed() {
-        return this.#amountCoinsPlayed;
     }
 
     get propsPlayer() {

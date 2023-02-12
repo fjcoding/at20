@@ -21,18 +21,4 @@ describe('Tests for player class', () => {
         expect(player.updateAmountCoins(usedCoins)).toBe(8);
         expect(player.propsPlayer).toBe('White: 8 coins to play and 1 coins played');
     });
-
-    // it('should be able to show how many coins has the player on the table', () => {
-    //     let colorPlayer = 'White';
-    //     let amountCoins = 9;
-    //     let player = new Player(colorPlayer, amountCoins);
-    //     expect(player.propsPlayer).toBe('White: 9 coins');
-    // });
-
-    // it('should be able to show the position of the coins on the table', () => {
-    //     let colorPlayer = 'White';
-    //     let amountCoins = 9;
-    //     let player = new Player(colorPlayer, amountCoins);
-    //     expect(player.propsPlayer).toBe('White: 9 coins');
-    // });
 });
