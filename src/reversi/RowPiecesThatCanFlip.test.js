@@ -1,5 +1,5 @@
 import {Player} from './player';
-import {checkAndFlipRow} from './checkAndFlipRow';
+import {checkAndFlipRow} from './RowPiecesThatCanFlip';
 describe('Check for coincidences in rows with a new piece on the board', () => {
     it('black piece on 3,2', () => {
         const player = 'B';
