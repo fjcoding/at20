@@ -1,20 +1,23 @@
-
 export class Player {
-    // #posX
-    // #posY
     #playerTag;
+
+    #tokenCount;
 
     constructor(playerTag) {
         this.#playerTag = playerTag;
-        //this.posX = posX;
-        //this.posY = posY;
-        this.tokenCount = 28;
+        this.#tokenCount = 28;
     }
 
     setToken(posX, posY) {
-        this.tokenCount -= 1;
-        return [posX, posY, this.tokenCount, this.#playerTag];
+        this.#tokenCount -= 1;
+        return [posX, posY];
+    }
+
+    get tokenCount() {
+        return this.#tokenCount;
+    }
+
+    get playerTag() {
+        return this.#playerTag;
     }
 }
-
-

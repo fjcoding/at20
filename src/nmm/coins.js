@@ -1,14 +1,23 @@
-export class coins {
-    constructor(player) {
-        this.player = player;
-        this.remaining = 9;
+export class Coins {
+    #symbol;
+
+    #state;
+
+    constructor(symbol) {
+        this.#symbol = symbol;
+
+        if (symbol === '*') {
+            this.#state = 'active';
+        } else {
+            this.#state = 'inactive';
+        }
     }
 
-    putcoin() {
-        if (this.remaining > 0) {
-            this.remaining--;
-            return true;
-        }
-        return false;
+    get symbol() {
+        return this.#symbol;
+    }
+
+    get state() {
+        return this.#state;
     }
 }
