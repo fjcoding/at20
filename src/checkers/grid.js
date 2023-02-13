@@ -31,7 +31,6 @@ export class Grid {
         // Loop through the grid rows
         for (let i = 0; i < Grid.ROW; i += 1) {
             initGrid += `${i}|`;
-
             // Loop through the grid columns
             for (let j = 0; j < Grid.COLUMN; j += 1) {
                 // Check if the current row and column are even

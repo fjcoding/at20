@@ -1,4 +1,4 @@
-import {Grid} from './grid.js';
+import { Grid } from './grid.js';
 import { Piece } from './piece.js';
 
 class Game {
