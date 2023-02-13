@@ -1,5 +1,5 @@
 import { outsideCorners } from './outsideCorners';
-import { positions } from './possiblePositions';
+import { positions } from '../possiblePositions';
 
 describe ('Test outsideCorners class', () =>{
     it('should check if a position is a outside coner', () =>{

@@ -1,4 +1,4 @@
-import { positions } from './possiblePositions';
+import { positions } from '../possiblePositions';
 export class insideCorners {
     #insidePosition;
 
