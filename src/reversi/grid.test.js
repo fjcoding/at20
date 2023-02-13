@@ -68,9 +68,31 @@ describe('Test for Grid class', () => {
         grid[3][4] = 'B';
         let piecesPosForFlip = [[1, 4], [2, 4], [3, 4]];
         let lenArray = piecesPosForFlip.length;
-        expect(board.updateBoard(grid, piecesPosForFlip, lenArray,   whitePiecePlayer)).toStrictEqual(actBoard);
+        expect(board.updateBoard(grid, piecesPosForFlip, lenArray, whitePiecePlayer)).toStrictEqual(actBoard);
     });
 
+    it('should not flip any pieces and return the same board', () => {
+        const actBoard = [
+            [' ', ' ', ' ', ' ', 'W', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', 'B', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', 'B', ' ', ' ', ' '],
+            [' ', ' ', ' ', 'W', 'B', ' ', ' ', ' '],
+            [' ', ' ', ' ', 'B', 'W', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+        ];
+        let board = new Grid();
+        let grid = board.gridInit();
+        let whitePiecePlayer = 'W';
+        grid[0][4] = 'W';
+        grid[1][4] = 'B';
+        grid[2][4] = 'B';
+        grid[3][4] = 'B';
+        let piecesPosForFlip = [];
+        let lenArray = piecesPosForFlip.length;
+        expect(board.updateBoard(grid, piecesPosForFlip, lenArray, whitePiecePlayer)).toStrictEqual(actBoard);
+    });
 
     it('Should be able to display the board as string', () => {
         var board = new Grid;
