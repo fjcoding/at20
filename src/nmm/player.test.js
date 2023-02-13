@@ -55,4 +55,34 @@ describe('Tests for player class', () => {
         expect(player.addMill(newMill)).toBe(1);
         expect(player.checkNewMillAdded()).toBe(false);
     });
+
+    it('should be able to choose opponent coin position to remove it', () => {
+        let colorPlayer1 = 'White';
+        let player1 = new Player(colorPlayer1);
+
+        let colorPlayer2 = 'Black';
+        let player2 = new Player(colorPlayer2);
+
+        let coinPositionSelected = 'd1';
+        expect(player1.choosePositionToRemove(player2, coinPositionSelected)).toBe('d1');
+        expect(player1.numberCoinsRemoved).toBe(0);
+        expect(player2.numberCoinsRemoved).toBe(1);
+    });
+
+    it('should be able to remove a Mill of the BagMills when passed it a coin position', () => {
+        let colorPlayer = 'White';
+        let player = new Player(colorPlayer);
+
+        let coinPosition = 'a3';
+        expect(player.removeMillWhenCoinPositionIs(coinPosition)).toBe(0);
+
+        let newMill = ['a0', 'a3', 'a6'];
+        expect(player.addMill(newMill)).toBe(1);
+        expect(player.removeMillWhenCoinPositionIs(coinPosition)).toBe(0);
+
+        expect(player.addMill(newMill)).toBe(1);
+        newMill = ['c2', 'c3', 'c4'];
+        expect(player.addMill(newMill)).toBe(2);
+        expect(player.removeMillWhenCoinPositionIs(coinPosition)).toBe(1);
+    });
 });
