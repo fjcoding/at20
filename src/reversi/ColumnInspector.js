@@ -1,4 +1,4 @@
-import { positionOnBoard } from './positionOnBoard';
+import { positionOnBoard } from './positionOnBoard.js';
 export class ColumnInspector {
     #gridYmax = 7;
 
