@@ -1,30 +1,36 @@
 export class Player {
     #colorPlayer;
 
-    #numberCoins;
+    #numberCoinsToPlay;
+
+    #numberCoinsRemoved;
+
+    // #bagMills;
 
     constructor(colorPlayer) {
         this.#colorPlayer = colorPlayer;
-        this.#numberCoins = 9;
+        this.#numberCoinsToPlay = 9;
+        this.#numberCoinsRemoved = 0;
+        // this.#bagMills = [];
     }
 
     get colorPlayer() {
         return this.#colorPlayer;
     }
 
-    set colorPlayer(newColorPlayer) {
-        this.#colorPlayer = newColorPlayer;
+    get numberCoinsToPlay() {
+        return this.#numberCoinsToPlay;
     }
 
-    get numberCoins() {
-        return this.#numberCoins;
+    get numberCoinsRemoved() {
+        return this.#numberCoinsRemoved;
     }
 
-    updateNumberCoins() {
-        return this.#numberCoins = this.#numberCoins - 1;
+    updateNumberCoinsToPlay() {
+        return this.#numberCoinsToPlay = this.#numberCoinsToPlay - 1;
     }
 
     get propsPlayer() {
-        return `${this.#colorPlayer}: ${this.#numberCoins} coins to play`;
+        return `${this.#colorPlayer}: ${this.#numberCoinsToPlay} coins to play`;
     }
 }
