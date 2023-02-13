@@ -1,3 +1,4 @@
+import { positionOnBoard } from './positionOnBoard';
 export class ColumnInspector {
     #gridYmax = 7;
 
@@ -46,6 +47,60 @@ export class ColumnInspector {
 
         return CordstoFlip;
     }
-    validatePosition () {
+
+    possibleMovements () {
+        let playerOposite;
+        if (this.#player == 'B') {
+            playerOposite = 'W';
+        } else {
+            playerOposite = 'B';
+        }
+        const position = new positionOnBoard(this.#grid, this.#player);
+        let positions = [];
+        positions = position.asPositionOnBoard();
+        let possibleMoves = [];
+        //down
+        for (let i = 0; i < positions.length; i++) {
+            let x = positions[i][0];
+            let y = positions[i][1];
+            let counter = 0;
+            //down
+            for (let keyf1 = x + 1; keyf1 <= this.#gridYmax; keyf1++) {
+                if ((this.#grid[keyf1][y]) == playerOposite) {
+                    counter++;
+                } else {
+                    if ((this.#grid[keyf1][y]) == this.#player) {
+                        break;
+                    } else {
+                        if (counter > 0) {
+                            let arr = [];
+                            arr = [keyf1, y];
+                            possibleMoves.push(arr);
+                            counter = 0;
+                        }
+                    }
+                }
+            }
+            counter = 0;
+            //up
+            for (let keyf2 = x - 1; keyf2 >= 0; keyf2--) {
+                if ((this.#grid[keyf2][y]) == playerOposite) {
+                    counter++;
+                } else {
+                    if ((this.#grid[keyf2][y]) == this.#player) {
+                        break;
+                    } else {
+                        if (counter > 0) {
+                            let arr = [];
+                            arr = [keyf2, y];
+                            possibleMoves.push(arr);
+                            counter = 0;
+                        }
+                    }
+                }
+            }
+        }
+        console.log(possibleMoves);
+        return possibleMoves;
     }
 }
