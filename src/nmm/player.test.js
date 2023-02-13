@@ -40,5 +40,19 @@ describe('Tests for player class', () => {
 
         newMill = ['c2', 'c3', 'c4'];
         expect(player.addMill(newMill)).toBe(2);
+
+        newMill = ['c2', 'c3', 'c4'];
+        expect(player.addMill(newMill)).toBe(2);
+    });
+
+    it('should be able to show if added a new Mill to bag of Mills of the player', () => {
+        let colorPlayer = 'White';
+        let player = new Player(colorPlayer);
+        let newMill = ['a0', 'a3', 'a6'];
+        expect(player.getLengthBagMills()).toBe(0);
+        expect(player.addMill(newMill)).toBe(1);
+        expect(player.checkNewMillAdded()).toBe(true);
+        expect(player.addMill(newMill)).toBe(1);
+        expect(player.checkNewMillAdded()).toBe(false);
     });
 });
