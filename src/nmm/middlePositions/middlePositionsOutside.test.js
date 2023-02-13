@@ -3,17 +3,17 @@ import { positions } from '../possiblePositions';
 
 describe ('Test middlePositionsOutside class', () =>{
     it('should check if a position is a middle Positions Outside', () =>{
-        const coner1 = new middlePositionsOutside();
+        const middle1 = new middlePositionsOutside();
         const a3 = [positions.a3.row, positions.a3.col];
         const d6 = [positions.d6.row, positions.d6.col];
         const g3 = [positions.g3.row, positions.g3.col];
         const d0 = [positions.d0.row, positions.d0.col];
         const e3 = [positions.e3.row, positions.e3.col];
-        expect(coner1.isMiddleOutside(a3)).toBe(true);
-        expect(coner1.isMiddleOutside(d6)).toBe(true);
-        expect(coner1.isMiddleOutside(g3)).toBe(true);
-        expect(coner1.isMiddleOutside(d0)).toBe(true);
-        expect(coner1.isMiddleOutside(e3)).toBe(false);
+        expect(middle1.isMiddleOutside(a3)).toBe(true);
+        expect(middle1.isMiddleOutside(d6)).toBe(true);
+        expect(middle1.isMiddleOutside(g3)).toBe(true);
+        expect(middle1.isMiddleOutside(d0)).toBe(true);
+        expect(middle1.isMiddleOutside(e3)).toBe(false);
     });
     it('should check move available', () =>{
         const middle1 = new middlePositionsOutside();
