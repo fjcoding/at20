@@ -1,5 +1,5 @@
 
-import { Grid } from './grid';
+
 export class positionOnBoard {
     #posX;
 
@@ -7,9 +7,9 @@ export class positionOnBoard {
 
     #color;
 
-    #grid = new Grid();
+    #grid;
 
-    #board = this.#grid.gridInit();
+    #board;
 
     constructor(board, color) {
         this.#board = board;
