@@ -12,7 +12,7 @@ describe('Tests for Grid class', () => {
             ['*', '-', '-', '*', '-', '-', '*']
         ];
         const gridInit = new Grid();
-        expect(gridInit.gridInit).toEqual(grid);
+        expect(gridInit.showGridInit()).toEqual(grid);
     });
 });
 
