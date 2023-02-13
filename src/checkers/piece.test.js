@@ -12,11 +12,11 @@ describe('Piece attributes and methods', () => {
     });
 
     it('should have the correct initial x position', () => {
-        expect(piece.getX()).toBe(3);
+        expect(piece.x).toBe(3);
     });
 
     it('should have the correct initial y position', () => {
-        expect(piece.getY()).toBe(4);
+        expect(piece.y).toBe(4);
     });
 
     it('should not be a lady initially', () => {
@@ -25,8 +25,8 @@ describe('Piece attributes and methods', () => {
 
     it('should be able to move to a new position', () => {
         piece.currentlyPosition(5, 6);
-        expect(piece.getX()).toBe(5);
-        expect(piece.getY()).toBe(6);
+        expect(piece.x).toBe(5);
+        expect(piece.y).toBe(6);
     });
 
     it('should be able to become a lady', () => {
