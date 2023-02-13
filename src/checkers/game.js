@@ -1,7 +1,7 @@
 import { Grid } from './grid.js';
 import { Piece } from './piece.js';
 
-class Game {
+export class Game {
     #grid;
 
     #redPieces = [];
@@ -11,6 +11,10 @@ class Game {
     constructor () {
         this.#grid = new Grid();
         this.createPieces();
+    }
+
+    get redPieces() {
+        return this.#redPieces;
     }
 
     createPieces () {

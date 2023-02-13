@@ -1,5 +1,5 @@
 //import { Action } from './action.js';
-import { action } from './action';
+import { action } from './action.js';
 export class Player {
     // Private fields
     #name;
@@ -10,11 +10,18 @@ export class Player {
 
     #pieceSelected;
 
-    constructor(name, pieceColor, pieces) {
+    #game;
+
+    constructor(name, pieceColor, pieces, game) {
+        this.#game = game;
         this.#name = name;
         this.#pieceColor = pieceColor;
         this.#pieces = pieces;
         this.#pieceSelected = null;
+    }
+
+    get game() {
+        return this.#game;
     }
 
     get name() {
@@ -37,15 +44,11 @@ export class Player {
         return this.#pieces.get(piecePosition);
     }
 
-    // selectPiece(piecePosition) {
-    //     Action.selectPiece(this, piecePosition);
-    // }
-
     selectPiece(piecePosition) {
         action.selectPiece(this, piecePosition);
     }
 
     movePiece(newPosition) {
-        action.m(this, newPosition);
+        action.movePiece(this, newPosition);
     }
 }
