@@ -5,13 +5,13 @@ export class Player {
 
     #numberCoinsRemoved;
 
-    // #bagMills;
+    #bagMills;
 
     constructor(colorPlayer) {
         this.#colorPlayer = colorPlayer;
         this.#numberCoinsToPlay = 9;
         this.#numberCoinsRemoved = 0;
-        // this.#bagMills = [];
+        this.#bagMills = [];
     }
 
     get colorPlayer() {
@@ -28,6 +28,15 @@ export class Player {
 
     updateNumberCoinsToPlay() {
         return this.#numberCoinsToPlay = this.#numberCoinsToPlay - 1;
+    }
+
+    getLengthBagMills() {
+        return this.#bagMills.length;
+    }
+
+    addMill(newMill) {
+        this.#bagMills.push(newMill);
+        return this.getLengthBagMills();
     }
 
     get propsPlayer() {
