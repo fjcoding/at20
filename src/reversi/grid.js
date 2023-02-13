@@ -32,7 +32,7 @@ export class Grid {
 
         let actBoard = this.#board;
         let colorFlip = this.#player;
-        if (this.#positionsForFlip.length == 0) {
+        if (this.#positionsForFlip == []) {
             return actBoard;
         } else {
             var arrayForFlip = this.#positionsForFlip;
