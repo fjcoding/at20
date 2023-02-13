@@ -46,4 +46,31 @@ export class Grid {
             return actBoard;
         }
     }
+
+
+    displayBoard(gridInt)  {
+        var display = '';
+        var sizeX = gridInt.length;
+
+        for (var rowCount = 0; rowCount < sizeX; rowCount++) {
+            var sizeY = gridInt[rowCount].length;
+        }
+
+        display += '-------------------------------------------------';
+        display += '\n';
+        for (var iDg = 0; iDg < sizeX; iDg++) {
+            display += '| ';
+
+            for (var jDg = 0; jDg < sizeY; jDg++) {
+                display += ' ' + gridInt[iDg][jDg] + '  | ';
+            }
+            display = display + ' ' + iDg;
+            display += '\n';
+            display += '-------------------------------------------------';
+            display += '\n';
+        }
+        display += '   0     1     2     3     4     5     6     7';
+        display += '\n';
+        return display;
+    }
 }
