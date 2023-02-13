@@ -10,7 +10,7 @@ describe('Black and white exist in the board', () => {
                         [0, 0, 0, 0, 0, 0, 0, 0],
                         [0, 0, 0, 0, 0, 0, 0, 0],
                         [0, 0, 0, 0, 0, 0, 0, 0]];*/
-        const color = 'w';
+        const color = 'W';
         const board = new Grid();
         const map = board.gridInit();
         //const white = 1;
@@ -19,7 +19,7 @@ describe('Black and white exist in the board', () => {
     });
 
     it('Black position', () => { //black=2 white=1
-        const color = 'b';
+        const color = 'B';
         const board = new Grid();
         const map = board.gridInit();
         const position = new positionOnBoard(map, color);
