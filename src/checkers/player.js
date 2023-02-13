@@ -1,4 +1,5 @@
-import { Action } from './action.js';
+//import { Action } from './action.js';
+import { action } from './action';
 export class Player {
     // Private fields
     #name;
@@ -36,11 +37,15 @@ export class Player {
         return this.#pieces.get(piecePosition);
     }
 
+    // selectPiece(piecePosition) {
+    //     Action.selectPiece(this, piecePosition);
+    // }
+
     selectPiece(piecePosition) {
-        Action.selectPiece(this, piecePosition);
+        action.selectPiece(this, piecePosition);
     }
 
     movePiece(newPosition) {
-        Action.movePiece(this, newPosition);
+        action.m(this, newPosition);
     }
 }
