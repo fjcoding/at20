@@ -1,9 +1,17 @@
 export class Grid {
     #map;
 
-    #black = 'b';
+    #black = 'B';
 
-    #white = 'w';
+    #white = 'W';
+
+    #board;
+
+    #player;
+
+    #positionsForFlip = [];
+
+    #lenArray = 0;
 
     gridInit () {
         const mapDim = 8;
@@ -16,8 +24,26 @@ export class Grid {
         return this.#map;
     }
 
-    updateBoard (board) {
-        let actBoard = board;
-        return actBoard;
+    updateBoard (board, positionsForFlip, lenArray, player) {
+        this.#board = board;
+        this.#player = player;
+        this.#positionsForFlip = positionsForFlip;
+        this.#lenArray = lenArray;
+
+        let actBoard = this.#board;
+        let colorFlip = this.#player;
+        if (this.#positionsForFlip == []) {
+            return actBoard;
+        } else {
+            var arrayForFlip = this.#positionsForFlip;
+            for (var index = 0; index < lenArray; index++) {
+                var posX = arrayForFlip [index][0];
+                var posY = arrayForFlip [index][1];
+                if (actBoard[posX][posY] != colorFlip) {
+                    actBoard[posX][posY] = colorFlip;
+                }
+            }
+            return actBoard;
+        }
     }
 }
