@@ -1,4 +1,4 @@
-export class checkAndFlipRow {
+export class RowInspector {
     #grid;
 
     constructor(x, y, grid, player) {
