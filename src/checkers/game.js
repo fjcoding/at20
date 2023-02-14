@@ -26,6 +26,10 @@ export class Game {
         return this.#grid;
     }
 
+    refreshGrid() {
+        this.#grid.renderBoard({ redPieces: this.#redPieces, whitePieces: this.#whitePieces });
+    }
+
     createPieces () {
         for (let i = 0; i < Grid.ROW; i += 1) {
             for (let j = 0; j < Grid.COLUMN; j += 1) {
@@ -44,9 +48,7 @@ export class Game {
         }
     }
 
-    initGame () {
+    showBoard() {
         return this.#grid.toString();
     }
 }
-let game = new Game();
-console.log(game.initGame());
