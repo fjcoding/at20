@@ -37,6 +37,6 @@ describe('Game', () => {
     });
 
     test('initializes the game', () => {
-        expect(game.initGame()).toBeDefined();
+        expect(game.showBoard()).toBeDefined();
     });
 });
