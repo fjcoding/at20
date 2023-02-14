@@ -36,4 +36,27 @@ export class Grid {
         console.log(stringGrid);
         return grid;
     }
+
+    verifyThreeCoins (grid) {
+        let whiteCoins = 0;
+        let blackCoins = 0;
+        for (let row = 0; row < grid.length; row++) {
+            for (let col = 0; col < grid.length; col++) {
+                if(grid[row][col] === 'w') {
+                    whiteCoins += 1;
+                } else if (grid[row][col] === 'b') {
+                    blackCoins += 1;
+                }
+            }
+        }
+        if (whiteCoins === 3 && blackCoins === 3) {
+            return 'both';
+        } else if (blackCoins === 3){
+            return 'black';
+        } else if (whiteCoins === 3 ){
+            return 'white';
+        } else {
+            return 'none'
+        }
+   }
 }
