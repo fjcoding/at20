@@ -1,6 +1,6 @@
 import { action } from './action';
 
-describe('Tests for isValidPosition metod ', () => {
+describe('Tests for isValidPosition method ', () => {
     it('should able to return false when input a incorrect position', () => {
         expect(action.isValidPosition(-2, 9)).toEqual(false);
     });
