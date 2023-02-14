@@ -91,7 +91,7 @@ export class Grid {
     changeValueCoin(newValue, row, col) {
         this.#gridInit[row][col].changeSymbolCoin(newValue);
     }
-    
+
     verifyThreeCoins (grid) {
         if (this.countCoinsInGrid(grid, 'w') === 3 && this.countCoinsInGrid(grid, 'b') === 3) {
             return 'both';
