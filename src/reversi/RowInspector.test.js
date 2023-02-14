@@ -1,10 +1,9 @@
-import {Player} from './player';
 import {RowInspector} from './RowInspector';
 describe('Check for coincidences in rows with a new piece on the board', () => {
     it('black piece on 3,2', () => {
         const player = 'B';
         // const newToken = whitePlace.setToken(3, 2);// [posx,posy,tokens left,playerTag]
-        const position=[3,2]
+        const position = [3, 2];
         const initialMap = [
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -22,7 +21,7 @@ describe('Check for coincidences in rows with a new piece on the board', () => {
     it('white piece on 4,2', () => {
         const player = 'W';
         // const newToken = whitePlace.setToken(3, 2);// [posx,posy,tokens left,playerTag]
-        const position=[4,2]
+        const position = [4, 2];
         const initialMap = [
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
