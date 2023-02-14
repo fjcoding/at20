@@ -37,6 +37,30 @@ export class Grid {
         return grid;
     }
 
+    verifyThreeCoins (grid) {
+        if (this.countCoinsInGrid(grid, 'w') === 3 && this.countCoinsInGrid(grid, 'b') === 3) {
+            return 'both';
+        } else if (this.countCoinsInGrid(grid, 'b') === 3) {
+            return 'black';
+        } else if (this.countCoinsInGrid(grid, 'w') === 3) {
+            return 'white';
+        } else {
+            return 'none';
+        }
+    }
+
+    countCoinsInGrid (grid, symbol) {
+        let coins = 0;
+        for (let row = 0; row < grid.length; row++) {
+            for (let col = 0; col < grid.length; col++) {
+                if (grid[row][col] === symbol) {
+                    coins += 1;
+                }
+            }
+        }
+        return coins;
+    }
+
     checkAvailablePos() {
         for (let row = 0; row < this.#gridInit.length; row++) {
             for (let col = 0; col < this.#gridInit.length; col++) {
