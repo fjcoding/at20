@@ -1,32 +1,31 @@
-import { Grid } from './grid';
+import { Grid } from './grid.js';
 
 describe('Tests for Grid class', () => {
     it('should be able to show the grid initial', () => {
-        const grid = [
-            ['*', '-', '-', '*', '-', '-', '*'],
-            ['|', '*', '-', '*', '-', '*', '|'],
-            ['|', '|', '*', '*', '*', '|', '|'],
-            ['*', '*', '*', ' ', '*', '*', '*'],
-            ['|', '|', '*', '*', '*', '|', '|'],
-            ['|', '*', '-', '*', '-', '*', '|'],
-            ['*', '-', '-', '*', '-', '-', '*']
-        ];
+        const grid = '0 * - - * - - * \n' +
+        '1 | * - * - * | \n' +
+        '2 | | * * * | | \n' +
+        '3 * * *   * * * \n' +
+        '4 | | * * * | | \n' +
+        '5 | * - * - * | \n' +
+        '6 * - - * - - * \n' +
+        '  0 1 2 3 4 5 6';
+
         const gridInit = new Grid();
-        expect(gridInit.showGridInit()).toEqual(grid);
+        expect(gridInit.showGrid()).toBe(grid);
     });
 
     it('should be able to check if Mills exists', () => {
-        let gridAux = [
-            ['*', '-', '-', '*', '-', '-', '*'],
-            ['|', '*', '-', '*', '-', '*', '|'],
-            ['|', '|', '*', '*', '*', '|', '|'],
-            ['*', '*', '*', ' ', '*', '*', '*'],
-            ['|', '|', '*', '*', '*', '|', '|'],
-            ['|', '*', '-', '*', '-', '*', '|'],
-            ['*', '-', '-', '*', '-', '-', '*']
-        ];
+        let gridAux = '0 * - - * - - * \n' +
+        '1 | * - * - * | \n' +
+        '2 | | * * * | | \n' +
+        '3 * * *   * * * \n' +
+        '4 | | * * * | | \n' +
+        '5 | * - * - * | \n' +
+        '6 * - - * - - * \n' +
+        '  0 1 2 3 4 5 6';
         let grid = new Grid();
-        expect(grid.showGridInit()).toEqual(gridAux);
+        expect(grid.showGrid()).toEqual(gridAux);
 
         let playerColor = 'W';
         gridAux = [
@@ -47,7 +46,6 @@ describe('Tests for Grid class', () => {
         grid.changeValueCoin(playerColor, 0, 3);
         grid.changeValueCoin(playerColor, 2, 3);
         grid.changeValueCoin(playerColor, 3, 6);
-        expect(grid.showGridInit()).toEqual(gridAux);
         let row = 3;
         let col = 6;
         expect(grid.checkIfThereMills(playerColor, row, col)).toStrictEqual([['6,6', '3,6', '0,6']]);

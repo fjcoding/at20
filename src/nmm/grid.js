@@ -1,6 +1,6 @@
-import { Coins } from './coins';
-import { horizontalMills } from './mills/horizontal';
-import { verticalMills } from './mills/vertical';
+import { Coins } from './coins.js';
+import { horizontalMills } from './mills/horizontal.js';
+import { verticalMills } from './mills/vertical.js';
 
 export class Grid {
     static coinSymbols = { NA1: '-', NA2: '|', NA3: ' ', PA: '*', WHITE: 'W', BLACK:'B'};
@@ -22,21 +22,20 @@ export class Grid {
         ];
     }
 
-    showGridInit() {
+    showGrid() {
         let grid = [];
         let stringGrid = '';
         for (let row = 0; row < this.#gridInit.length; row++) {
             grid[row] = [];
-            stringGrid += (this.#gridInit.length - (row + 1)) + ' ';
+            stringGrid += row + ' ';
             for (let col = 0; col < this.#gridInit.length; col++) {
                 grid[row][col] = this.#gridInit[row][col].symbol;
                 stringGrid += this.#gridInit[row][col].symbol + ' ';
             }
             stringGrid += '\n';
         }
-        stringGrid += '  a b c d e f g';
-        console.log(stringGrid);
-        return grid;
+        stringGrid += '  0 1 2 3 4 5 6';
+        return stringGrid;
     }
 
     checkIfThereMills(playerSymbol, rowCoin, colCoin) {

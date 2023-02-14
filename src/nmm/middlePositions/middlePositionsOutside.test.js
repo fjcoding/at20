@@ -1,5 +1,5 @@
-import { middlePositionsOutside } from './middlePositionsOutside';
-import { positions } from '../possiblePositions';
+import { middlePositionsOutside } from './middlePositionsOutside.js';
+import { positions } from '../possiblePositions.js';
 
 describe ('Test middlePositionsOutside class', () =>{
     it('should check if a position is a middle Positions Outside', () =>{

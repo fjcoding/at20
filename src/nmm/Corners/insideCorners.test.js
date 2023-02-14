@@ -1,5 +1,5 @@
-import { insideCorners } from './insideCorners';
-import { positions } from '../possiblePositions';
+import { insideCorners } from './insideCorners.js';
+import { positions } from '../possiblePositions.js';
 
 describe ('Test insideCorners class', () =>{
     it('should check if a position is a inside coner', () =>{

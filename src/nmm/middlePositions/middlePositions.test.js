@@ -1,5 +1,5 @@
-import { middlePositions } from './middlePositions';
-import { positions } from '../possiblePositions';
+import { middlePositions } from './middlePositions.js';
+import { positions } from '../possiblePositions.js';
 
 describe ('Test middlePositions class', () =>{
     it('should check if a position is a coner', () =>{
