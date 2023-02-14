@@ -51,7 +51,8 @@ export class checkRowPossibleMovements {
         for (var index = 0; index < arrP.length; index++) {
             var x = arrP[index][0];
             var y = arrP[index][1];
-            var checkRowPieces = new RowInspector(x, y, this.#grid, this.#player);
+            var arr = [x, y];
+            var checkRowPieces = new RowInspector(arr, this.#grid, this.#player);
             if (checkRowPieces.checkRow() != []) {
                 var plays = { play:[x, y],
                     Moves:checkRowPieces.checkRow()
