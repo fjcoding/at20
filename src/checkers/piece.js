@@ -14,12 +14,24 @@ export class Piece {
         this.#typeChain = 'pawn';
     }
 
-    getX() {
+    get x() {
         return this.#x;
     }
 
-    getY() {
+    get y() {
         return this.#y;
+    }
+
+    get color() {
+        return this.#color;
+    }
+
+    set x(x) {
+        this.#x = x;
+    }
+
+    set y(y) {
+        this.#y = y;
     }
 
     getColor() {

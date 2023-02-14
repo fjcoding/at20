@@ -1,5 +1,5 @@
 import { middleCorners } from './middleCorners';
-import { positions } from './possiblePositions';
+import { positions } from '../possiblePositions';
 
 describe ('Test middleCorners class', () =>{
     it('should check if a position is a middle coner', () =>{

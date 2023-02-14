@@ -1,7 +1,7 @@
 import { Grid } from './grid.js';
 import { Piece } from './piece.js';
 
-class Game {
+export class Game {
     #grid;
 
     #redPieces = [];
@@ -11,6 +11,23 @@ class Game {
     constructor () {
         this.#grid = new Grid();
         this.createPieces();
+    }
+
+
+    get redPieces() {
+        return this.#redPieces;
+    }
+
+    get whitePieces() {
+        return this.#whitePieces;
+    }
+
+    get grid() {
+        return this.#grid;
+    }
+
+    refreshGrid() {
+        this.#grid.renderBoard({ redPieces: this.#redPieces, whitePieces: this.#whitePieces });
     }
 
     createPieces () {
@@ -31,9 +48,7 @@ class Game {
         }
     }
 
-    initGame () {
+    showBoard() {
         return this.#grid.toString();
     }
 }
-let game = new Game();
-console.log(game.initGame());

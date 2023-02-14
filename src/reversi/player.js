@@ -20,4 +20,8 @@ export class Player {
     get playerTag() {
         return this.#playerTag;
     }
+
+    set playerTag(playerTag) {
+        this.#playerTag = playerTag;
+    }
 }

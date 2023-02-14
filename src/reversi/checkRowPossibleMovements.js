@@ -1,5 +1,5 @@
-import { positionOnBoard } from './positionOnBoard';
-import { checkAndFlipRow } from './RowPiecesThatCanFlip';
+import { positionOnBoard } from './positionOnBoard.js';
+import { checkAndFlipRow } from './RowPiecesThatCanFlip.js';
 
 export class checkRowPossibleMovements {
     #grid;

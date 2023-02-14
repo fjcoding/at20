@@ -1,4 +1,4 @@
-import { positionOnBoard } from './positionOnBoard';
+import { positionOnBoard } from './positionOnBoard.js';
 export class ColumnInspector {
     #gridYmax = 7;
 
@@ -59,12 +59,11 @@ export class ColumnInspector {
         let positions = [];
         positions = position.asPositionOnBoard();
         let possibleMoves = [];
-        //down
         for (let i = 0; i < positions.length; i++) {
             let x = positions[i][0];
             let y = positions[i][1];
             let counter = 0;
-            //down
+            //Search down
             for (let keyf1 = x + 1; keyf1 <= this.#gridYmax; keyf1++) {
                 if ((this.#grid[keyf1][y]) == playerOposite) {
                     counter++;
@@ -82,7 +81,7 @@ export class ColumnInspector {
                 }
             }
             counter = 0;
-            //up
+            //Search up
             for (let keyf2 = x - 1; keyf2 >= 0; keyf2--) {
                 if ((this.#grid[keyf2][y]) == playerOposite) {
                     counter++;
@@ -100,7 +99,6 @@ export class ColumnInspector {
                 }
             }
         }
-        console.log(possibleMoves);
         return possibleMoves;
     }
 }
