@@ -9,6 +9,26 @@ export class Grid {
         return this.#gridBoard;
     }
 
+    renderBoard({ redPieces, whitePieces }) {
+        this.cleanBoard();
+        const board = this.#gridBoard;
+        redPieces.forEach(piece => {
+            board[piece.x][piece.y] = piece;
+        });
+        whitePieces.forEach(piece => {
+            board[piece.x][piece.y] = piece;
+        });
+        return board;
+    }
+
+    cleanBoard() {
+        this.#gridBoard.forEach((column, index) => {
+            column.forEach((row, rowIndex) => {
+                this.gridBoard[index][rowIndex] = null;
+            });
+        });
+    }
+
     // Create a function to create an 8x8 grid with all elements set to null
     createGrid (gridBoard) {
         for (let i = 0; i < Grid.COLUMN; i += 1) {
