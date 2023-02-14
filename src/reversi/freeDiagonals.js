@@ -4,12 +4,12 @@ export class freeDiagonals {
     #playtag;
 
 
-    constructor(playtag, grid) {
+    constructor(grid, playtag) {
         this.#grid = grid;
         this.#playtag = playtag;
     }
 
-    checkForfree() {
+    checkPossibleMoves() {
         var currentTag = this.#playtag;
         var possDiags = [];
         var oppCount = 0;
@@ -74,11 +74,9 @@ export class freeDiagonals {
                                 steps = 7 - max;
                                 step = 1;
                             }
-
                             while (step <= steps) {
                                 if (this.#grid[keyX + sinX * step][keyY + sinY * step] == opTag) {
                                     oppCount += 1;
-                                    //console.log(oppCount,sinX,sinY,possDiags,keyX,keyY,keyX + sinX * step,keyY + sinY * step);
                                 }
                                 if ((this.#grid[keyX + sinX * step][keyY + sinY * step] == ' ') && oppCount != 0) {
                                     possDiags.push([keyX + sinX * step, keyY + sinY * step]);
@@ -87,25 +85,20 @@ export class freeDiagonals {
                                 }
                                 if ((this.#grid[keyX + sinX * step][keyY + sinY * step] == ' ') && oppCount == 0) {
                                     oppCount = 0;
-                                    //possDiags=[];
                                     break;
                                 }
                                 if (this.#grid[keyX + sinX * step][keyY + sinY * step] == currentTag) {
                                     oppCount = 0;
-                                    //possDiags=[];
                                     break;
                                 }
                                 step += 1;
                             }
                             oppCount = 0;
-                            //console.log(possDiags, sinX, sinY);
                         }
                     }
                 }
             }
         }
-
-
         return possDiags;
     }
 }
