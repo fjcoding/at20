@@ -1,5 +1,5 @@
-import { FourOfAKind } from './patterns/FourOfAKind';
-import { StraightFlush } from './patterns/StraightFlush';
+import { FourOfAKind } from './patterns/fourofakind';
+import { StraightFlush } from './patterns/straightflush';
 
 export class HandIdentifier {
     #patterns = [

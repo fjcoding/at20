@@ -1,4 +1,4 @@
-import { HandPattern } from './HandPattern';
+import { HandPattern } from './handpattern';
 
 export class StraightFlush extends HandPattern {
     match(pokerhand) {
