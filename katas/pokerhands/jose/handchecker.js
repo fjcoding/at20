@@ -11,4 +11,14 @@ export class HandChecker {
         });
         return hasConsecutives;
     }
+
+    hasAllCardsSameSuit(pokerhand) {
+        let allSameSuit = true;
+        let index = 0;
+        const firstSuit = pokerhand.cards[0].suit;
+        while (allSameSuit && index < pokerhand.cards.length) {
+            allSameSuit &&= pokerhand.cards[index++].suit === firstSuit;
+        }
+        return allSameSuit;
+    }
 }
