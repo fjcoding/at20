@@ -14,5 +14,10 @@ describe('Tests for Grid class', () => {
         const gridInit = new Grid();
         expect(gridInit.showGridInit()).toEqual(grid);
     });
+
+    it('Should be able to return true if there are available positions in the grid', () =>{
+        const grid = new Grid();
+        expect (grid.checkAvailablePos()).toBe(true);
+    });
 });
 

@@ -1,4 +1,4 @@
-export class Diagonals {
+export class DiagonalsInspector {
     #newTokenpos;
 
     #grid;
