@@ -1,7 +1,6 @@
-//import { Action } from './action.js';
 import { action } from './action.js';
+
 export class Player {
-    // Private fields
     #name;
 
     #pieces;

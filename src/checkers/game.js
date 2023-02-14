@@ -13,19 +13,16 @@ export class Game {
         this.createPieces();
     }
 
+
     get redPieces() {
         return this.#redPieces;
     }
 
-    get redPieces(){
-        return this.#redPieces;
-    }
-    
-    get whitePieces(){
+    get whitePieces() {
         return this.#whitePieces;
     }
 
-    get grid(){
+    get grid() {
         return this.#grid;
     }
 
