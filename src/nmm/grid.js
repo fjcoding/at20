@@ -1,4 +1,7 @@
 import { Coins } from './coins';
+import { horizontalMills } from './mills/horizontal';
+import { verticalMills } from './mills/vertical';
+
 export class Grid {
     static coinSymbols = { NA1: '-', NA2: '|', NA3: ' ', PA: '*' };
 
@@ -8,15 +11,14 @@ export class Grid {
         const notAvailable1 = new Coins(Grid.coinSymbols.NA1);
         const notAvailable2 = new Coins(Grid.coinSymbols.NA2);
         const notAvailable3 = new Coins(Grid.coinSymbols.NA3);
-        const posAvailable = new Coins(Grid.coinSymbols.PA);
         this.#gridInit = [
-            [posAvailable, notAvailable1, notAvailable1, posAvailable, notAvailable1, notAvailable1, posAvailable],
-            [notAvailable2, posAvailable, notAvailable1, posAvailable, notAvailable1, posAvailable, notAvailable2],
-            [notAvailable2, notAvailable2, posAvailable, posAvailable, posAvailable, notAvailable2, notAvailable2],
-            [posAvailable, posAvailable, posAvailable, notAvailable3, posAvailable, posAvailable, posAvailable],
-            [notAvailable2, notAvailable2, posAvailable, posAvailable, posAvailable, notAvailable2, notAvailable2],
-            [notAvailable2, posAvailable, notAvailable1, posAvailable, notAvailable1, posAvailable, notAvailable2],
-            [posAvailable, notAvailable1, notAvailable1, posAvailable, notAvailable1, notAvailable1, posAvailable]
+            [new Coins(Grid.coinSymbols.PA), notAvailable1, notAvailable1, new Coins(Grid.coinSymbols.PA), notAvailable1, notAvailable1, new Coins(Grid.coinSymbols.PA)],
+            [notAvailable2, new Coins(Grid.coinSymbols.PA), notAvailable1, new Coins(Grid.coinSymbols.PA), notAvailable1, new Coins(Grid.coinSymbols.PA), notAvailable2],
+            [notAvailable2, notAvailable2, new Coins(Grid.coinSymbols.PA), new Coins(Grid.coinSymbols.PA), new Coins(Grid.coinSymbols.PA), notAvailable2, notAvailable2],
+            [new Coins(Grid.coinSymbols.PA), new Coins(Grid.coinSymbols.PA), new Coins(Grid.coinSymbols.PA), notAvailable3, new Coins(Grid.coinSymbols.PA), new Coins(Grid.coinSymbols.PA), new Coins(Grid.coinSymbols.PA)],
+            [notAvailable2, notAvailable2, new Coins(Grid.coinSymbols.PA), new Coins(Grid.coinSymbols.PA), new Coins(Grid.coinSymbols.PA), notAvailable2, notAvailable2],
+            [notAvailable2, new Coins(Grid.coinSymbols.PA), notAvailable1, new Coins(Grid.coinSymbols.PA), notAvailable1, new Coins(Grid.coinSymbols.PA), notAvailable2],
+            [new Coins(Grid.coinSymbols.PA), notAvailable1, notAvailable1, new Coins(Grid.coinSymbols.PA), notAvailable1, notAvailable1, new Coins(Grid.coinSymbols.PA)]
         ];
     }
 
@@ -35,5 +37,58 @@ export class Grid {
         stringGrid += '  a b c d e f g';
         console.log(stringGrid);
         return grid;
+    }
+
+    checkIfThereMills(playerSymbol, rowCoin, colCoin) {
+        let coinsPosition = [];
+        for (let row = 0; row < this.#gridInit.length; row++) {
+            for (let col = 0; col < this.#gridInit.length; col++) {
+                if (this.getSymbolCoinFromGrid(row, col) === playerSymbol) {
+                    coinsPosition.push(row + ',' + col);
+                }
+            }
+        }
+        let mills = [];
+        this.checkHorizontalMills(coinsPosition, mills, rowCoin + ',' + colCoin);
+        this.checkVerticalMills(coinsPosition, mills, rowCoin + ',' + colCoin);
+        return mills;
+    }
+
+    checkHorizontalMills(coinsPosition, mills, posCoin) {
+        let countCoins;
+        for (let hMill in horizontalMills) {
+            countCoins = 0;
+            coinsPosition.forEach(position => {
+                if (horizontalMills[hMill].indexOf(position) != -1) {
+                    countCoins++;
+                }
+            });
+            if (countCoins == 3 && horizontalMills[hMill].indexOf(posCoin) != -1) {
+                mills.push(horizontalMills[hMill]);
+            }
+        }
+    }
+
+    checkVerticalMills(coinsPosition, mills, posCoin) {
+        let countCoins;
+        for (let vMill in verticalMills) {
+            countCoins = 0;
+            coinsPosition.forEach(position => {
+                if (verticalMills[vMill].indexOf(position) != -1) {
+                    countCoins++;
+                }
+            });
+            if (countCoins == 3 && verticalMills[vMill].indexOf(posCoin) != -1) {
+                mills.push(verticalMills[vMill]);
+            }
+        }
+    }
+
+    getSymbolCoinFromGrid(row, col) {
+        return this.#gridInit[row][col].symbol;
+    }
+
+    changeValueCoin(newValue, row, col) {
+        this.#gridInit[row][col].changeSymbolCoin(newValue);
     }
 }
