@@ -17,6 +17,18 @@ export class Game {
         return this.#redPieces;
     }
 
+    get redPieces(){
+        return this.#redPieces;
+    }
+    
+    get whitePieces(){
+        return this.#whitePieces;
+    }
+
+    get grid(){
+        return this.#grid;
+    }
+
     createPieces () {
         for (let i = 0; i < Grid.ROW; i += 1) {
             for (let j = 0; j < Grid.COLUMN; j += 1) {
