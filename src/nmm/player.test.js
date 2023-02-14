@@ -1,4 +1,4 @@
-import { Player } from './player';
+import { Player } from './player.js';
 
 describe('Tests for player class', () => {
     it('should be able to show the player attributes', () => {

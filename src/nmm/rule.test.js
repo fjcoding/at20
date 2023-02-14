@@ -1,5 +1,5 @@
-import { positions } from './possiblePositions';
-import { rule } from './rule';
+import { positions } from './possiblePositions.js';
+import { rule } from './rule.js';
 
 describe('Tests for rule class', () => {
     it('should indentify a possible positions', () => {

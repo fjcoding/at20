@@ -1,5 +1,5 @@
-import { corners } from './Corners/corners';
-import { middlePositions } from './middlePositions/middlePositions';
+import { corners } from './Corners/corners.js';
+import { middlePositions } from './middlePositions/middlePositions.js';
 export class rule {
     #conersRules;
 

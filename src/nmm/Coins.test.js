@@ -1,4 +1,4 @@
-import { Coins } from './coins';
+import { Coins } from './coins.js';
 
 describe ('Test to know about a place with a *', () =>{
     it('should set the symbol and state correctly', () => {
