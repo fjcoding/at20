@@ -20,8 +20,8 @@ describe('Test for Player class', () => {
     test('Create a player, set a token and check how many tokens the player has left', () => {
         const whitePlayer = new Player('W');
         const blackPlayer = new Player('B');
-        whitePlayer.setToken(1, 1);
-        blackPlayer.setToken(6, 1);
+        whitePlayer.discount();
+        blackPlayer.discount();
         expect(whitePlayer.tokenCount).toStrictEqual(27);
         expect(blackPlayer.tokenCount).toStrictEqual(27);
     });
