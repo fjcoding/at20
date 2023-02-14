@@ -137,9 +137,31 @@ describe('Tests for Grid class', () => {
         const gridInit = new Grid();
         expect(gridInit.verifyThreeCoins(grid)).toEqual('both');
     });
+    it('Should be able to return true if there are available positions in the grid', () => {
+        const grid = [
+            ['w', '-', '-', '*', '-', '-', '*'],
+            ['|', '*', '-', '*', '-', 'b', '|'],
+            ['|', '|', '*', '*', 'w', '|', '|'],
+            ['b', '*', '*', ' ', '*', '*', '*'],
+            ['|', '|', 'w', '*', '*', '|', '|'],
+            ['|', '*', '-', 'b', '-', '*', '|'],
+            ['*', '-', '-', '*', '-', '-', '*']
+        ];
+        const gridInit = new Grid();
+        expect(gridInit.checkAvailablePos(grid)).toBe(true);
+    });
 
-    it('Should be able to return true if there are available positions in the grid', () =>{
-        const grid = new Grid();
-        expect (grid.checkAvailablePos()).toBe(true);
+    it('Should be able to return false if there are no available positions in the grid', () => {
+        const grid = [
+            ['w', '-', '-', 'b', '-', '-', 'w'],
+            ['|', 'b', '-', 'w', '-', 'b', '|'],
+            ['|', '|', 'b', 'b', 'w', '|', '|'],
+            ['w', 'w', 'b', ' ', 'w', 'w', 'b'],
+            ['|', '|', 'w', 'b', 'b', '|', '|'],
+            ['|', 'w', '-', 'b', '-', 'w', '|'],
+            ['-', '-', '-', 'w', '-', '-', '-'],
+        ];
+        const gridInit = new Grid();
+        expect(gridInit.checkAvailablePos(grid)).toBe(false);
     });
 });
