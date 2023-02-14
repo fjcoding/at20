@@ -1,5 +1,6 @@
 
-import {checkRowPossibleMovements} from './checkRowPossibleMovements.js';
+//import {checkRowPossibleMovements} from './checkRowPossibleMovements.js';
+import {freeDiagonals} from './freeDiagonals.js';
 
 
 import {ColumnInspector} from './ColumnInspector.js';
@@ -17,21 +18,30 @@ export class Inspector {
     // }
 
     checkPossiblePositions(boardTocheck, player) {
-        var positions = new checkRowPossibleMovements(boardTocheck, player);
-        var availableRows = positions.checkRow();
-        return availableRows;
+        //var verifyColumn;
+        //var verifyRow;
+        var verifyDiagonals;
+        var availablePositions = [];
+
+
+        //verifyRow = new checkRowPossibleMovements(boardTocheck, player);
+        //verifyColumn = new
+        verifyDiagonals = new freeDiagonals(boardTocheck, player);
+        //availablePositions=availablePositions.concat(verifyRow.checkRow(),verifyDiagonals.checkPossibleMoves());
+        availablePositions = availablePositions.concat(verifyDiagonals.checkPossibleMoves());
+        return availablePositions;
     }
 
     checkMatchesToFlip (position, board, player) {
-        var verifyColumn;
-        var verifyRow;
-        var verifyDiagonals;
-        var flips = [];
+        var columnMatch;
+        var rowMatch;
+        var diagonalsMatch;
+        var tokensToflip = [];
         const piecesPosition = [];
-        verifyRow = new checkAndFlipRow(position[0], position[1], board, player);//(x, y, grid, player)
-        verifyColumn = new ColumnInspector(position, board, player);
-        verifyDiagonals = new Diagonals (position, board, player);
-        flips = flips.concat(verifyRow.checkRow(), verifyColumn.findFlipPositions(piecesPosition), verifyDiagonals.check());
-        return flips;
+        rowMatch = new checkAndFlipRow(position[0], position[1], board, player);//(x, y, grid, player)
+        columnMatch = new ColumnInspector(position, board, player);
+        diagonalsMatch = new Diagonals (position, board, player);
+        tokensToflip = tokensToflip.concat(rowMatch.checkRow(), columnMatch.findFlipPositions(piecesPosition), diagonalsMatch.check());
+        return tokensToflip;
     }
 }
