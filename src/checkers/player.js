@@ -1,4 +1,5 @@
 import { action } from './action.js';
+
 export class Player {
     #name;
 

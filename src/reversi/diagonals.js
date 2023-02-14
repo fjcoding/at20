@@ -6,7 +6,7 @@ export class Diagonals {
     #playtag;
 
 
-    constructor(newTokenpos, playtag, grid) {
+    constructor(newTokenpos, grid, playtag) {
         this.#newTokenpos = newTokenpos;
         this.#grid = grid;
         this.#playtag = playtag;

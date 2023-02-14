@@ -32,6 +32,10 @@ export class Player {
         return this.#numberCoinsToPlay = this.#numberCoinsToPlay - 1;
     }
 
+    updateNumberCoinsRemoved() {
+        return this.#numberCoinsRemoved = this.#numberCoinsRemoved + 1;
+    }
+
     getLengthBagMills() {
         return this.#bagMills.length;
     }
@@ -58,6 +62,27 @@ export class Player {
 
     checkNewMillAdded() {
         return this.getLengthBagMills() > this.#previousBagMillsLength ? true : false;
+    }
+
+    choosePositionToRemove(player2, coinPositionSelected) {
+        player2.updateNumberCoinsRemoved();
+        return coinPositionSelected;
+    }
+
+    removeMillWhenCoinPositionIs(coinPosition) {
+        let auxBagMills = [];
+        let auxMill = [];
+        if (this.getLengthBagMills() > 0) {
+            for (let index1 = 0; index1 < this.getLengthBagMills(); index1++) {
+                auxMill = this.#bagMills.pop();
+                if (auxMill.indexOf(coinPosition) == -1) {
+                    auxBagMills.push(auxMill);
+                }
+            }
+            this.#bagMills = auxBagMills;
+            this.#previousBagMillsLength = this.getLengthBagMills();
+        }
+        return this.getLengthBagMills();
     }
 
     get propsPlayer() {

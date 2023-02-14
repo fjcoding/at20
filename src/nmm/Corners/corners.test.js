@@ -1,5 +1,5 @@
 import { corners } from './corners';
-import { positions } from './possiblePositions';
+import { positions } from '../possiblePositions';
 
 describe ('Test corners class', () =>{
     it('should check if a position is a coner', () =>{

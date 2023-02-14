@@ -7,6 +7,7 @@ const movePiece = (player, targetPosition) => {
     player.pieceSelected.x = targetPosition.x;
     player.pieceSelected.y = targetPosition.y;
 };
+
 const isValidTargetPosition = (targetPosition, piece) => {
     if (!isValidPosition(targetPosition.x, targetPosition.y)) {
         throw new Error('Invalid target position is outside of the grid');
