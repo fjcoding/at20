@@ -1,6 +1,6 @@
 import { Coins } from './coins';
 export class Grid {
-    static coinSymbols = { NA1: '-', NA2: '|', NA3: ' ', PA: '*' };
+    static coinSymbols = { NA1: '-', NA2: '|', NA3: ' ', PA: '*', WHITE: 'W', BLACK:'B'};
 
     #gridInit;
 
@@ -35,5 +35,16 @@ export class Grid {
         stringGrid += '  a b c d e f g';
         console.log(stringGrid);
         return grid;
+    }
+
+    checkAvailablePos() {
+        for (let row = 0; row < this.#gridInit.length; row++) {
+            for (let col = 0; col < this.#gridInit.length; col++) {
+                if (this.#gridInit[row][col].symbol === Grid.coinSymbols.PA) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
