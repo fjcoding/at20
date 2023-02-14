@@ -42,7 +42,7 @@ export class Grid {
         let blackCoins = 0;
         for (let row = 0; row < grid.length; row++) {
             for (let col = 0; col < grid.length; col++) {
-                if(grid[row][col] === 'w') {
+                if (grid[row][col] === 'w') {
                     whiteCoins += 1;
                 } else if (grid[row][col] === 'b') {
                     blackCoins += 1;
@@ -51,12 +51,12 @@ export class Grid {
         }
         if (whiteCoins === 3 && blackCoins === 3) {
             return 'both';
-        } else if (blackCoins === 3){
+        } else if (blackCoins === 3) {
             return 'black';
-        } else if (whiteCoins === 3 ){
+        } else if (whiteCoins === 3) {
             return 'white';
         } else {
-            return 'none'
+            return 'none';
         }
-   }
+    }
 }
