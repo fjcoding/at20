@@ -1,5 +1,5 @@
 import { positionOnBoard } from './positionOnBoard.js';
-import { RowInspector } from './RowInspector';
+import { RowInspector } from './RowInspector.js';
 
 export class checkRowPossibleMovements {
     #grid;
@@ -61,5 +61,15 @@ export class checkRowPossibleMovements {
             }
         }
         return playsArray;
+    }
+
+    possibleMoves() {
+        var possibleRow = [];
+        const moves = this.asPossibleMovement();
+        const rowLenght = moves.length;
+        for (var index = 0; index < rowLenght; index++) {
+            possibleRow.push(moves[index].play);
+        }
+        return possibleRow;
     }
 }

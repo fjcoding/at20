@@ -8,58 +8,64 @@ const Player2 =  new Player('W');
 const prompt = promptSync();
 const grid = new Grid();
 var board = grid.gridInit();
-
-
 var inspector = new Inspector();
-
 console.log(grid.displayBoard(board));
 
-
 var newToken;
-
 var positinonsToflip = 0;
-var verifyPositions = 0;
-
-var count = 0;
+var verifiedPositions = 0;
+var availablePositions;
 var players = [Player1, Player2];
 var currentPlayer = players[0];
+var gameStatus = 1;
 
-while (count < 11) { // the condition to exit the loop should be bound to the amount of tokens each player has left and if there are any available positions
-    verifyPositions  = inspector.checkPossiblePositions(board, currentPlayer.playerTag);// returns the possible positions
-    console.log(verifyPositions);
+while (gameStatus == 1) {
+    verifiedPositions  = inspector.checkPossiblePositions(board, currentPlayer.playerTag);
+    console.log(verifiedPositions);
     console.log('It is player ' + currentPlayer.playerTag + ' turn');
     var rowCoordinate = parseInt(prompt('Enter the row coordinate '));
     var columnCoordinate = parseInt(prompt('Enter the column coordinate '));
-    console.clear();
+
     newToken = currentPlayer.setToken(rowCoordinate, columnCoordinate);
-    //verify available positions inspector. checkPossiblePositions();
-    //If new token position is acepted
-    board[newToken[0]][newToken[1]] = currentPlayer.playerTag;// palce the token on board
+    availablePositions = inspector.validatePosition(newToken, verifiedPositions);
 
-    console.log(grid.displayBoard(board));//display the new token
-    console.clear();
-    positinonsToflip = inspector.checkMatchesToFlip(newToken, board, currentPlayer.playerTag);//check macthes to flip
-    console.log(grid.displayBoard(grid.updateBoard(board, positinonsToflip, positinonsToflip.length, currentPlayer.playerTag)));
+    if (availablePositions == 1) {
+        currentPlayer.discount();
+        board[newToken[0]][newToken[1]] = currentPlayer.playerTag;//place a token on board
+        console.clear();
+        console.log(grid.displayBoard(board));//display the new token
 
-    //when there is no play for one of the players, skip turn
-    //print the turn player, add a function that changes players
+        positinonsToflip = inspector.checkMatchesToFlip(newToken, board, currentPlayer.playerTag);
+        console.clear();
+        console.log(grid.displayBoard(grid.updateBoard(board, positinonsToflip, positinonsToflip.length, currentPlayer.playerTag)));
 
-    if (positinonsToflip.length != 0) {// decide whether to change or not the turn of the player
-        // currentPlayer.playerTag = currentPlayer.playerTag;
-        if (currentPlayer.playerTag == players[0].playerTag) {
-            currentPlayer = players[1];// black
-        } else {
-            currentPlayer = players[0];//white
+        if (positinonsToflip.length != 0) {
+            if (currentPlayer.playerTag == players[0].playerTag) {
+                currentPlayer = players[1];//white
+            } else {
+                currentPlayer = players[0];//black
+            }
         }
-    }
 
-    //verifyPositions  = inspector.checkPossiblePositions(board,currentPlayer);// returns the possible positions
-    // return 0 if there are no plays for both players, or no tokens left to play
-    //console.log(verifyPositions);
-    count++;
+        verifiedPositions  = inspector.checkPossiblePositions(board, currentPlayer.playerTag);
+
+        if (verifiedPositions.length == 0 || (players[0].tokenCount == 0 && players[1].tokenCount == 0)) {
+            if (players[0].tokenCount == 0 && players[1].tokenCount == 0) {
+                gameStatus = 0;
+                console.log('No more moves');
+            }
+
+            if (currentPlayer.playerTag == players[0].playerTag) {
+                currentPlayer = players[1];//white
+            } else {
+                currentPlayer = players[0];//black
+            }
+        }
+    } else {
+        console.log('\nInvalid position, enter valid position\n');
+    }
 }
 console.log('Fin del juego');
-//agregar metodo que cuente las fichas en el tablero y determine el ganador
-//read the board and return the results
+console.log(inspector.finalCount(board));
 
 
