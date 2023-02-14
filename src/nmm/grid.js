@@ -38,25 +38,26 @@ export class Grid {
     }
 
     verifyThreeCoins (grid) {
-        let whiteCoins = 0;
-        let blackCoins = 0;
-        for (let row = 0; row < grid.length; row++) {
-            for (let col = 0; col < grid.length; col++) {
-                if (grid[row][col] === 'w') {
-                    whiteCoins += 1;
-                } else if (grid[row][col] === 'b') {
-                    blackCoins += 1;
-                }
-            }
-        }
-        if (whiteCoins === 3 && blackCoins === 3) {
+        if (this.countCoinsInGrid(grid, 'w') === 3 && this.countCoinsInGrid(grid, 'b') === 3) {
             return 'both';
-        } else if (blackCoins === 3) {
+        } else if (this.countCoinsInGrid(grid, 'b') === 3) {
             return 'black';
-        } else if (whiteCoins === 3) {
+        } else if (this.countCoinsInGrid(grid, 'w') === 3) {
             return 'white';
         } else {
             return 'none';
         }
+    }
+    
+    countCoinsInGrid (grid, symbol) {
+        let coins = 0;
+        for (let row = 0; row < grid.length; row++) {
+            for (let col = 0; col < grid.length; col++) {
+                if (grid[row][col] === symbol) {
+                    coins += 1;
+                } 
+            }
+        }
+        return coins;
     }
 }
