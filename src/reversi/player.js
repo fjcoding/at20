@@ -21,7 +21,7 @@ export class Player {
         return this.#playerTag;
     }
 
-    set playerTag(playerTag) {
-        this.#playerTag = playerTag;
-    }
+    // set playerTag(playerTag) {
+    //     this.#playerTag = playerTag;
+    // }
 }
