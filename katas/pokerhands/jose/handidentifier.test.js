@@ -29,4 +29,31 @@ describe('Hand Identifier tests', () => {
         notStraightFlushHand.addCard(new Card('C', CardValue.Nine));
         expect(identifier.identify(notStraightFlushHand)).not.toBe('Straight Flush');
     });
+
+    it('should be able of identify a four of a kind pokerhand', () => {
+        const identifier = new HandIdentifier();
+        const fourOfAKindHand = new PokerHand();
+        fourOfAKindHand.addCard(new Card('C', CardValue.Five));
+        fourOfAKindHand.addCard(new Card('H', CardValue.Five));
+        fourOfAKindHand.addCard(new Card('S', CardValue.Five));
+        fourOfAKindHand.addCard(new Card('D', CardValue.Five));
+        fourOfAKindHand.addCard(new Card('C', CardValue.Nine));
+        expect(identifier.identify(fourOfAKindHand)).toBe('Four of a Kind');
+
+        let notFourOfAKind = new PokerHand();
+        notFourOfAKind.addCard(new Card('C', CardValue.Five));
+        notFourOfAKind.addCard(new Card('H', CardValue.Six));
+        notFourOfAKind.addCard(new Card('C', CardValue.Seven));
+        notFourOfAKind.addCard(new Card('C', CardValue.Eight));
+        notFourOfAKind.addCard(new Card('C', CardValue.Nine));
+        expect(identifier.identify(notFourOfAKind)).not.toBe('Four of a Kind');
+
+        notFourOfAKind = new PokerHand();
+        notFourOfAKind.addCard(new Card('C', CardValue.Five));
+        notFourOfAKind.addCard(new Card('C', CardValue.Six));
+        notFourOfAKind.addCard(new Card('C', CardValue.Jack));
+        notFourOfAKind.addCard(new Card('C', CardValue.Eight));
+        notFourOfAKind.addCard(new Card('C', CardValue.Nine));
+        expect(identifier.identify(notFourOfAKind)).not.toBe('Four of a Kind');
+    });
 });
