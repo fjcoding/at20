@@ -4,7 +4,7 @@ import {freeDiagonals} from './freeDiagonals.js';
 
 
 import {ColumnInspector} from './ColumnInspector.js';
-import {checkAndFlipRow} from './RowPiecesThatCanFlip.js';
+import {RowInspector} from './RowInspector.js';
 import {Diagonals} from './diagonals.js';
 
 export class Inspector {
@@ -38,7 +38,7 @@ export class Inspector {
         var diagonalsMatch;
         var tokensToflip = [];
         const piecesPosition = [];
-        rowMatch = new checkAndFlipRow(position[0], position[1], board, player);//(x, y, grid, player)
+        rowMatch = new RowInspector(position[0], position[1], board, player);//(x, y, grid, player)
         columnMatch = new ColumnInspector(position, board, player);
         diagonalsMatch = new Diagonals (position, board, player);
         tokensToflip = tokensToflip.concat(rowMatch.checkRow(), columnMatch.findFlipPositions(piecesPosition), diagonalsMatch.check());

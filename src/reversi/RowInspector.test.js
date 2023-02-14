@@ -1,5 +1,5 @@
 import {Player} from './player';
-import {checkAndFlipRow} from './RowPiecesThatCanFlip';
+import {RowInspector} from './RowInspector';
 describe('Check for coincidences in rows with a new piece on the board', () => {
     it('black piece on 3,2', () => {
         const player = 'B';
@@ -16,7 +16,7 @@ describe('Check for coincidences in rows with a new piece on the board', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
-        const newFlip = new checkAndFlipRow(x, y, initialMap, player);//
+        const newFlip = new RowInspector(x, y, initialMap, player);//
         expect(newFlip.checkRow()).toStrictEqual([[3, 3], [3, 4]]);//
     });
 });
@@ -49,7 +49,7 @@ describe('Check for coincidences in rows and flip them', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
 
-        const newFlip = new checkAndFlipRow(newPosition[0], newPosition[1], initialMap, player.playerTag);//
+        const newFlip = new RowInspector(newPosition[0], newPosition[1], initialMap, player.playerTag);//
         expect(newFlip.asFlip()).toStrictEqual(resultMap);//
     });
 
@@ -79,7 +79,7 @@ describe('Check for coincidences in rows and flip them', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
 
-        const newFlip = new checkAndFlipRow(newPosition[0], newPosition[1], initialMap, black.playerTag);//
+        const newFlip = new RowInspector(newPosition[0], newPosition[1], initialMap, black.playerTag);//
         expect(newFlip.asFlip()).toStrictEqual(resultMap);
     });
 });
