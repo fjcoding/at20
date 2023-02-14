@@ -96,7 +96,7 @@ describe('Tests for Grid class', () => {
         ];
         const gridInit = new Grid();
         expect(gridInit.verifyThreeCoins(grid)).toEqual('both');
-
+    });
     it('Should be able to return true if there are available positions in the grid', () =>{
         const grid = new Grid();
         expect (grid.checkAvailablePos()).toBe(true);
