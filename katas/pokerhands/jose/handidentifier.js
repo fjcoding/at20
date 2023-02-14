@@ -1,19 +1,20 @@
-import { HandChecker } from './handchecker';
-import { ValueCounter } from './valuecounter';
+import { FourOfAKind } from './patterns/FourOfAKind';
+import { StraightFlush } from './patterns/StraightFlush';
 
 export class HandIdentifier {
-    #checker = new HandChecker();
-
-    #counter = new ValueCounter();
+    #patterns = [
+        new StraightFlush(),
+        new FourOfAKind()
+    ];
 
     identify(pokerhand) {
         let handPattern = undefined;
-        const count = this.#counter.countRepeatedValues(pokerhand);
-        if (this.#checker.hasAllCardsSameSuit(pokerhand) &&
-           this.#checker.hasConsecutiveValues(pokerhand)) {
-            handPattern = 'Straight Flush';
-        } else if (Object.values(count).includes(4)) {
-            handPattern = 'Four of a Kind';
+        for (let index = 0; index < this.#patterns.length; index++) {
+            const pattern = this.#patterns[index];
+            if (pattern.match(pokerhand)) {
+                handPattern = pattern.name;
+                break;
+            }
         }
         return handPattern;
     }
