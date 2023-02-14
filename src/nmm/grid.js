@@ -48,14 +48,14 @@ export class Grid {
             return 'none';
         }
     }
-    
+
     countCoinsInGrid (grid, symbol) {
         let coins = 0;
         for (let row = 0; row < grid.length; row++) {
             for (let col = 0; col < grid.length; col++) {
                 if (grid[row][col] === symbol) {
                     coins += 1;
-                } 
+                }
             }
         }
         return coins;
