@@ -50,12 +50,10 @@ describe('Tests for Grid class', () => {
         expect(grid.showGridInit()).toEqual(gridAux);
         let row = 3;
         let col = 6;
-        // expect(grid.checkIfThereMills(playerColor, row, col)).toStrictEqual([['0,0', '0,3', '0,6'], ['2,3', '1,3', '0,3'], ['6,6', '3,6', '0,6']]);
         expect(grid.checkIfThereMills(playerColor, row, col)).toStrictEqual([['6,6', '3,6', '0,6']]);
 
         row = 0;
         col = 0;
-        // expect(grid.checkIfThereMills(playerColor, row, col)).toStrictEqual([['0,0', '0,3', '0,6'], ['2,3', '1,3', '0,3'], ['6,6', '3,6', '0,6']]);
         expect(grid.checkIfThereMills(playerColor, row, col)).toStrictEqual([['0,0', '0,3', '0,6']]);
     });
 });
