@@ -17,6 +17,10 @@ export class Coins {
         return this.#symbol;
     }
 
+    changeSymbolCoin(newSymbol) {
+        this.#symbol = newSymbol;
+    }
+
     get state() {
         return this.#state;
     }
