@@ -10,6 +10,9 @@ describe('Piece attributes and methods', () => {
     it('should have the correct color', () => {
         expect(piece.getColor()).toBe('red');
     });
+    it('should have the correct color', () => {
+        expect(piece.color).toBe('red');
+    });
 
     it('should have the correct initial x position', () => {
         expect(piece.x).toBe(3);

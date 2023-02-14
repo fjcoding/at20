@@ -3,7 +3,7 @@ import { horizontalMills } from './mills/horizontal';
 import { verticalMills } from './mills/vertical';
 
 export class Grid {
-    static coinSymbols = { NA1: '-', NA2: '|', NA3: ' ', PA: '*' };
+    static coinSymbols = { NA1: '-', NA2: '|', NA3: ' ', PA: '*', WHITE: 'W', BLACK:'B'};
 
     #gridInit;
 
@@ -90,5 +90,40 @@ export class Grid {
 
     changeValueCoin(newValue, row, col) {
         this.#gridInit[row][col].changeSymbolCoin(newValue);
+    }
+    
+    verifyThreeCoins (grid) {
+        if (this.countCoinsInGrid(grid, 'w') === 3 && this.countCoinsInGrid(grid, 'b') === 3) {
+            return 'both';
+        } else if (this.countCoinsInGrid(grid, 'b') === 3) {
+            return 'black';
+        } else if (this.countCoinsInGrid(grid, 'w') === 3) {
+            return 'white';
+        } else {
+            return 'none';
+        }
+    }
+
+    countCoinsInGrid (grid, symbol) {
+        let coins = 0;
+        for (let row = 0; row < grid.length; row++) {
+            for (let col = 0; col < grid.length; col++) {
+                if (grid[row][col] === symbol) {
+                    coins += 1;
+                }
+            }
+        }
+        return coins;
+    }
+
+    checkAvailablePos() {
+        for (let row = 0; row < this.#gridInit.length; row++) {
+            for (let col = 0; col < this.#gridInit.length; col++) {
+                if (this.#gridInit[row][col].symbol === Grid.coinSymbols.PA) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

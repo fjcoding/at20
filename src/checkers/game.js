@@ -13,8 +13,21 @@ export class Game {
         this.createPieces();
     }
 
+
     get redPieces() {
         return this.#redPieces;
+    }
+
+    get whitePieces() {
+        return this.#whitePieces;
+    }
+
+    get grid() {
+        return this.#grid;
+    }
+
+    refreshGrid() {
+        this.#grid.renderBoard({ redPieces: this.#redPieces, whitePieces: this.#whitePieces });
     }
 
     createPieces () {
@@ -35,9 +48,7 @@ export class Game {
         }
     }
 
-    initGame () {
+    showBoard() {
         return this.#grid.toString();
     }
 }
-let game = new Game();
-console.log(game.initGame());

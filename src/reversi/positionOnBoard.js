@@ -1,13 +1,5 @@
-
-
 export class positionOnBoard {
-    #posX;
-
-    #posY;
-
     #color;
-
-    #grid;
 
     #board;
 
