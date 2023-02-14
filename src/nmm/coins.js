@@ -20,4 +20,8 @@ export class Coins {
     changeSymbolCoin(newSymbol) {
         this.#symbol = newSymbol;
     }
+
+    get state() {
+        return this.#state;
+    }
 }
