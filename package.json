@@ -19,9 +19,10 @@
     "lint:fix": "eslint . --fix",
     "test": "jest",
     "test:katas": "jest katas",
-    "test:checkers": "jest --passWithNoTests src/checkers",
-    "test:nmm": "jest --passWithNoTests src/nmm",
-    "test:reversi": "jest --passWithNoTests src/reversi"
+    "test:projects": "jest src",
+    "test:checkers": "jest src/checkers",
+    "test:nmm": "jest src/nmm",
+    "test:reversi": "jest src/reversi"
   },
   "repository": {
     "type": "git",
