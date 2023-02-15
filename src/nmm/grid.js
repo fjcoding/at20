@@ -115,14 +115,7 @@ export class Grid {
         return coins;
     }
 
-    checkAvailablePos() {
-        for (let row = 0; row < this.#gridInit.length; row++) {
-            for (let col = 0; col < this.#gridInit.length; col++) {
-                if (this.#gridInit[row][col].symbol === Grid.coinSymbols.PA) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    checkAvailablePos(grid, row, col) {
+        return grid[row][col] === '*';
     }
 }
