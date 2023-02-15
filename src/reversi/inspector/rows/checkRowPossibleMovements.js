@@ -37,8 +37,6 @@ export class checkRowPossibleMovements {
                         break
                     }
                 }
-
-
             }
         }
         for (var index1 = 0; index1 < positions.length; index1++) {
@@ -57,10 +55,7 @@ export class checkRowPossibleMovements {
                 }
 
             }
-
         }
-
-
         return checkPieces;
     }
 
