@@ -100,7 +100,7 @@ export class Grid {
         return coins;
     }
 
-    checkAvailablePos(grid, row, col) {
-        return grid[row][col] === '*';
+    checkAvailablePos(row, col) {
+        return this.getSymbolCoinFromGrid(row, col) === '*';
     }
 }

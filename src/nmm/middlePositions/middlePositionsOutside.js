@@ -24,7 +24,7 @@ export class middlePositionsOutside {
         let spaceRow = Math.abs(currentPosition[0] - newPosition[0]);
         let spaceCol = Math.abs(currentPosition[1] - newPosition[1]);
 
-        return (spaceRow === 3 && spaceCol === 0) || (spaceRow === 0 && spaceCol === 1);
+        return (spaceRow === 3 && spaceCol === 0) || (spaceRow === 0 && spaceCol === 3) || (spaceRow === 0 && spaceCol === 1);
     }
 }
 
