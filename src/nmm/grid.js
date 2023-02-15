@@ -115,14 +115,7 @@ export class Grid {
         return coins;
     }
 
-    checkAvailablePos(grid) {
-        for (let row = 0; row < grid.length; row++) {
-            for (let col = 0; col < grid[row].length; col++) {
-                if (grid[row][col] === '*') {
-                    return true;
-                }
-            }
-        }
-        return false;
+    checkAvailablePos(grid, row, col) {
+        return grid[row][col] === '*';
     }
 }
