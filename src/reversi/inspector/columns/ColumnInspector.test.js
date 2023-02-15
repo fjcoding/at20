@@ -1,4 +1,4 @@
-import { Player } from './player';
+import { Player } from '../../player';
 import { ColumnInspector } from './ColumnInspector';
 
 test('Check for column white pieces between two black ', () => {
