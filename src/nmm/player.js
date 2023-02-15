@@ -49,15 +49,15 @@ export class Player {
     }
 
     checkIfExistsMill(newMill) {
-        let result = false;
+        let exist = false;
         if (this.getLengthBagMills() > 0) {
             this.#bagMills.forEach(mill => {
                 if (JSON.stringify(mill) === JSON.stringify(newMill)) {
-                    result = true;
+                    exist = true;
                 }
             });
         }
-        return result;
+        return exist;
     }
 
     checkNewMillAdded() {
