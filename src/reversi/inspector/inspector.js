@@ -1,11 +1,11 @@
 
-import {checkRowPossibleMovements} from './checkRowPossibleMovements.js';
-import {freeDiagonals} from './freeDiagonals.js';
+import {checkRowPossibleMovements} from './rows/checkRowPossibleMovements.js';
+import {freeDiagonals} from './diagonals/freeDiagonals.js';
 
 
-import {ColumnInspector} from './ColumnInspector.js';
-import {RowInspector} from './RowInspector.js';
-import {DiagonalsInspector} from './DiagonalsInspector.js';
+import {ColumnInspector} from './columns/ColumnInspector.js';
+import {RowInspector} from './rows/RowInspector.js';
+import {DiagonalsInspector} from './diagonals/DiagonalsInspector.js';
 
 export class Inspector {
     #previousPlayer;

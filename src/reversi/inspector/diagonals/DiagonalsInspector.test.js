@@ -1,5 +1,5 @@
 import {DiagonalsInspector} from './DiagonalsInspector';
-import {Player} from './player';
+import {Player} from '../../player';
 
 
 test('Check for coincidences in the negative diagonal where there is 1 match with a cheat too', () => {
