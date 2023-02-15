@@ -38,47 +38,32 @@ export class Grid {
         return stringGrid;
     }
 
-    checkIfThereMills(playerSymbol, rowCoin, colCoin) {
+    checkIfThereMills(player, rowCoin, colCoin) {
         let coinsPosition = [];
         for (let row = 0; row < this.#gridInit.length; row++) {
             for (let col = 0; col < this.#gridInit.length; col++) {
-                if (this.getSymbolCoinFromGrid(row, col) === playerSymbol) {
+                if (this.getSymbolCoinFromGrid(row, col) === player.colorPlayer) {
                     coinsPosition.push(row + ',' + col);
                 }
             }
         }
-        let mills = [];
-        this.checkHorizontalMills(coinsPosition, mills, rowCoin + ',' + colCoin);
-        this.checkVerticalMills(coinsPosition, mills, rowCoin + ',' + colCoin);
-        return mills;
+        let mill = [];
+        this.checkDirectionMills(coinsPosition, mill, rowCoin + ',' + colCoin, horizontalMills);
+        this.checkDirectionMills(coinsPosition, mill, rowCoin + ',' + colCoin, verticalMills);
+        return mill;
     }
 
-    checkHorizontalMills(coinsPosition, mills, posCoin) {
+    checkDirectionMills(coinsPosition, mill, posCoin, directionMills) {
         let countCoins;
-        for (let hMill in horizontalMills) {
+        for (let hMill in directionMills) {
             countCoins = 0;
             coinsPosition.forEach(position => {
-                if (horizontalMills[hMill].indexOf(position) != -1) {
+                if (directionMills[hMill].indexOf(position) != -1) {
                     countCoins++;
                 }
             });
-            if (countCoins == 3 && horizontalMills[hMill].indexOf(posCoin) != -1) {
-                mills.push(horizontalMills[hMill]);
-            }
-        }
-    }
-
-    checkVerticalMills(coinsPosition, mills, posCoin) {
-        let countCoins;
-        for (let vMill in verticalMills) {
-            countCoins = 0;
-            coinsPosition.forEach(position => {
-                if (verticalMills[vMill].indexOf(position) != -1) {
-                    countCoins++;
-                }
-            });
-            if (countCoins == 3 && verticalMills[vMill].indexOf(posCoin) != -1) {
-                mills.push(verticalMills[vMill]);
+            if (countCoins == 3 && directionMills[hMill].indexOf(posCoin) != -1) {
+                mill.push(directionMills[hMill]);
             }
         }
     }

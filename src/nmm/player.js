@@ -28,6 +28,10 @@ export class Player {
         return this.#numberCoinsRemoved;
     }
 
+    get bagMills() {
+        return this.#bagMills;
+    }
+
     updateNumberCoinsToPlay() {
         return this.#numberCoinsToPlay = this.#numberCoinsToPlay - 1;
     }
@@ -49,15 +53,15 @@ export class Player {
     }
 
     checkIfExistsMill(newMill) {
-        let result = false;
+        let exist = false;
         if (this.getLengthBagMills() > 0) {
             this.#bagMills.forEach(mill => {
                 if (JSON.stringify(mill) === JSON.stringify(newMill)) {
-                    result = true;
+                    exist = true;
                 }
             });
         }
-        return result;
+        return exist;
     }
 
     checkNewMillAdded() {

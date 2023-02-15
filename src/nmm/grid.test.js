@@ -1,4 +1,5 @@
 import { Grid } from './grid.js';
+import { Player } from './player.js';
 
 describe('Tests for Grid class', () => {
     it('should be able to show the grid initial', () => {
@@ -27,6 +28,8 @@ describe('Tests for Grid class', () => {
         let grid = new Grid();
         expect(grid.showGrid()).toEqual(gridAux);
 
+        let player = new Player('W');
+
         let playerColor = 'W';
         gridAux = [
             ['W', '-', '-', 'W', '-', '-', 'W'],
@@ -48,11 +51,15 @@ describe('Tests for Grid class', () => {
         grid.changeValueCoin(playerColor, 3, 6);
         let row = 3;
         let col = 6;
-        expect(grid.checkIfThereMills(playerColor, row, col)).toStrictEqual([['6,6', '3,6', '0,6']]);
+        expect(grid.checkIfThereMills(player, row, col)).toStrictEqual([['6,6', '3,6', '0,6']]);
+        let mill = grid.checkIfThereMills(player, row, col);
+        expect(player.addMill(mill)).toStrictEqual(1);
 
         row = 0;
         col = 0;
-        expect(grid.checkIfThereMills(playerColor, row, col)).toStrictEqual([['0,0', '0,3', '0,6']]);
+        expect(grid.checkIfThereMills(player, row, col)).toStrictEqual([['0,0', '0,3', '0,6']]);
+        mill = grid.checkIfThereMills(player, row, col);
+        expect(player.addMill(mill)).toStrictEqual(2);
     });
 
     it('should be able to return true if it finds 3 coins in grid', () => {
