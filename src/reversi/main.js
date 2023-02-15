@@ -1,6 +1,6 @@
 import {Player} from './player.js';
-import {Grid} from './grid.js';
-import { Inspector } from './inspector.js';
+import {Grid} from './board/grid.js';
+import { Inspector } from './inspector/inspector.js';
 import promptSync from 'prompt-sync';
 
 const Player1 =  new Player('B');

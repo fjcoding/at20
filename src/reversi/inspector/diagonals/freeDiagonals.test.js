@@ -1,5 +1,5 @@
 import {freeDiagonals} from './freeDiagonals';
-import {Player} from './player';
+import {Player} from '../../player';
 
 
 test('Check for possible positions to place a black token diagonally', () => {
