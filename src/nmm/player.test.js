@@ -85,4 +85,13 @@ describe('Tests for player class', () => {
         expect(player.addMill(newMill)).toBe(2);
         expect(player.removeMillWhenCoinPositionIs(coinPosition)).toBe(1);
     });
+
+    it('should recognize your own coin', () => {
+        const colorPlayer = 'White';
+        const noColorPlayer = 'black';
+        const player = new Player(colorPlayer);
+
+        expect(player.checkOwnCoin(colorPlayer)).toBe(true);
+        expect(player.checkOwnCoin(noColorPlayer)).toBe(false);
+    });
 });

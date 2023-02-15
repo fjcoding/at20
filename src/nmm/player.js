@@ -88,4 +88,8 @@ export class Player {
     get propsPlayer() {
         return `${this.#colorPlayer}: ${this.#numberCoinsToPlay} coins to play`;
     }
+
+    checkOwnCoin(color) {
+        return color === this.#colorPlayer;
+    }
 }

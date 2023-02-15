@@ -146,29 +146,12 @@ describe('Tests for Grid class', () => {
     });
 
     it('Should be able to return true if there are available positions to play', () => {
-        const testgrid = [
-            ['w', '-', '-', '*', '-', '-', '*'],
-            ['|', '*', '-', '*', '-', 'b', '|'],
-            ['|', '|', '*', '*', 'w', '|', '|'],
-            ['b', '*', '*', ' ', '*', '*', '*'],
-            ['|', '|', 'w', '*', '*', '|', '|'],
-            ['|', '*', '-', 'b', '-', '*', '|'],
-            ['*', '-', '-', '*', '-', '-', '*']
-        ];
         const gridInit = new Grid();
-        expect(gridInit.checkAvailablePos(testgrid, 0, 6)).toBe(true);
+        expect(gridInit.checkAvailablePos(0, 6)).toBe(true);
     });
     it('Should be able to return false if there are no available positions to play', () => {
-        const testgrid = [
-            ['w', '-', '-', '*', '-', '-', '*'],
-            ['|', '*', '-', '*', '-', 'b', '|'],
-            ['|', '|', '*', '*', 'w', '|', '|'],
-            ['b', '*', '*', ' ', '*', '*', '*'],
-            ['|', '|', 'w', '*', '*', '|', '|'],
-            ['|', '*', '-', 'b', '-', '*', '|'],
-            ['*', '-', '-', '*', '-', '-', '*']
-        ];
         const gridInit = new Grid();
-        expect(gridInit.checkAvailablePos(testgrid, 3, 3)).toBe(false);
+        gridInit.changeValueCoin('w', 3, 3);
+        expect(gridInit.checkAvailablePos(3, 3)).toBe(false);
     });
 });
