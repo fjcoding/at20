@@ -23,25 +23,44 @@ export class checkRowPossibleMovements {
         var positions = [];
         positions = position.asPositionOnBoard();
         var checkPieces = [];
+        //rigth
         for (var index1 = 0; index1 < positions.length; index1++) {
             var x = positions[index1][0];
             var y = positions[index1][1] + 1;
-            if (this.#grid[x][y] == ' ' && y <= 7) {
-                var arr = [];
-                arr = [x, y];
-                checkPieces.push(arr);
+            if (this.#grid[x][y] == ' ' && y <= 7 ) {
+                //revisar de este punto a la izquierda
+                for (var keyf1 = y - 1; keyf1 >= 0; keyf1--) {//find pieces in a row to the left
+                    if ((this.#grid[x][keyf1]) == this.#player) {
+                        var arr = [];
+                        arr = [x, y];
+                        checkPieces.push(arr);
+                        break
+                    }
+                }
+
+
             }
         }
-        //left
-        for (index1 = 0; index1 < positions.length; index1++) {
-            x = positions[index1][0];
-            y = positions[index1][1] - 1;
-            if (this.#grid[x][y] == ' ' && y >= 0) {
-                arr = [];
-                arr = [x, y];
-                checkPieces.push(arr);
+        for (var index1 = 0; index1 < positions.length; index1++) {
+             //left
+             x = positions[index1][0];
+             y = positions[index1][1] - 1;
+            if (this.#grid[x][y] == ' ' && y <= 7 ) {
+                //revisar de este punto a la derecha
+                for (var keyf2 = y + 1; keyf2 <=7 ; keyf2++) {//find pieces in a row to the left
+                    if ((this.#grid[x][keyf2]) == this.#player) {
+                        var arr = [];
+                        arr = [x, y];
+                        checkPieces.push(arr);
+                        break
+                    }
+                }
+
             }
+
         }
+
+
         return checkPieces;
     }
 

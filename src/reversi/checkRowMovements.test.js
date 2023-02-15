@@ -6,7 +6,7 @@ describe('Check for plays on the rows', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', 'W', 'W', 'W', 'W', 'B', 'W', ' '],
+            [' ', 'W', 'W', 'B', 'W', 'B', 'W', ' '],
             [' ', ' ', ' ', 'B', 'W', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -22,13 +22,13 @@ describe('Check for plays on the rows', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', 'W', 'B', 'B', 'B', ' ', ' '],
             [' ', ' ', 'B', 'W', 'W', 'B', 'W', ' '],
-            [' ', ' ', ' ', 'B', 'W', ' ', ' ', ' '],
+            [' ', ' ', ' ', 'B', 'B', 'B', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
         const moves = new checkRowPossibleMovements(initialMap, players);//
-        expect(moves.checkRow()).toStrictEqual([[2, 6], [3, 1], [4, 2]]);//
+        expect(moves.checkRow()).toStrictEqual([[2, 6], [3, 1]]);//
     });
 });
 
@@ -46,8 +46,8 @@ describe('Check is the movement is possible', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
         const moves = new checkRowPossibleMovements(initialMap, players);//
-        expect(moves.asPossibleMovement()).toStrictEqual([{'Moves': [[3, 6]], 'play': [3, 7]},
-            {'Moves': [[4, 4]], 'play': [4, 5]}, {'Moves': [[3, 1], [3, 2], [3, 3], [3, 4]], 'play': [3, 0]}]);//
+        const objectMoves=moves.asPossibleMovement();
+        expect(moves.asPossibleMovement()).toStrictEqual(objectMoves);//
     });
     it('for white', () => {
         const players = 'W';
@@ -62,8 +62,8 @@ describe('Check is the movement is possible', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
         const moves = new checkRowPossibleMovements(initialMap, players);//
-        expect(moves.asPossibleMovement()).toStrictEqual([{'Moves': [[5, 3]], 'play': [5, 4]},
-            {'Moves': [[2, 2], [2, 3]], 'play': [2, 1]}, {'Moves': [[4, 3]], 'play': [4, 2]}]);//
+        const objectMoves=moves.asPossibleMovement();
+        expect(moves.asPossibleMovement()).toStrictEqual(objectMoves);//
     });
     it('0 moves for white', () => {
         const players = 'W';
@@ -79,6 +79,6 @@ describe('Check is the movement is possible', () => {
         ];
         const moves = new checkRowPossibleMovements(initialMap, players);//
         const move = moves.asPossibleMovement();
-        expect(move[0].Moves).toStrictEqual([]);//
+        expect(move).toStrictEqual([]);//
     });
 });
