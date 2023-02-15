@@ -23,11 +23,15 @@ while (player1.numberCoinsToPlay > 0 || player2.numberCoinsToPlay > 0) {
         let mill = grid.checkIfThereMills(player1.colorPlayer, rowCoordinate, columnCoordinate);
         if (mill.length > 0) {
             player1.addMill(mill);
-            console.log('Delete a coin...');
-            let posRowDelete = parseInt(prompt('Enter the row coordinate '));
-            let posColDelete = parseInt(prompt('Enter the row coordinate '));
-            grid.changeValueCoin('*', posRowDelete, posColDelete);
-            player2.updateNumberCoinsRemoved();
+            if (player1.checkNewMillAdded()) {
+                console.clear();
+                console.log(grid.showGrid());
+                console.log('Delete a coin...');
+                let posRowDelete = parseInt(prompt('Enter the row coordinate '));
+                let posColDelete = parseInt(prompt('Enter the row coordinate '));
+                grid.changeValueCoin('*', posRowDelete, posColDelete);
+                player2.updateNumberCoinsRemoved();
+            }
         }
         console.clear();
         console.log(grid.showGrid());
@@ -41,11 +45,15 @@ while (player1.numberCoinsToPlay > 0 || player2.numberCoinsToPlay > 0) {
             mill = grid.checkIfThereMills(player2.colorPlayer, rowCoordinate, columnCoordinate);
             if (mill.length > 0) {
                 player2.addMill(mill);
-                console.log('Delete a coin...');
-                let posRowDelete = parseInt(prompt('Enter the row coordinate '));
-                let posColDelete = parseInt(prompt('Enter the row coordinate '));
-                grid.changeValueCoin('*', posRowDelete, posColDelete);
-                player1.updateNumberCoinsRemoved();
+                if (player2.checkNewMillAdded()) {
+                    console.clear();
+                    console.log(grid.showGrid());
+                    console.log('Delete a coin...');
+                    let posRowDelete = parseInt(prompt('Enter the row coordinate '));
+                    let posColDelete = parseInt(prompt('Enter the row coordinate '));
+                    grid.changeValueCoin('*', posRowDelete, posColDelete);
+                    player1.updateNumberCoinsRemoved();
+                }
             }
             console.clear();
             console.log(grid.showGrid());

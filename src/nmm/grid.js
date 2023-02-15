@@ -38,11 +38,11 @@ export class Grid {
         return stringGrid;
     }
 
-    checkIfThereMills(player, rowCoin, colCoin) {
+    checkIfThereMills(colorPlayer, rowCoin, colCoin) {
         let coinsPosition = [];
         for (let row = 0; row < this.#gridInit.length; row++) {
             for (let col = 0; col < this.#gridInit.length; col++) {
-                if (this.getSymbolCoinFromGrid(row, col) === player.colorPlayer) {
+                if (this.getSymbolCoinFromGrid(row, col) === colorPlayer) {
                     coinsPosition.push(row + ',' + col);
                 }
             }
