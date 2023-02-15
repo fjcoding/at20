@@ -19,6 +19,14 @@ describe('Player', () => {
         expect(player.pieceSelected).toEqual({ x: 1, y: 1, color: 'red' });
     });
 
+    test('should throw an error if the position is invalid', () => {
+        expect(() => player.selectPiece({ x: 10, y: 10 })).toThrow('Invalid position');
+    });
+
+    test('should throw an error if the player does not have a piece at the given position', () => {
+        expect(() => player.selectPiece({ x: 3, y: 3 })).toThrow('Invalid piece for player, Player 1');
+    });
+
     it('should throw an error when trying to select an invalid piece', () => {
         expect(() => player.selectPiece({ x: 10, y: 10 })).toThrow('Invalid position');
     });
