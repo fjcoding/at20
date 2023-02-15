@@ -36,4 +36,12 @@ describe('Piece attributes and methods', () => {
         piece.makeLady();
         expect(piece.getTypeChain()).toBe('lady');
     });
+
+    it('should update the x and y properties of the piece', () => {
+        const piece = new Piece('black', 1, 2);
+        piece.x = 3;
+        piece.y = 4;
+        expect(piece.x).toBe(3);
+        expect(piece.y).toBe(4);
+    });
 });

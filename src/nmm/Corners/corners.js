@@ -1,6 +1,6 @@
-import { insideCorners } from './insideCorners';
-import { middleCorners } from './middleCorners';
-import { outsideCorners } from './outsideCorners';
+import { insideCorners } from './insideCorners.js';
+import { middleCorners } from './middleCorners.js';
+import { outsideCorners } from './outsideCorners.js';
 
 export class corners {
     #outside;

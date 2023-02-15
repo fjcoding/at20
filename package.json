@@ -38,5 +38,9 @@
     "eslint": "^8.32.0",
     "eslint-plugin-jest": "^26.4.6",
     "jest": "^28.1.0"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
+    "prompt-sync-history": "^1.0.1"
   }
 }

@@ -9,8 +9,11 @@ export class Player {
     }
 
     setToken(posX, posY) {
-        this.#tokenCount -= 1;
         return [posX, posY];
+    }
+
+    discount () {
+        this.#tokenCount -= 1;
     }
 
     get tokenCount() {
@@ -20,8 +23,4 @@ export class Player {
     get playerTag() {
         return this.#playerTag;
     }
-
-    // set playerTag(playerTag) {
-    //     this.#playerTag = playerTag;
-    // }
 }

@@ -1,6 +1,6 @@
-import { middlePositionsInside } from './middlePositionsInside';
-import { middlePositionsMiddle } from './middlePositionsMiddle';
-import { middlePositionsOutside } from './middlePositionsOutside';
+import { middlePositionsInside } from './middlePositionsInside.js';
+import { middlePositionsMiddle } from './middlePositionsMiddle.js';
+import { middlePositionsOutside } from './middlePositionsOutside.js';
 
 export class middlePositions {
     #outside;
