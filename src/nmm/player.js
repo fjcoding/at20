@@ -28,10 +28,6 @@ export class Player {
         return this.#numberCoinsRemoved;
     }
 
-    get bagMills() {
-        return this.#bagMills;
-    }
-
     updateNumberCoinsToPlay() {
         return this.#numberCoinsToPlay = this.#numberCoinsToPlay - 1;
     }
