@@ -30,15 +30,15 @@ while (gameStatus == 1) {
     availablePositions = inspector.validatePosition(newToken, verifiedPositions);
 
     if (availablePositions == 1) {
-        currentPlayer.discount();
         board[newToken[0]][newToken[1]] = currentPlayer.playerTag;//place a token on board
+        currentPlayer.discount();
         console.clear();
         console.log(grid.displayBoard(board));//display the new token
 
         positinonsToflip = inspector.checkMatchesToFlip(newToken, board, currentPlayer.playerTag);
         console.clear();
         console.log(grid.displayBoard(grid.updateBoard(board, positinonsToflip, positinonsToflip.length, currentPlayer.playerTag)));
-
+        //add a new object to subsitute this lines
         if (positinonsToflip.length != 0) {
             if (currentPlayer.playerTag == players[0].playerTag) {
                 currentPlayer = players[1];//white
@@ -62,7 +62,7 @@ while (gameStatus == 1) {
             }
         }
     } else {
-        console.log('\nInvalid position, enter valid position\n');
+        console.log('\nInvalid position, enter valid position\n');// bug here?
     }
 }
 console.log('Fin del juego');

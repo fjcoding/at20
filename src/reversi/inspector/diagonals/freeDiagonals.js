@@ -1,3 +1,4 @@
+import {getDiagonalLimit} from './getDiagonalLimit.js';
 export class freeDiagonals {
     #grid;
 
@@ -17,7 +18,8 @@ export class freeDiagonals {
         var sinX;
         var sinY;
         var step = 1;
-        var steps = 0;
+        var limit = new getDiagonalLimit();
+        var stepLimit = 0;
 
         if (currentTag == 'B') {
             var opTag = 'W';
@@ -33,48 +35,12 @@ export class freeDiagonals {
                         for (var signY = 0; signY < 2; signY++) {
                             sinX = (sign ** signX);
                             sinY = (sign ** signY);
-                            if (sinX + sinY == 2) {
-                                var max = Math.max(...[keyX, keyY]);
-                                steps = 7 - max;
-                                step = 1;
-                            } else if (sinX + sinY == -2) {
-                                var min = Math.min(...[keyX, keyY]);
-                                steps = min;
-                                step = 1;
-                            } else if (sinX > sinY && keyX >= keyY && keyX + keyY <= 7) {
-                                min = Math.min(...[keyX, keyY]);
-                                steps = min;
-                                step = 1;
-                            } else if (sinX > sinY && keyX < keyY && keyX + keyY <= 7) {
-                                max = Math.max(...[keyX, keyY]);
-                                steps = max;
-                                step = 1;
-                            } else if (sinX > sinY && keyX >= keyY && keyX + keyY > 7) {
-                                max = Math.max(...[keyX, keyY]);
-                                steps = 7 - max;
-                                step = 1;
-                            } else if (sinX > sinY && keyX < keyY && keyX + keyY > 7) {
-                                min = Math.min(...[keyX, keyY]);
-                                steps = 7 - min;
-                                step = 1;
-                            } else if (sinX < sinY && keyX >= keyY && keyX + keyY <= 7) {
-                                max = Math.max(...[keyX, keyY]);
-                                steps = max;
-                                step = 1;
-                            } else if (sinX < sinY && keyX < keyY && keyX + keyY <= 7) {
-                                min = Math.min(...[keyX, keyY]);
-                                steps = min;
-                                step = 1;
-                            } else if (sinX < sinY && keyX >= keyY && keyX + keyY > 7) {
-                                min = Math.min(...[keyX, keyY]);
-                                steps = 7 - min;
-                                step = 1;
-                            } else if (sinX < sinY && keyX < keyY && keyX + keyY > 7) {
-                                max = Math.max(...[keyX, keyY]);
-                                steps = 7 - max;
-                                step = 1;
-                            }
-                            while (step <= steps) {
+
+                            limit.getLimit(sinX, sinY, [keyX, keyY]);
+                            stepLimit = limit.maxSteps;
+                            step = limit.currentStep;
+
+                            while (step <= stepLimit) {
                                 if (this.#grid[keyX + sinX * step][keyY + sinY * step] == opTag) {
                                     oppCount += 1;
                                 }

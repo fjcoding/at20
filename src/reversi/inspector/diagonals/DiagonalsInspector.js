@@ -1,3 +1,4 @@
+import {getDiagonalLimit} from './getDiagonalLimit.js';
 export class DiagonalsInspector {
     #newTokenpos;
 
@@ -22,7 +23,8 @@ export class DiagonalsInspector {
         var sinX;
         var sinY;
         var step = 1;
-        var steps = 0;
+        var limit = new getDiagonalLimit();
+        var stepLimit = 0;
 
         if (ntValue == 'B') {
             var opValue = 'W';
@@ -35,49 +37,11 @@ export class DiagonalsInspector {
                 sinY = (sign ** signY);
                 traDiags = [];
 
-                if (sinX + sinY == 2) {
-                    var max = Math.max(...this.#newTokenpos);
-                    steps = 7 - max;
-                    step = 1;
-                } else if (sinX + sinY == -2) {
-                    var min = Math.min(...this.#newTokenpos);
-                    steps = min;
-                    step = 1;
-                } else if (sinX > sinY && ntxCoor >= ntyCoor && ntxCoor + ntyCoor <= 7) {
-                    min = Math.min(...this.#newTokenpos);
-                    steps = min;
-                    step = 1;
-                } else if (sinX > sinY && ntxCoor < ntyCoor && ntxCoor + ntyCoor <= 7) {
-                    max = Math.max(...this.#newTokenpos);
-                    steps = max;
-                    step = 1;
-                } else if (sinX > sinY && ntxCoor >= ntyCoor && ntxCoor + ntyCoor > 7) {
-                    max = Math.max(...this.#newTokenpos);
-                    steps = 7 - max;
-                    step = 1;
-                } else if (sinX > sinY && ntxCoor < ntyCoor && ntxCoor + ntyCoor > 7) {
-                    min = Math.min(...this.#newTokenpos);
-                    steps = 7 - min;
-                    step = 1;
-                } else if (sinX < sinY && ntxCoor >= ntyCoor && ntxCoor + ntyCoor <= 7) {
-                    max = Math.max(...this.#newTokenpos);
-                    steps = max;
-                    step = 1;
-                } else if (sinX < sinY && ntxCoor < ntyCoor && ntxCoor + ntyCoor <= 7) {
-                    min = Math.min(...this.#newTokenpos);
-                    steps = min;
-                    step = 1;
-                } else if (sinX < sinY && ntxCoor >= ntyCoor && ntxCoor + ntyCoor > 7) {
-                    min = Math.min(...this.#newTokenpos);
-                    steps = 7 - min;
-                    step = 1;
-                } else if (sinX < sinY && ntxCoor < ntyCoor && ntxCoor + ntyCoor > 7) {
-                    max = Math.max(...this.#newTokenpos);
-                    steps = 7 - max;
-                    step = 1;
-                }
+                limit.getLimit(sinX, sinY, this.#newTokenpos);
+                stepLimit = limit.maxSteps;
+                step = limit.currentStep;
 
-                while (step <= steps) {
+                while (step <= stepLimit) {
                     if (this.#grid[ntxCoor + sinX * step][ntyCoor + sinY * step] == opValue) {
                         traDiags.push([ntxCoor + sinX * step, ntyCoor + sinY * step]);
                     } else if (this.#grid[ntxCoor + sinX * step][ntyCoor + sinY * step] == ntValue) {
