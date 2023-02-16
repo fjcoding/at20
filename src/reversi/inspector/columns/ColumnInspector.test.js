@@ -72,3 +72,21 @@ test('Get possible coordinates to place a token of player W', () => {
     const newChecker = new ColumnInspector(newPosition, testMap, white.playerTag);
     expect(newChecker.possibleMovements()).toStrictEqual(whitePossiblePositions);
 });
+
+test('Bug 1: Specific possition doesnt registered', () => {
+    const white = new Player('W');
+    const newPosition = white.setToken(4, 2);// [posx,posy,tokens left,palyerTag]
+    const testMap = [
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', 'W', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    ];
+    const whitePossiblePositions = [[0, 2]];
+    const newChecker = new ColumnInspector(newPosition, testMap, white.playerTag);
+    expect(newChecker.possibleMovements()).toStrictEqual(whitePossiblePositions);
+});
