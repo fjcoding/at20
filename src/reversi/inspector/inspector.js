@@ -39,17 +39,14 @@ export class Inspector {
 
     validatePosition(tokenPosition, availablePositions) {
         const length = availablePositions.length;
-        var matchCount = 0;
+        var matchState = false;
         for (var index = 0; index < length; index++) {
             if (availablePositions[index][0] == tokenPosition[0] && availablePositions[index][1] == tokenPosition[1]) {
-                matchCount++;
+                matchState = true;
+                break;
             }
         }
-        if (matchCount >= 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return matchState;
     }
 
     countTokenForWinner(board) {
