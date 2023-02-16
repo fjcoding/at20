@@ -30,6 +30,10 @@ export class Game {
         this.#grid.renderBoard({ redPieces: this.#redPieces, whitePieces: this.#whitePieces });
     }
 
+    deletePiece(x, y) {
+        this.#grid.gridBoard[x][y] = null;
+    }
+
     createPieces () {
         for (let i = 0; i < Grid.ROW; i += 1) {
             for (let j = 0; j < Grid.COLUMN; j += 1) {

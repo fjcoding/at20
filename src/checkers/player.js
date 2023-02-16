@@ -35,6 +35,10 @@ export class Player {
         return this.#pieces;
     }
 
+    set pieces(pieces) {
+        this.#pieces = pieces;
+    }
+
     get pieceSelected() {
         return this.#pieceSelected;
     }
@@ -53,5 +57,9 @@ export class Player {
 
     movePiece(newPosition) {
         action.movePiece(this, newPosition);
+    }
+
+    killEnemyPiece(newPosition) {
+        action.killEnemyPiece(this, newPosition);
     }
 }

@@ -41,6 +41,50 @@ const isValidTargetPosition = (targetPosition, piece) => {
     return validPosition;
 };
 
+const killEnemyPiece = (player, targetPosition) => {
+    if (!isValidTargetPositionAfterKill(targetPosition, player.pieceSelected)) {
+        throw new Error('Invalid target position');
+    }
+    player.pieceSelected.x = targetPosition.x;
+    player.pieceSelected.y = targetPosition.y;
+    //TODO:revisar si se aplica a todos
+    const deleteX = targetPosition.x + 1;
+    const deleteY = targetPosition.y - 1;
+    player.game.deletePiece(deleteX, deleteY);
+};
+const isValidTargetPositionAfterKill = (targetPosition, piece) => {
+    if (!isValidPosition(targetPosition.x, targetPosition.y)) {
+        throw new Error('Invalid target position is outside of the grid');
+    }
+    const xOperator = piece.color == PIECE_COLOR.RED ? 2 : -2;
+    const validPositions = [{
+        y: piece.y + 2,
+        x: piece.x + xOperator
+    }, {
+        y: piece.y - 2,
+        x: piece.x + xOperator
+    }
+    ];
+    if (piece.getTypeChain === PIECE_TYPE.LADY) {
+        validPositions.push({
+            y: piece.y + 2,
+            x: piece.x - xOperator
+        }, {
+            y: piece.y - 2,
+            x: piece.x - xOperator
+        });
+    }
+
+    const validPosition = validPositions.find(position => {
+        if (position.x === targetPosition.x && position.y === targetPosition.y) {
+            return true;
+        }
+        return false;
+    });
+    return validPosition;
+};
+
+
 const selectPiece = (player, positions) => {
     if (!isValidPosition(positions.x, positions.y)) {
         throw new Error('Invalid position');
@@ -83,5 +127,5 @@ const getPlayerPiece = (player, positions) => {
 export const action = {
     selectPiece,
     movePiece,
-    isValidPosition
+    killEnemyPiece
 };

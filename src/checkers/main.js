@@ -55,7 +55,9 @@ const startGame = async (player1, player2) => {
             await command.inputForMovePiece(player1);
         }
         if (option == 'K') {
-            await command.inputForKillPiece();
+            await command.inputForKillPiece(player1);
+            player2.pieces--;
+            console.log(player2.pieces);
         }
 
         console.log('Player: ', player2.name, ' R');
@@ -69,7 +71,8 @@ const startGame = async (player1, player2) => {
             await command.inputForMovePiece(player2);
         }
         if (option == 'K') {
-            await command.inputForKillPiece();
+            await command.inputForKillPiece(player2);
+            player1.pieces--;
         }
     }
 };

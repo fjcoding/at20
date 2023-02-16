@@ -29,8 +29,7 @@ export class Command {
         x1 = parseInt(posX);
         posY = await this.askAndRead('Introduce a NEXT position after kill your enemy for move the piece in  Y  => ');
         y1 = parseInt(posY);
-        //metodo matar o comer, eliminar
-        player.movePiece({ x: x1, y: y1 });//reemplazar aqui esa action
+        player.killEnemyPiece({ x: x1, y: y1 });
         player.game.refreshGrid();
         console.log(player.game.showBoard());
     };
