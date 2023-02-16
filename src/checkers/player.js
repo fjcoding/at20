@@ -31,6 +31,10 @@ export class Player {
         return this.#pieceColor;
     }
 
+    get pieces() {
+        return this.#pieces;
+    }
+
     get pieceSelected() {
         return this.#pieceSelected;
     }
