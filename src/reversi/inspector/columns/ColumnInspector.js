@@ -10,19 +10,30 @@ export class ColumnInspector {
 
     #player;
 
+    #playerOposite;
+
     #up = -1;
 
     #down = 1;
+
+    #blackPlayer = 'B';
+
+    #whitePlayer = 'W';
 
     constructor(position, grid, player) {
         this.#grid = grid;
         this.#x = position[0];
         this.#y = position[1];
         this.#player = player;
+        if (this.#player == this.#blackPlayer) {
+            this.#playerOposite = this.#whitePlayer;
+        } else {
+            this.#playerOposite = this.#blackPlayer;
+        }
     }
 
-    findFlipPositions(pieces) {
-        //this.#grid[this.#x][this.#y] = this.#player;
+    findFlipPositions() {
+        let pieces =  [];
         pieces = this.#lookPieces(pieces, this.#up);
         pieces = this.#lookPieces(pieces, this.#down);
         return pieces;
@@ -34,16 +45,15 @@ export class ColumnInspector {
         positions = position.asPositionOnBoard();
         let possibleMoves = [];
         for (let i = 0; i < positions.length; i++) {
-            let x = positions[i][0];
-            let y = positions[i][1];
-            possibleMoves = this.lookPositions(possibleMoves, this.#up, x, y);
-            possibleMoves = this.lookPositions(possibleMoves, this.#down, x, y);
+            let cordX = positions[i][0];
+            let cordY = positions[i][1];
+            possibleMoves = this.#lookPositions(possibleMoves, this.#up, cordX, cordY);
+            possibleMoves = this.#lookPositions(possibleMoves, this.#down, cordX, cordY);
         }
         return possibleMoves;
     }
 
     #lookPieces(CordstoFlip, direction) {
-        let array = [];
         let checkPieces = [];
         let gridLimit = this.#gridYmax;
         if (direction == this.#up) {
@@ -57,21 +67,14 @@ export class ColumnInspector {
                 }
                 break;
             } else {
-                array = [key, this.#y];
-                checkPieces.push(array);
+                checkPieces.push([key, this.#y]);
             }
             key = key + direction;
         }
         return CordstoFlip;
     }
 
-    lookPositions (possibleMoves, direction, x, y) {
-        let playerOposite;
-        if (this.#player == 'B') {
-            playerOposite = 'W';
-        } else {
-            playerOposite = 'B';
-        }
+    #lookPositions (possibleMoves, direction, x, y) {
         let counter = 0;
         let gridLimit = this.#gridYmax + 1;
         if (direction == this.#up) {
@@ -82,16 +85,14 @@ export class ColumnInspector {
             key = 0;
         }
         while (key != gridLimit) {
-            if ((this.#grid[key][y]) == playerOposite) {
+            if ((this.#grid[key][y]) == this.#playerOposite) {
                 counter++;
             } else {
                 if ((this.#grid[key][y]) == this.#player) {
                     break;
                 } else {
                     if (counter > 0) {
-                        let arr = [];
-                        arr = [key, y];
-                        possibleMoves.push(arr);
+                        possibleMoves.push([key, y]);
                         break;
                     }
                     break;
