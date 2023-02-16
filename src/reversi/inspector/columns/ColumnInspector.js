@@ -1,73 +1,65 @@
 import { positionOnBoard } from '../../board/positionOnBoard.js';
 export class ColumnInspector {
-    #gridYmax = 7;
-
     #grid;
 
-    #x;
+    #playerPosition = [];
 
-    #y;
-
-    #player;
+    #actualPlayer;
 
     #playerOposite;
 
-    #up = -1;
+    #directionToLook = [-1, 1]; //up: -1, down: 1;
 
-    #down = 1;
-
-    #blackPlayer = 'B';
-
-    #whitePlayer = 'W';
+    #playerSymbol = ['B', 'W']; //black: B, white: W
 
     constructor(position, grid, player) {
         this.#grid = grid;
-        this.#x = position[0];
-        this.#y = position[1];
-        this.#player = player;
-        if (this.#player == this.#blackPlayer) {
-            this.#playerOposite = this.#whitePlayer;
+        this.#playerPosition[0] = position[0];
+        this.#playerPosition[1] = position[1];
+        this.#actualPlayer = player;
+        if (this.#actualPlayer == this.#playerSymbol[0]) {
+            this.#playerOposite = this.#playerSymbol[1];
         } else {
-            this.#playerOposite = this.#blackPlayer;
+            this.#playerOposite = this.#playerSymbol[0];
         }
     }
 
     findFlipPositions() {
         let pieces =  [];
-        pieces = this.#lookPieces(pieces, this.#up);
-        pieces = this.#lookPieces(pieces, this.#down);
+        pieces = this.#lookPieces(pieces, this.#directionToLook[0]);
+        pieces = this.#lookPieces(pieces, this.#directionToLook[1]);
         return pieces;
     }
 
     possibleMovements () {
-        const position = new positionOnBoard(this.#grid, this.#player);
+        const position = new positionOnBoard(this.#grid, this.#actualPlayer);
         let positions = [];
         positions = position.asPositionOnBoard();
         let possibleMoves = [];
         for (let i = 0; i < positions.length; i++) {
             let cordX = positions[i][0];
             let cordY = positions[i][1];
-            possibleMoves = this.#lookPositions(possibleMoves, this.#up, cordX, cordY);
-            possibleMoves = this.#lookPositions(possibleMoves, this.#down, cordX, cordY);
+            possibleMoves = this.#lookPositions(possibleMoves, this.#directionToLook[0], cordX, cordY);
+            possibleMoves = this.#lookPositions(possibleMoves, this.#directionToLook[1], cordX, cordY);
         }
         return possibleMoves;
     }
 
     #lookPieces(CordstoFlip, direction) {
         let checkPieces = [];
-        let gridLimit = this.#gridYmax;
-        if (direction == this.#up) {
+        let gridLimit = this.#grid.length - 1;
+        if (direction == this.#directionToLook[0]) {
             gridLimit = 0;
         }
-        let key = this.#x + direction;
+        let key = this.#playerPosition[0] + direction;
         while (key != gridLimit) {
-            if ((this.#grid[key][this.#y]) == this.#player || (this.#grid[key][this.#y] == 0)) {
-                if (this.#grid[key][this.#y] == this.#player) {
+            if ((this.#grid[key][this.#playerPosition[1]]) == this.#actualPlayer || (this.#grid[key][this.#playerPosition[1]] == 0)) {
+                if (this.#grid[key][this.#playerPosition[1]] == this.#actualPlayer) {
                     CordstoFlip = checkPieces;
                 }
                 break;
             } else {
-                checkPieces.push([key, this.#y]);
+                checkPieces.push([key, this.#playerPosition[1]]);
             }
             key = key + direction;
         }
@@ -76,8 +68,8 @@ export class ColumnInspector {
 
     #lookPositions (possibleMoves, direction, x, y) {
         let counter = 0;
-        let gridLimit = this.#gridYmax + 1;
-        if (direction == this.#up) {
+        let gridLimit = this.#grid.length;
+        if (direction == this.#directionToLook[0]) {
             gridLimit = 0;
         }
         let key = x + direction;
@@ -88,7 +80,7 @@ export class ColumnInspector {
             if ((this.#grid[key][y]) == this.#playerOposite) {
                 counter++;
             } else {
-                if ((this.#grid[key][y]) == this.#player) {
+                if ((this.#grid[key][y]) == this.#actualPlayer) {
                     break;
                 } else {
                     if (counter > 0) {
