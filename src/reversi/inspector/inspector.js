@@ -52,7 +52,7 @@ export class Inspector {
         }
     }
 
-    finalCount(board) {
+    countTokenForWinner(board) {
         var whiteCount = 0;
         var blackCount = 0;
         var white = 'W';
