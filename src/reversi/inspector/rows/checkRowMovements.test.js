@@ -1,4 +1,4 @@
-import {checkRowPossibleMovements} from './checkRowPossibleMovements';
+import {checkRowPossibleMovements} from './checkRowMovements';
 describe('Check for plays on the rows', () => {
     it('for black', () => {
         const players = 'B';
@@ -13,7 +13,7 @@ describe('Check for plays on the rows', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
         const moves = new checkRowPossibleMovements(initialMap, players);//
-        expect(moves.checkRow()).toStrictEqual([[3, 7], [4, 5], [3, 0]]);//
+        expect(moves.checkPossibleMoves()).toStrictEqual([[3, 0], [3, 7], [4, 5]]);//
     });
     it('for white', () => {
         const players = 'W';
@@ -28,57 +28,6 @@ describe('Check for plays on the rows', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
         const moves = new checkRowPossibleMovements(initialMap, players);//
-        expect(moves.checkRow()).toStrictEqual([[2, 6], [3, 1]]);//
-    });
-});
-
-describe('Check is the movement is possible', () => {
-    it('for black', () => {
-        const players = 'B';
-        const initialMap = [
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', 'W', 'W', 'W', 'W', 'B', 'W', ' '],
-            [' ', ' ', ' ', 'B', 'W', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-        ];
-        const moves = new checkRowPossibleMovements(initialMap, players);//
-        const objectMoves = moves.asPossibleMovement();
-        expect(moves.asPossibleMovement()).toStrictEqual(objectMoves);//
-    });
-    it('for white', () => {
-        const players = 'W';
-        const initialMap = [
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', 'B', 'B', 'W', ' ', ' ', ' '],
-            [' ', ' ', 'W', 'W', 'W', 'B', 'W', ' '],
-            [' ', ' ', ' ', 'B', 'W', ' ', ' ', ' '],
-            [' ', ' ', 'W', 'B', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-        ];
-        const moves = new checkRowPossibleMovements(initialMap, players);//
-        const objectMoves = moves.asPossibleMovement();
-        expect(moves.asPossibleMovement()).toStrictEqual(objectMoves);//
-    });
-    it('0 moves for white', () => {
-        const players = 'W';
-        const initialMap = [
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', 'B', 'B', ' ', ' ', ' ', ' '],
-            [' ', ' ', 'W', 'W', 'W', 'B', 'W', ' '],
-            [' ', ' ', ' ', ' ', 'W', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-        ];
-        const moves = new checkRowPossibleMovements(initialMap, players);//
-        const move = moves.asPossibleMovement();
-        expect(move).toStrictEqual([]);//
+        expect(moves.checkPossibleMoves()).toStrictEqual([[3, 1], [2, 6]]);//
     });
 });
