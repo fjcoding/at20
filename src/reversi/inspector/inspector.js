@@ -1,8 +1,6 @@
 
 import {checkRowPossibleMovements} from './rows/checkRowPossibleMovements.js';
 import {freeDiagonals} from './diagonals/freeDiagonals.js';
-
-
 import {ColumnInspector} from './columns/ColumnInspector.js';
 import {RowInspector} from './rows/RowInspector.js';
 import {DiagonalsInspector} from './diagonals/DiagonalsInspector.js';
@@ -23,12 +21,10 @@ export class Inspector {
         var verifyDiagonals;
         var availablePositions = [];
         var position = [0, 0];
-
         verifyRow = new checkRowPossibleMovements(boardTocheck, player);
         verifyColumn = new ColumnInspector(position, boardTocheck, player);
         verifyDiagonals = new freeDiagonals(boardTocheck, player);
         availablePositions = availablePositions.concat(verifyRow.possibleMoves(), verifyColumn.possibleMovements(), verifyDiagonals.checkPossibleMoves());
-        //availablePositions = availablePositions.concat(verifyDiagonals.checkPossibleMoves());
         return availablePositions;
     }
 
