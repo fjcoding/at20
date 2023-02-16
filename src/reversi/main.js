@@ -40,7 +40,7 @@ while (gameOver == false) {
     newToken = currentPlayer.setToken(rowCoordinate, columnCoordinate);
     availablePositions = inspector.validatePosition(newToken, verifiedPositions);
 
-    if (availablePositions == 1) {
+    if (availablePositions == true) {
         currentPlayer.discount();
         board[newToken[0]][newToken[1]] = currentPlayer.playerTag;//place a token on board
 
