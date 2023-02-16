@@ -15,7 +15,7 @@ describe('Check for coincidences in rows with a new piece on the board', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
         const newFlip = new getPiecesToFlip();//
-        expect(newFlip.getPiecesToFlipRigth(position,initialMap,player)).toStrictEqual([[3, 3], [3, 4]]);//
+        expect(newFlip.getPiecesToFlipRigth(position, initialMap, player)).toStrictEqual([[3, 3], [3, 4]]);//
     });
     it('white piece on 4,5', () => {
         const player = 'W';
@@ -32,6 +32,6 @@ describe('Check for coincidences in rows with a new piece on the board', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
         const newFlip = new getPiecesToFlip();//
-        expect(newFlip.getPiecesToFlipLeft(position,initialMap,player)).toStrictEqual([[4, 4]]);//
+        expect(newFlip.getPiecesToFlipLeft(position, initialMap, player)).toStrictEqual([[4, 4]]);//
     });
 });

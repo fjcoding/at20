@@ -1,9 +1,8 @@
 export class getPiecesToFlip {
-
     getPiecesToFlipRigth(position, grid, player) {
         var gridXmax = 7;
         var y = position[1];
-        var x=position[0];
+        var x = position[0];
         var flip = [];
         var checkPieces = [];
         for (var index = y + 1; index < gridXmax; index++) {
@@ -22,8 +21,8 @@ export class getPiecesToFlip {
     }
 
     getPiecesToFlipLeft(position, grid, player) {
-       var y = position[1];
-        var x=position[0];
+        var y = position[1];
+        var x = position[0];
         var flip = [];
         var checkPieces = [];
         for (var index = y - 1; index > 0; index--) {
@@ -40,5 +39,4 @@ export class getPiecesToFlip {
         }
         return flip;
     }
-
 }
