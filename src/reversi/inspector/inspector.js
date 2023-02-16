@@ -1,5 +1,5 @@
 
-import {checkRowPossibleMovements} from './rows/checkRowPossibleMovements.js';
+import {checkRowPossibleMovements} from './rows/checkRowMovements.js';
 import {freeDiagonals} from './diagonals/freeDiagonals.js';
 import {ColumnInspector} from './columns/ColumnInspector.js';
 import {RowInspector} from './rows/RowInspector.js';
@@ -10,11 +10,6 @@ export class Inspector {
 
     #turnPlayer;
 
-    // constructor(turnPlayer, playerTag) {
-    //     this.#turnPlayer=turnPlayer;
-    //     super (playerTag);
-    // }
-
     checkPossiblePositions(boardTocheck, player) {
         var verifyColumn;
         var verifyRow;
@@ -24,7 +19,7 @@ export class Inspector {
         verifyRow = new checkRowPossibleMovements(boardTocheck, player);
         verifyColumn = new ColumnInspector(position, boardTocheck, player);
         verifyDiagonals = new freeDiagonals(boardTocheck, player);
-        availablePositions = availablePositions.concat(verifyRow.possibleMoves(), verifyColumn.possibleMovements(), verifyDiagonals.checkPossibleMoves());
+        availablePositions = availablePositions.concat(verifyRow.checkPossibleMoves(), verifyColumn.possibleMovements(), verifyDiagonals.checkPossibleMoves());
         return availablePositions;
     }
 
