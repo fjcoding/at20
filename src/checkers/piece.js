@@ -11,7 +11,7 @@ export class Piece {
         this.#color = color;
         this.#x = x;
         this.#y = y;
-        this.#typeChain = 'pawn';
+        this.#typeChain = TYPE.PAWN;
     }
 
     get x() {
@@ -48,6 +48,16 @@ export class Piece {
     }
 
     makeLady() {
-        this.#typeChain = 'lady';
+        this.#typeChain = TYPE.LADY;
     }
 }
+
+export const TYPE = {
+    PAWN: 'pawn',
+    LADY: 'lady',
+};
+
+export const COLOR = {
+    RED: 'red',
+    BLACK: 'black',
+};

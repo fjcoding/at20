@@ -1,3 +1,4 @@
+import { TYPE as PIECE_TYPE, COLOR as PIECE_COLOR } from './piece.js';
 
 const movePiece = (player, targetPosition) => {
     if (!isValidTargetPosition(targetPosition, player.pieceSelected)) {
@@ -12,16 +13,25 @@ const isValidTargetPosition = (targetPosition, piece) => {
     if (!isValidPosition(targetPosition.x, targetPosition.y)) {
         throw new Error('Invalid target position is outside of the grid');
     }
-    const xOperator = piece.color == 'red' ? 1 : -1;
+    const xOperator = piece.color == PIECE_COLOR.RED ? 1 : -1;
     const validPositions = [{
         y: piece.y + 1,
         x: piece.x + xOperator
     }, {
         y: piece.y - 1,
         x: piece.x + xOperator
-
     }
     ];
+    if (piece.getTypeChain === PIECE_TYPE.LADY) {
+        validPositions.push({
+            y: piece.y + 1,
+            x: piece.x - xOperator
+        }, {
+            y: piece.y - 1,
+            x: piece.x - xOperator
+        });
+    }
+
     const validPosition = validPositions.find(position => {
         if (position.x === targetPosition.x && position.y === targetPosition.y) {
             return true;
