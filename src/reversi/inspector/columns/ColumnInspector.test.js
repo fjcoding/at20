@@ -41,7 +41,7 @@ test('Check for column white pieces between two white ', () => {
 
 test('Get possible coordinates to place a token of player B', () => {
     const black = new Player('B');
-    const newPosition = black.setToken(7, 4);// [posx,posy,tokens left,palyerTag]
+    const newPosition = black.setToken(3, 4);// [posx,posy,tokens left,palyerTag]
     const testMap = [
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
