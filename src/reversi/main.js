@@ -1,6 +1,8 @@
-import {Player} from './player.js';
-import {Grid} from './board/grid.js';
+import { Player } from './player.js';
+import { Grid } from './board/grid.js';
 import { Inspector } from './inspector/inspector.js';
+import { Turn } from './controlTurn.js';
+import { GameOver } from './gameOverCoditions.js';
 import promptSync from 'prompt-sync';
 
 const Player1 =  new Player('B');
@@ -9,7 +11,8 @@ const prompt = promptSync();
 const grid = new Grid();
 var board = grid.gridInit();
 var inspector = new Inspector();
-console.log(grid.displayBoard(board));
+var isGameOver = new GameOver();
+var isTurn = new Turn();
 
 var newToken;
 var positinonsToflip = 0;
@@ -17,10 +20,18 @@ var verifiedPositions = 0;
 var availablePositions;
 var players = [Player1, Player2];
 var currentPlayer = players[0];
-var gameStatus = 1;
+var gameOver = false;
+var thereAreZeroTokens = false;
+var thereAreZeroMoves =  false;
 
-while (gameStatus == 1) {
+console.log(grid.displayBoard(board));
+
+while (gameOver == false) {
     verifiedPositions  = inspector.checkPossiblePositions(board, currentPlayer.playerTag);
+    console.clear();
+    console.log(grid.displayBoard(board));//display the new token
+    console.log (players[0].tokenCount, players[1].tokenCount); // Borrar
+    console.log (gameOver); //Borrar
     console.log(verifiedPositions);
     console.log('It is player ' + currentPlayer.playerTag + ' turn');
     var rowCoordinate = parseInt(prompt('Enter the row coordinate '));
@@ -30,42 +41,28 @@ while (gameStatus == 1) {
     availablePositions = inspector.validatePosition(newToken, verifiedPositions);
 
     if (availablePositions == 1) {
-        board[newToken[0]][newToken[1]] = currentPlayer.playerTag;//place a token on board
         currentPlayer.discount();
-        console.clear();
-        console.log(grid.displayBoard(board));//display the new token
+        board[newToken[0]][newToken[1]] = currentPlayer.playerTag;//place a token on board
 
+        console.clear();
         positinonsToflip = inspector.checkMatchesToFlip(newToken, board, currentPlayer.playerTag);
         console.clear();
         console.log(grid.displayBoard(grid.updateBoard(board, positinonsToflip, positinonsToflip.length, currentPlayer.playerTag)));
-        //add a new object to subsitute this lines
-        if (positinonsToflip.length != 0) {
-            if (currentPlayer.playerTag == players[0].playerTag) {
-                currentPlayer = players[1];//white
-            } else {
-                currentPlayer = players[0];//black
-            }
-        }
 
+        currentPlayer = players[(isTurn.assignTurn(positinonsToflip, currentPlayer.playerTag))];
         verifiedPositions  = inspector.checkPossiblePositions(board, currentPlayer.playerTag);
+        currentPlayer = players[isTurn.switchPlayerWithoutMoves(verifiedPositions, currentPlayer.playerTag)];
 
-        if (verifiedPositions.length == 0 || (players[0].tokenCount == 0 && players[1].tokenCount == 0)) {
-            if (players[0].tokenCount == 0 && players[1].tokenCount == 0) {
-                gameStatus = 0;
-                console.log('No more moves');
-            }
+        thereAreZeroTokens = isGameOver.playersWithoutTokens(players[0].tokenCount, players[1].tokenCount);
+        thereAreZeroMoves = isGameOver.playersWithoutMoves(inspector.checkPossiblePositions(board, players[0].playerTag).length,
+            inspector.checkPossiblePositions(board, players[1].playerTag).length);
 
-            if (currentPlayer.playerTag == players[0].playerTag) {
-                currentPlayer = players[1];//white
-            } else {
-                currentPlayer = players[0];//black
-            }
-        }
+        gameOver = isGameOver.whenIsGameOver(thereAreZeroTokens, thereAreZeroMoves);
     } else {
-        console.log('\nInvalid position, enter valid position\n');// bug here?
+        console.log('\nInvalid position, enter valid position\n');
     }
 }
-console.log('Fin del juego');
-console.log(inspector.finalCount(board));
+console.log('GAME OVER');
+console.log(inspector.countTokenForWinner(board));
 
 
