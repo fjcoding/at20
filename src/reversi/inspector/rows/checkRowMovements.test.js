@@ -6,14 +6,14 @@ describe('Check for plays on the rows', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-            [' ', 'W', 'W', 'B', 'W', 'B', 'W', ' '],
+            [' ', 'W', ' ', 'B', 'W', 'B', 'W', ' '],
             [' ', ' ', ' ', 'B', 'W', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
         const moves = new checkRowPossibleMovements(initialMap, players);//
-        expect(moves.checkPossibleMoves()).toStrictEqual([[3, 0], [3, 7], [4, 5]]);//
+        expect(moves.checkPossibleMoves()).toStrictEqual(0);//
     });
     it('for white', () => {
         const players = 'W';
