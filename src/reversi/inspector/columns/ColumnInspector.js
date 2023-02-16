@@ -70,7 +70,7 @@ export class ColumnInspector {
         let counter = 0;
         let gridLimit = this.#grid.length;
         if (direction == this.#directionToLook[0]) {
-            gridLimit = 0;
+            gridLimit = -1;
         }
         let key = x + direction;
         if (key < 0) {
