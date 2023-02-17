@@ -30,8 +30,7 @@ while (gameOver == false) {
     verifiedPositions  = inspector.checkPossiblePositions(board, currentPlayer.playerTag);
     console.clear();
     console.log(grid.displayBoard(board));//display the new token
-    console.log (players[0].tokenCount, players[1].tokenCount); // Borrar
-    console.log (gameOver); //Borrar
+    console.log (' Turn Left to B: ', players[0].tokenCount, '\n', 'Turn Left to W: ', players[1].tokenCount); // Borrar
     console.log(verifiedPositions);
     console.log('It is player ' + currentPlayer.playerTag + ' turn');
     var rowCoordinate = parseInt(prompt('Enter the row coordinate '));
