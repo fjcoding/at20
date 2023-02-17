@@ -1,24 +1,13 @@
 import {getDiagonalLimit} from './getDiagonalLimit.js';
-export class DiagonalsInspector {
-    #newTokenpos;
-
-    #grid;
-
-    #playtag;
-
-
-    constructor(newTokenpos, grid, playtag) {
-        this.#newTokenpos = newTokenpos;
-        this.#grid = grid;
-        this.#playtag = playtag;
-    }
-
-    check() {
-        var ntxCoor = this.#newTokenpos[0];
-        var ntyCoor = this.#newTokenpos[1];
-        var ntValue = this.#playtag;
+import {DiagonalPossibleMoves} from './DiagonalPossibleMoves.js';
+export class DiagonalsInspector extends DiagonalPossibleMoves {
+    findPositionsToFlip(newTokenpos, grid, playtag) {
+        super.findPositionsToFlip;
+        var ntxCoor = newTokenpos[0];
+        var ntyCoor = newTokenpos[1];
+        var ntValue = playtag;
         var newDiags = [];
-        var traDiags = [];
+        var tempDiags = [];
         var sign = -1;
         var sinX;
         var sinY;
@@ -35,21 +24,21 @@ export class DiagonalsInspector {
             for (var signY = 0; signY < 2; signY++) {
                 sinX = (sign ** signX);
                 sinY = (sign ** signY);
-                traDiags = [];
+                tempDiags = [];
 
-                limit.getLimit(sinX, sinY, this.#newTokenpos);
+                limit.getLimit(sinX, sinY, newTokenpos);
                 stepLimit = limit.maxSteps;
                 step = limit.currentStep;
 
                 while (step <= stepLimit) {
-                    if (this.#grid[ntxCoor + sinX * step][ntyCoor + sinY * step] == opValue) {
-                        traDiags.push([ntxCoor + sinX * step, ntyCoor + sinY * step]);
-                    } else if (this.#grid[ntxCoor + sinX * step][ntyCoor + sinY * step] == ntValue) {
-                        newDiags = newDiags.concat(traDiags);
-                        traDiags = [];
+                    if (grid[ntxCoor + sinX * step][ntyCoor + sinY * step] == opValue) {
+                        tempDiags.push([ntxCoor + sinX * step, ntyCoor + sinY * step]);
+                    } else if (grid[ntxCoor + sinX * step][ntyCoor + sinY * step] == ntValue) {
+                        newDiags = newDiags.concat(tempDiags);
+                        tempDiags = [];
                         break;
-                    } else if (this.#grid[ntxCoor + sinX * step][ntyCoor + sinY * step] == ' ') {
-                        traDiags = [];
+                    } else if (grid[ntxCoor + sinX * step][ntyCoor + sinY * step] == ' ') {
+                        tempDiags = [];
                         break;
                     }
                     step += 1;
