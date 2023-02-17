@@ -1,5 +1,5 @@
-import {freeDiagonals} from './freeDiagonals';
-import {Player} from '../../player';
+import {DiagonalsInspector} from './DiagonalsInspector';
+import {Player} from '../../player.js';
 
 
 test('Check for possible positions to place a black token diagonally', () => {
@@ -16,8 +16,8 @@ test('Check for possible positions to place a black token diagonally', () => {
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
 
-    const positions = new freeDiagonals(Map, playerTag);
-    expect(positions.checkPossibleMoves()).toStrictEqual([[6, 6], [7, 1], [2, 6], [2, 2]]);// B's initial position is 4,4// result should be [[6,6],[7,1] ,[2,6] ,[2,2]]
+    const positions = new DiagonalsInspector();
+    expect(positions.checkPossibleMoves(Map, playerTag)).toStrictEqual([[6, 6], [7, 1], [2, 6], [2, 2]]);// B's initial position is 4,4// result should be [[6,6],[7,1] ,[2,6] ,[2,2]]
 });
 
 
@@ -34,8 +34,8 @@ test('Check for possible positions to place a white token diagonally', () => {
         [' ', ' ', 'B', ' ', ' ', 'W', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const positions = new freeDiagonals(Map, playerTag);
-    expect(positions.checkPossibleMoves()).toStrictEqual([[6, 6], [7, 1], [2, 6], [2, 2]]);
+    const positions = new DiagonalsInspector();
+    expect(positions.checkPossibleMoves(Map, playerTag)).toStrictEqual([[6, 6], [7, 1], [2, 6], [2, 2]]);
 });
 
 
@@ -52,8 +52,8 @@ test('Check for possible positions to place a white token diagonally which is pl
         [' ', ' ', ' ', ' ', ' ', 'W', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const positions = new freeDiagonals(Map, playerTag);
-    expect(positions.checkPossibleMoves()).toStrictEqual([[5, 7], [6, 2], [1, 7], [1, 3]]);
+    const positions = new DiagonalsInspector();
+    expect(positions.checkPossibleMoves(Map, playerTag)).toStrictEqual([[5, 7], [6, 2], [1, 7], [1, 3]]);
 });
 
 
@@ -71,8 +71,8 @@ test('Check for possible positions to place a black token diagonally which is pl
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
 
-    const positions = new freeDiagonals(Map, playerTag);
-    expect(positions.checkPossibleMoves()).toStrictEqual([[7, 7], [7, 3], [3, 7], [2, 2]]);
+    const positions = new DiagonalsInspector();
+    expect(positions.checkPossibleMoves(Map, playerTag)).toStrictEqual([[7, 7], [7, 3], [3, 7], [2, 2]]);
 });
 
 test('Check for possible positions to place a white token diagonally with multiple tokens', () => {
@@ -88,6 +88,6 @@ test('Check for possible positions to place a white token diagonally with multip
         [' ', ' ', ' ', ' ', ' ', 'W', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const positions = new freeDiagonals(Map, playerTag);
-    expect(positions.checkPossibleMoves()).toStrictEqual([[5, 7], [6, 2], [1, 7], [1, 3], [6, 4], [1, 5]]);//for positions 3,5 and 4,2
+    const positions = new DiagonalsInspector();
+    expect(positions.checkPossibleMoves(Map, playerTag)).toStrictEqual([[5, 7], [6, 2], [1, 7], [1, 3], [6, 4], [1, 5]]);//for positions 3,5 and 4,2
 });

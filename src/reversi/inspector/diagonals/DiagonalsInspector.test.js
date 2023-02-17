@@ -17,8 +17,8 @@ test('Check for coincidences in the negative diagonal where there is 1 match wit
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'B'],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken, resultMap, blackTag);
-    expect(newFlip.check()).toStrictEqual([[2, 3], [3, 4], [4, 5], [5, 6]]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken, resultMap, blackTag)).toStrictEqual([[2, 3], [3, 4], [4, 5], [5, 6]]);
 });
 
 test('Check for coincidences where there is more than 1 match in the positive direction', () => {
@@ -35,8 +35,8 @@ test('Check for coincidences where there is more than 1 match in the positive di
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken, resultMap, whiteTag);
-    expect(newFlip.check()).toStrictEqual([[3, 4], [4, 5], [5, 6], [1, 2]]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken, resultMap, whiteTag)).toStrictEqual([[3, 4], [4, 5], [5, 6], [1, 2]]);
 });
 
 test('Check for coincidences where there are none', () => {
@@ -53,8 +53,8 @@ test('Check for coincidences where there are none', () => {
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken, resultMap, whiteTag);
-    expect(newFlip.check()).toStrictEqual([]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken, resultMap, whiteTag)).toStrictEqual([]);
 });
 
 
@@ -72,8 +72,8 @@ test('Check for coincidences when there are none', () => {
         [' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken,  resultMap, blackTag);
-    expect(newFlip.check()).toStrictEqual([]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken,  resultMap, blackTag)).toStrictEqual([]);
 });
 
 test('Check for coincidences in the negative and positive diagonal where there is more than 1 match', () => {
@@ -90,8 +90,8 @@ test('Check for coincidences in the negative and positive diagonal where there i
         [' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken, resultMap, blackTag);
-    expect(newFlip.check()).toStrictEqual([[3, 3], [3, 1]]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken, resultMap, blackTag)).toStrictEqual([[3, 3], [3, 1]]);
 });
 
 
@@ -111,7 +111,7 @@ test('Check for coincidences with a black token where x<y and x+y>7', () => {
     ];
 
     const newFlip = new DiagonalsInspector(newToken,  resultMap, blackTag);
-    expect(newFlip.check()).toStrictEqual([[3, 5], [4, 4], [5, 3], [1, 5]]);//
+    expect(newFlip.findPositionsToFlip(newToken,  resultMap, blackTag)).toStrictEqual([[3, 5], [4, 4], [5, 3], [1, 5]]);//
 });
 test('Check for coincidences with a white token where x>=y and x+y<=7 ', () => {
     const white = new Player('W');
@@ -127,8 +127,8 @@ test('Check for coincidences with a white token where x>=y and x+y<=7 ', () => {
         [' ', 'B', 'B', ' ', 'B', 'W', ' ', 'W'],
         ['W', 'W', ' ', ' ', ' ', 'W', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken, resultMap, whiteTag);
-    expect(newFlip.check()).toStrictEqual([[5, 4], [5, 2], [6, 1]]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken, resultMap, whiteTag)).toStrictEqual([[5, 4], [5, 2], [6, 1]]);
 });
 
 test('Check for coincidences with a white token where x<y and x+y>7 ', () => {
@@ -145,8 +145,8 @@ test('Check for coincidences with a white token where x<y and x+y>7 ', () => {
         [' ', ' ', 'B', ' ', 'B', 'B', ' ', 'W'],
         [' ', 'W', ' ', ' ', 'W', 'W', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken, resultMap, whiteTag);
-    expect(newFlip.check()).toStrictEqual([[6, 5], [4, 5], [3, 4]]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken, resultMap, whiteTag)).toStrictEqual([[6, 5], [4, 5], [3, 4]]);
 });
 
 test('Check for coincidences with a white token where x<y and x+y>7 ', () => {
@@ -163,8 +163,8 @@ test('Check for coincidences with a white token where x<y and x+y>7 ', () => {
         [' ', ' ', 'B', ' ', 'B', ' ', ' ', 'W'],
         [' ', 'W', ' ', ' ', ' ', 'W', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken, resultMap, whiteTag);
-    expect(newFlip.check()).toStrictEqual([[6, 4], [6, 2], [4, 2]]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken, resultMap, whiteTag)).toStrictEqual([[6, 4], [6, 2], [4, 2]]);
 });
 
 
@@ -182,8 +182,8 @@ test('Check for coincidences with a black token where x>=y and x+y>7s', () => {
         [' ', ' ', 'B', ' ', 'B', ' ', 'W', 'W'],
         [' ', 'W', ' ', 'W', ' ', 'W', ' ', 'B']
     ];
-    const newFlip = new DiagonalsInspector(newToken,  resultMap, blackTag);
-    expect(newFlip.check()).toStrictEqual([[6, 6]]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken,  resultMap, blackTag)).toStrictEqual([[6, 6]]);
 });
 
 
@@ -201,8 +201,8 @@ test('Check for coincidences with a black token where x>=y and x+y>7s towards th
         [' ', ' ', 'B', ' ', 'B', ' ', 'W', 'W'],
         [' ', 'W', ' ', 'W', ' ', 'W', ' ', 'B']
     ];
-    const newFlip = new DiagonalsInspector(newToken,  resultMap, blackTag);
-    expect(newFlip.check()).toStrictEqual([[6, 6], [4, 6]]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken,  resultMap, blackTag)).toStrictEqual([[6, 6], [4, 6]]);
 });
 
 test('Check for coincidences with a white token where x>=y and x+y>7 towards the up right side', () => {
@@ -219,8 +219,8 @@ test('Check for coincidences with a white token where x>=y and x+y>7 towards the
         [' ', ' ', 'B', ' ', 'B', ' ', ' ', 'W'],
         [' ', 'W', ' ', 'W', ' ', 'W', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken, resultMap, whiteTag);
-    expect(newFlip.check()).toStrictEqual([[6, 4], [6, 2]]);
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken, resultMap, whiteTag)).toStrictEqual([[6, 4], [6, 2]]);
 });
 
 test('Check for coincidences with a black token any direction', () => {
@@ -237,8 +237,8 @@ test('Check for coincidences with a black token any direction', () => {
         ['B', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken,  resultMap, blackTag);
-    expect(newFlip.check()).toStrictEqual([[4, 4], [4, 2], [5, 1], [2, 4], [1, 5], [2, 2]]);//
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken,  resultMap, blackTag)).toStrictEqual([[4, 4], [4, 2], [5, 1], [2, 4], [1, 5], [2, 2]]);//
 });
 
 
@@ -256,8 +256,8 @@ test('Check for coincidences with a black token any direction', () => {
         ['B', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken,  resultMap, blackTag);
-    expect(newFlip.check()).toStrictEqual([[3, 5], [1, 5]]);//
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken,  resultMap, blackTag)).toStrictEqual([[3, 5], [1, 5]]);//
 });
 
 
@@ -275,8 +275,8 @@ test('Check for coincidences for position x=4, y=5 with a black token in any dir
         ['B', ' ', 'B', 'B', ' ', ' ', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
-    const newFlip = new DiagonalsInspector(newToken,  resultMap, blackTag);
-    expect(newFlip.check()).toStrictEqual([[5, 4], [3, 6], [3, 4]]);//
+    const newFlip = new DiagonalsInspector();
+    expect(newFlip.findPositionsToFlip(newToken,  resultMap, blackTag)).toStrictEqual([[5, 4], [3, 6], [3, 4]]);//
 });
 
 

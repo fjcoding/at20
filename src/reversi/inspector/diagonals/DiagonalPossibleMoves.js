@@ -1,17 +1,7 @@
 import {getDiagonalLimit} from './getDiagonalLimit.js';
-export class freeDiagonals {
-    #grid;
-
-    #playtag;
-
-
-    constructor(grid, playtag) {
-        this.#grid = grid;
-        this.#playtag = playtag;
-    }
-
-    checkPossibleMoves() {
-        var currentTag = this.#playtag;
+export class DiagonalPossibleMoves {
+    checkPossibleMoves(grid, playtag) {
+        var currentTag = playtag;
         var possDiags = [];
         var oppCount = 0;
         var sign = -1;
@@ -30,7 +20,7 @@ export class freeDiagonals {
 
         for (var keyX = 0; keyX < 8; keyX++) {
             for (var keyY = 0; keyY < 8; keyY++) {
-                if (this.#grid[keyX][keyY] == currentTag) {
+                if (grid[keyX][keyY] == currentTag) {
                     for (var signX = 0; signX < 2; signX++) {
                         for (var signY = 0; signY < 2; signY++) {
                             sinX = (sign ** signX);
@@ -41,19 +31,19 @@ export class freeDiagonals {
                             step = limit.currentStep;
 
                             while (step <= stepLimit) {
-                                if (this.#grid[keyX + sinX * step][keyY + sinY * step] == opTag) {
+                                if (grid[keyX + sinX * step][keyY + sinY * step] == opTag) {
                                     oppCount += 1;
                                 }
-                                if ((this.#grid[keyX + sinX * step][keyY + sinY * step] == ' ') && oppCount != 0) {
+                                if ((grid[keyX + sinX * step][keyY + sinY * step] == ' ') && oppCount != 0) {
                                     possDiags.push([keyX + sinX * step, keyY + sinY * step]);
                                     oppCount = 0;
                                     break;
                                 }
-                                if ((this.#grid[keyX + sinX * step][keyY + sinY * step] == ' ') && oppCount == 0) {
+                                if ((grid[keyX + sinX * step][keyY + sinY * step] == ' ') && oppCount == 0) {
                                     oppCount = 0;
                                     break;
                                 }
-                                if (this.#grid[keyX + sinX * step][keyY + sinY * step] == currentTag) {
+                                if (grid[keyX + sinX * step][keyY + sinY * step] == currentTag) {
                                     oppCount = 0;
                                     break;
                                 }
