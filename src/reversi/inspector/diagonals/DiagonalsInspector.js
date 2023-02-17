@@ -17,7 +17,7 @@ export class DiagonalsInspector extends DiagonalPossibleMoves {
 
         if (ntValue == 'B') {
             var opValue = 'W';
-        } else if (ntValue == 'W') {
+        } else {
             opValue = 'B';
         }
         for (var signX = 0; signX < 2; signX++) {
@@ -37,7 +37,7 @@ export class DiagonalsInspector extends DiagonalPossibleMoves {
                         newDiags = newDiags.concat(tempDiags);
                         tempDiags = [];
                         break;
-                    } else if (grid[ntxCoor + sinX * step][ntyCoor + sinY * step] == ' ') {
+                    } else  {
                         tempDiags = [];
                         break;
                     }

@@ -27,9 +27,9 @@ test('Check for coincidences where there is more than 1 match in the positive di
     const whiteTag = white.playerTag;
     const resultMap = [
         [' ', 'W', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', ' ', 'B', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', 'B', ' ', 'W', ' ', ' ', ' '],
         [' ', ' ', ' ', 'W', ' ', ' ', ' ', ' '],
-        ['B', ' ', ' ', 'W', 'B', 'W', ' ', ' '],
+        ['B', ' ', 'W', 'W', 'B', 'W', ' ', ' '],
         [' ', ' ', ' ', 'B', ' ', 'B', ' ', ' '],
         [' ', ' ', ' ', 'W', 'B', ' ', 'B', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],

@@ -17,7 +17,7 @@ test('Check for possible positions to place a black token diagonally', () => {
     ];
 
     const positions = new DiagonalsInspector();
-    expect(positions.checkPossibleMoves(Map, playerTag)).toStrictEqual([[6, 6], [7, 1], [2, 6], [2, 2]]);// B's initial position is 4,4// result should be [[6,6],[7,1] ,[2,6] ,[2,2]]
+    expect(positions.checkPossibleMoves(Map, playerTag)).toStrictEqual([[6, 6], [7, 1], [2, 6], [2, 2]]);
 });
 
 
@@ -30,12 +30,12 @@ test('Check for possible positions to place a white token diagonally', () => {
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
         [' ', ' ', ' ', 'B', 'W', 'B', ' ', ' '],
         [' ', ' ', ' ', 'W', 'W', ' ', ' ', ' '],
-        [' ', ' ', ' ', 'B', ' ', 'B', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', 'B', ' ', ' '],
         [' ', ' ', 'B', ' ', ' ', 'W', ' ', ' '],
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     ];
     const positions = new DiagonalsInspector();
-    expect(positions.checkPossibleMoves(Map, playerTag)).toStrictEqual([[6, 6], [7, 1], [2, 6], [2, 2]]);
+    expect(positions.checkPossibleMoves(Map, playerTag)).toStrictEqual([[6, 6], [2, 6], [2, 2]]);
 });
 
 
