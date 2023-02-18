@@ -13,7 +13,7 @@ export class DiagonalPossibleMoves {
 
         if (currentTag == 'B') {
             var opTag = 'W';
-        } else if (currentTag == 'W') {
+        } else {
             opTag = 'B';
         }
 
