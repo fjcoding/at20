@@ -30,6 +30,16 @@ export class Game {
         this.#grid.renderBoard({ redPieces: this.#redPieces, whitePieces: this.#whitePieces });
     }
 
+    deletePiece(x, y) {
+        this.#redPieces = this.#redPieces.filter((piece) => {
+            return !(piece.x == x && piece.y == y);
+        });
+        this.#whitePieces = this.#whitePieces.filter((piece) => {
+            return !(piece.x == x && piece.y == y);
+        });
+        this.refreshGrid();
+    }
+
     createPieces () {
         for (let i = 0; i < Grid.ROW; i += 1) {
             for (let j = 0; j < Grid.COLUMN; j += 1) {

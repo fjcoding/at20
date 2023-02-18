@@ -42,11 +42,9 @@ export class Grid {
     // Create a function to display the grid as a string
     toString() {
         let initGrid = '';
-        let letter = ' A B C D E F G H';
-        let board = ' ---------------  ';
+        let numbers = '  0 1 2 3 4 5 6 7';
 
-        initGrid += letter + '\n';
-        initGrid += board + '\n';
+        initGrid += numbers + '\n';
 
         // Loop through the grid rows
         for (let i = 0; i < Grid.ROW; i += 1) {
@@ -70,7 +68,6 @@ export class Grid {
             }
             initGrid += '\n';
         }
-        initGrid += board;
         return initGrid;
     }
 
