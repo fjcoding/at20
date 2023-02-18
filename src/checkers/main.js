@@ -20,24 +20,20 @@ const main = async () => {
     let name1, name2;
     let color;
     const game = new Game();
-    //const command = new Command();
+    const command = new Command();
 
     console.log('WELCOME TO CHECKERS GAME');
     console.log('========================================');
 
     console.log('FIRST PLAYER');
     name1 = await askAndRead('Introduce a name for the FIRST player => ');
-    //TODO: check
-    // if (await name1 === '' || await name1 === Number) {
-    //     console.log('Please enter a valid name  for the first player');
-    //     name1 = await this.askAndRead('Introduce a name for the FIRST player => ');
-    // }
-    //await command.isValidName(name1);
+    await command.isValidName(name1);
     color = (await askAndRead('Introduce the color of the piece( W -> WHITE, R -> RED)=> ')).toUpperCase();
     const player1 = new Player(name1, color, 12, game);
 
     console.log('SECOND PLAYER');
     name2 = await askAndRead('Introduce a name for the SECOND player => ');
+    await command.isValidName(name2);
     color = (await askAndRead('Introduce the color of the piece( W -> WHITE, R -> RED)=> ')).toUpperCase();
     const player2 = new Player(name2, color, 12, game);
 
@@ -59,8 +55,7 @@ const startGame = async (player1, player2) => {
         if (option == 'K') {
             await command.inputForKillPiece(player1);
             player2.pieces--;
-            //TODO:quitar este log
-            console.log(player2.pieces);
+            console.log('Player2 have ', player2.pieces, ' pieces');
         }
 
         console.log('Player: ', player2.name, ' piece color: ', player2.pieceColor);
@@ -72,6 +67,7 @@ const startGame = async (player1, player2) => {
         if (option == 'K') {
             await command.inputForKillPiece(player2);
             player1.pieces--;
+            console.log('Player1 have ', player1.pieces, ' pieces');
         }
     }
 };

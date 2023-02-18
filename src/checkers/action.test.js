@@ -1,6 +1,7 @@
-import { action } from './action';
+import { Action } from './action';
 
 describe('Tests for isValidPosition method ', () => {
+    const action = new Action();
     it('sets player.pieceSelected to the selected piece', () => {
         const player = {
             name: 'Pedrito',

@@ -12,9 +12,8 @@ export class Command {
     }
     );
 
-    //TODO:BORRRAR SINO SIRVE
     isValidName = async (name) => {
-        if (name === '' || name === Number) {
+        while (name === '') {
             console.log('Please enter a valid name  for the first player');
             name = await this.askAndRead('Introduce a name for the FIRST player => ');
         }

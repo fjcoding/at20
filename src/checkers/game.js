@@ -31,7 +31,13 @@ export class Game {
     }
 
     deletePiece(x, y) {
-        this.#grid.gridBoard[x][y] = null;
+        this.#redPieces = this.#redPieces.filter((piece) => {
+            return !(piece.x == x && piece.y == y);
+        });
+        this.#whitePieces = this.#whitePieces.filter((piece) => {
+            return !(piece.x == x && piece.y == y);
+        });
+        this.refreshGrid();
     }
 
     createPieces () {

@@ -4,7 +4,6 @@ export class Action {
         if (!this.isValidTargetPosition(targetPosition, player.pieceSelected)) {
             throw new Error('Invalid target position');
         }
-        //TODO Check enemies
         player.pieceSelected.x = targetPosition.x;
         player.pieceSelected.y = targetPosition.y;
     };
@@ -45,11 +44,13 @@ export class Action {
         if (!this.isValidTargetPositionAfterKill(targetPosition, player.pieceSelected)) {
             throw new Error('Invalid target position');
         }
+        const lastYPosition = player.pieceSelected.y;
         player.pieceSelected.x = targetPosition.x;
         player.pieceSelected.y = targetPosition.y;
-        //TODO:revisar si se aplica a todos
-        const deleteX = targetPosition.x + 1;
-        const deleteY = targetPosition.y - 1;
+        const xOperator = player.pieceSelected.color == PIECE_COLOR.RED ? -1 : 1;
+        const yOperator = lastYPosition > targetPosition.y ? 1 : -1;
+        const deleteX = targetPosition.x + xOperator;
+        const deleteY = targetPosition.y + yOperator;
         player.game.deletePiece(deleteX, deleteY);
     };
 
