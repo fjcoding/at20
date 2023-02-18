@@ -12,6 +12,24 @@ export class Command {
     }
     );
 
+    //TODO:BORRRAR SINO SIRVE
+    isValidName = async (name) => {
+        if (name === '' || name === Number) {
+            console.log('Please enter a valid name  for the first player');
+            name = await this.askAndRead('Introduce a name for the FIRST player => ');
+        }
+        return name;
+    };
+
+    inputForSelectPiece = async (player) => {
+        let posX, posY, x1, y1;
+        posX = await this.askAndRead('Introduce the position select of the piece in the X  => ');
+        x1 = parseInt(posX);
+        posY = await this.askAndRead('Introduce the position select of the piece in the Y  => ');
+        y1 = parseInt(posY);
+        player.selectPiece({ x: x1, y: y1 });
+    };
+
     inputForMovePiece = async (player) => {
         let posX, posY, x1, y1;
         posX = await this.askAndRead('Introduce the NEW position for move the piece in  X  => ');

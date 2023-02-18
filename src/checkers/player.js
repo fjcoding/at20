@@ -1,4 +1,4 @@
-import { action } from './action.js';
+import { Action } from './action.js';
 
 export class Player {
     #name;
@@ -11,6 +11,7 @@ export class Player {
 
     #game;
 
+
     constructor(name, pieceColor, pieces, game) {
         this.#game = game;
         this.#name = name;
@@ -18,6 +19,8 @@ export class Player {
         this.#pieces = pieces;
         this.#pieceSelected = null;
     }
+
+    action = new Action();
 
     get game() {
         return this.#game;
@@ -52,14 +55,14 @@ export class Player {
     }
 
     selectPiece(piecePosition) {
-        action.selectPiece(this, piecePosition);
+        this.action.selectPiece(this, piecePosition);
     }
 
     movePiece(newPosition) {
-        action.movePiece(this, newPosition);
+        this.action.movePiece(this, newPosition);
     }
 
     killEnemyPiece(newPosition) {
-        action.killEnemyPiece(this, newPosition);
+        this.action.killEnemyPiece(this, newPosition);
     }
 }

@@ -20,12 +20,19 @@ const main = async () => {
     let name1, name2;
     let color;
     const game = new Game();
+    //const command = new Command();
 
     console.log('WELCOME TO CHECKERS GAME');
     console.log('========================================');
 
     console.log('FIRST PLAYER');
     name1 = await askAndRead('Introduce a name for the FIRST player => ');
+    //TODO: check
+    // if (await name1 === '' || await name1 === Number) {
+    //     console.log('Please enter a valid name  for the first player');
+    //     name1 = await this.askAndRead('Introduce a name for the FIRST player => ');
+    // }
+    //await command.isValidName(name1);
     color = (await askAndRead('Introduce the color of the piece( W -> WHITE, R -> RED)=> ')).toUpperCase();
     const player1 = new Player(name1, color, 12, game);
 
@@ -41,15 +48,10 @@ const main = async () => {
 
 const startGame = async (player1, player2) => {
     const command = new Command();
-    let posX, posY, x1, y1, option;
+    let option;
     while (player1.pieces > 0 || player2.pieces > 0) {
-        console.log('Player: ', player1.name, ' W');
-        posX = await askAndRead('Introduce the position select of the piece in the X  => ');
-        x1 = parseInt(posX);
-        posY = await askAndRead('Introduce the position select of the piece in the Y  => ');
-        y1 = parseInt(posY);
-        player1.selectPiece({ x: x1, y: y1 });
-
+        console.log('Player: ', player1.name, ' piece color: ', player1.pieceColor);
+        await command.inputForSelectPiece(player1);
         option = (await askAndRead('What do you want to do? move = M or kill = K => ')).toUpperCase();
         if (option == 'M') {
             await command.inputForMovePiece(player1);
@@ -57,15 +59,12 @@ const startGame = async (player1, player2) => {
         if (option == 'K') {
             await command.inputForKillPiece(player1);
             player2.pieces--;
+            //TODO:quitar este log
             console.log(player2.pieces);
         }
 
-        console.log('Player: ', player2.name, ' R');
-        posX = await askAndRead('Introduce the position select of the piece in the X  => ');
-        x1 = parseInt(posX);
-        posY = await askAndRead('Introduce the position select of the piece in the Y  => ');
-        y1 = parseInt(posY);
-        player2.selectPiece({ x: x1, y: y1 });
+        console.log('Player: ', player2.name, ' piece color: ', player2.pieceColor);
+        await command.inputForSelectPiece(player2);
         option = (await askAndRead('What do you want to do? move = M or kill = K => ')).toUpperCase();
         if (option == 'M') {
             await command.inputForMovePiece(player2);
