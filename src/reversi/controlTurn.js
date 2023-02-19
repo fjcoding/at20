@@ -11,13 +11,15 @@ export class Turn {
         return actTurn;
     }
 
-    switchPlayerWithoutMoves(possiblePositions, currentPlayer) {
+    switchPlayerWithoutMovesOrTokens(possiblePositions, currentPlayer, tokensLeft) {
         var switchTurn;
         if ((possiblePositions.length == 0 && currentPlayer == 'B')
-            || (possiblePositions.length != 0 && currentPlayer == 'W')) {
+            || (possiblePositions.length != 0 && currentPlayer == 'W' && tokensLeft != 0)
+            || (tokensLeft == 0 && currentPlayer == 'B')) {
             switchTurn = 1;
         } else if ((possiblePositions.length == 0 && currentPlayer == 'W')
-            || (possiblePositions.length != 0 && currentPlayer == 'B')) {
+            || (possiblePositions.length != 0 && currentPlayer == 'B' && tokensLeft != 0)
+            || (tokensLeft == 0 && currentPlayer == 'W')) {
             switchTurn = 0;
         }
         return switchTurn;
