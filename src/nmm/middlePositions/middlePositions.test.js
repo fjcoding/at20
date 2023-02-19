@@ -10,12 +10,12 @@ describe ('Test middlePositions class', () =>{
         const e3 = [positions.e3.row, positions.e3.col];
         const d5 = [positions.d5.row, positions.d5.col];
         const a0 = [positions.a0.row, positions.a0.col];
-        expect(middle1.isMiddle(a3)).toStrictEqual([true, 1]);
-        expect(middle1.isMiddle(b3)).toStrictEqual([true, 2]);
-        expect(middle1.isMiddle(c3)).toStrictEqual([true, 3]);
-        expect(middle1.isMiddle(e3)).toStrictEqual([true, 3]);
-        expect(middle1.isMiddle(d5)).toStrictEqual([true, 2]);
-        expect(middle1.isMiddle(a0)).toStrictEqual([false, 0]);
+        expect(middle1.isMiddle(a3)).toStrictEqual(true);
+        expect(middle1.isMiddle(b3)).toStrictEqual(true);
+        expect(middle1.isMiddle(c3)).toStrictEqual(true);
+        expect(middle1.isMiddle(e3)).toStrictEqual(true);
+        expect(middle1.isMiddle(d5)).toStrictEqual(true);
+        expect(middle1.isMiddle(a0)).toStrictEqual(false);
     });
     it('should check move available', () =>{
         const middle1 = new middlePositions();

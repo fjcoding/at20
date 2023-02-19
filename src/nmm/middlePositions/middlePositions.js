@@ -9,42 +9,39 @@ export class middlePositions {
 
     #inside;
 
+    #middleType;
+
     constructor() {
         this.#outside = new middlePositionsOutside();
         this.#middle =  new middlePositionsMiddle();
         this.#inside = new middlePositionsInside();
+        this.#middleType = [this.#outside, this.#middle, this.#inside];
     }
 
     isMiddle(position) {
-        const isOutside = this.#outside.isMiddleOutside(position);
-        const isMiddle = this.#middle.isMiddleMiddle(position);
-        const isInside = this.#inside.isMiddleInside(position);
-        if (isOutside) {
-            return [true, 1];
+        if (this.#outside.isMiddleOutside(position)) {
+            return true;
         }
-        if (isMiddle) {
-            return [true, 2];
+        if (this.#middle.isMiddleMiddle(position)) {
+            return true;
         }
-        if (isInside) {
-            return [true, 3];
+        if (this.#inside.isMiddleInside(position)) {
+            return true;
         }
 
-        return [false, 0];
+        return false;
     }
 
     checkMove(currentPosition, newPosition) {
-        const middle = this.isMiddle(currentPosition);
-        if (middle[0] === true) {
-            if (middle[1] === 1) {
-                return this.#outside.checkMove(currentPosition, newPosition);
-            }
-            if (middle[1] === 2) {
-                return this.#middle.checkMove(currentPosition, newPosition);
-            }
-            if (middle[1] === 3) {
-                return this.#inside.checkMove(currentPosition, newPosition);
+        for (let middle of this.#middleType) {
+            if (middle.checkMove(currentPosition, newPosition)) {
+                return true;
             }
         }
         return false;
     }
 }
+
+const middle1 = new middlePositions();
+
+middle1.checkMove([3, 2], [2, 2]);

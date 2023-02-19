@@ -9,11 +9,11 @@ describe ('Test corners class', () =>{
         const e2 = [positions.e2.row, positions.e2.col];
         const b1 = [positions.b1.row, positions.b1.col];
         const a3 = [positions.a3.row, positions.a3.col];
-        expect(coner1.isCorner(a6)).toStrictEqual([true, 1]);
-        expect(coner1.isCorner(b5)).toStrictEqual([true, 2]);
-        expect(coner1.isCorner(e2)).toStrictEqual([true, 3]);
-        expect(coner1.isCorner(b1)).toStrictEqual([true, 2]);
-        expect(coner1.isCorner(a3)).toStrictEqual([false, 0]);
+        expect(coner1.isCorner(a6)).toStrictEqual(true);
+        expect(coner1.isCorner(b5)).toStrictEqual(true);
+        expect(coner1.isCorner(e2)).toStrictEqual(true);
+        expect(coner1.isCorner(b1)).toStrictEqual(true);
+        expect(coner1.isCorner(a3)).toStrictEqual(false);
     });
     it('should check move available', () =>{
         const coner1 = new corners();

@@ -9,40 +9,33 @@ export class corners {
 
     #inside;
 
+    #cornerType;
+
     constructor() {
         this.#outside = new outsideCorners();
         this.#middle =  new middleCorners();
         this.#inside = new insideCorners();
+        this.#cornerType = [this.#outside, this.#middle, this.#inside];
     }
 
     isCorner(position) {
-        const isOutside = this.#outside.isOutside(position);
-        const isMiddle = this.#middle.isMiddle(position);
-        const isInside = this.#inside.isInside(position);
-        if (isOutside) {
-            return [true, 1];
+        if (this.#outside.isOutside(position)) {
+            return true;
         }
-        if (isMiddle) {
-            return [true, 2];
+        if (this.#middle.isMiddle(position)) {
+            return true;
         }
-        if (isInside) {
-            return [true, 3];
+        if (this.#inside.isInside(position)) {
+            return true;
         }
 
-        return [false, 0];
+        return false;
     }
 
     checkMove(currentPosition, newPosition) {
-        const corner = this.isCorner(currentPosition);
-        if (corner[0] === true) {
-            if (corner[1] === 1) {
-                return this.#outside.checkMove(currentPosition, newPosition);
-            }
-            if (corner[1] === 2) {
-                return this.#middle.checkMove(currentPosition, newPosition);
-            }
-            if (corner[1] === 3) {
-                return this.#inside.checkMove(currentPosition, newPosition);
+        for (let corner of this.#cornerType) {
+            if (corner.checkMove(currentPosition, newPosition)) {
+                return true;
             }
         }
         return false;
