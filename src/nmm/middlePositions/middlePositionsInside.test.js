@@ -35,9 +35,13 @@ describe ('Test middlePositionsInside class', () =>{
         const c4 = [positions.c4.row, positions.c4.col];
         const e4 = [positions.e4.row, positions.e4.col];
         const b5 = [positions.b5.row, positions.b5.col];
+        const e2 = [positions.e2.row, positions.e2.col];
         expect(middle1.checkMove(d4, d5)).toBe(true);
         expect(middle1.checkMove(d4, c4)).toBe(true);
         expect(middle1.checkMove(d4, e4)).toBe(true);
+        expect(middle1.checkMove(e3, e4)).toBe(true);
+        expect(middle1.checkMove(e3, e2)).toBe(true);
+        expect(middle1.checkMove(e3, f3)).toBe(true);
 
         expect(middle1.checkMove(b3, d0)).toBe(false);
         expect(middle1.checkMove(d4, d0)).toBe(false);

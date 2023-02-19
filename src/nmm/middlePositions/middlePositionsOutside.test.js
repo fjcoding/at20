@@ -36,6 +36,7 @@ describe ('Test middlePositionsOutside class', () =>{
         expect(middle1.checkMove(a3, a0)).toBe(true);
         expect(middle1.checkMove(a3, b3)).toBe(true);
         expect(middle1.checkMove(d6, a6)).toBe(true);
+        expect(middle1.checkMove(d6, d5)).toBe(true);
 
         expect(middle1.checkMove(d4, d0)).toBe(false);
         expect(middle1.checkMove(a3, g3)).toBe(false);

@@ -11,7 +11,7 @@ export class rule {
     }
 
     isPossiblePosition(position) {
-        return this.#conersRules.isCorner(position)[0] || this.#middleRules.isMiddle(position)[0];
+        return this.#conersRules.isCorner(position) || this.#middleRules.isMiddle(position);
     }
 
     checkMove(currentPosition, newPosition) {

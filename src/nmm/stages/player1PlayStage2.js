@@ -1,34 +1,4 @@
-import { Grid } from './grid.js';
-import { Player } from './player.js';
-import { rule } from './rule.js';
-import promptSync from 'prompt-sync';
-
-let prompt = new promptSync();
-let grid = new Grid();
-let player1 = new Player('W');
-let player2 = new Player('B');
-let rule1 = new rule();
-const emptyPosition = '*';
-grid.changeValueCoin(player2.colorPlayer, 0, 3);
-grid.changeValueCoin(player2.colorPlayer, 0, 6);
-grid.changeValueCoin(player2.colorPlayer, 3, 0);
-grid.changeValueCoin(player2.colorPlayer, 3, 1);
-grid.changeValueCoin(player1.colorPlayer, 4, 2);
-grid.changeValueCoin(player1.colorPlayer, 4, 3);
-grid.changeValueCoin(player1.colorPlayer, 5, 1);
-grid.changeValueCoin(player1.colorPlayer, 3, 4);
-player1.updateNumberCoinsRemoved();
-player1.updateNumberCoinsRemoved();
-player1.updateNumberCoinsRemoved();
-player1.updateNumberCoinsRemoved();
-player1.updateNumberCoinsRemoved();
-player2.updateNumberCoinsRemoved();
-player2.updateNumberCoinsRemoved();
-player2.updateNumberCoinsRemoved();
-player2.updateNumberCoinsRemoved();
-player2.updateNumberCoinsRemoved();
-
-export function player1PlayStage2() {
+export function player1PlayStage2(prompt, grid, player1, player2, emptyPosition, rule1) {
     console.clear();
     console.log(grid.showGrid());
     let coins =  player1.numberCoinsToPlay - player1.numberCoinsRemoved;
@@ -44,6 +14,7 @@ export function player1PlayStage2() {
         console.log('\nSelect another position\n');
         rowCoordinate = parseInt(prompt('Enter the row coordinate '));
         columnCoordinate = parseInt(prompt('Enter the column coordinate '));
+        isYourcoin = player1.checkOwnCoin(grid.getSymbolCoinFromGrid(rowCoordinate, columnCoordinate));
     }
 
     console.log('\nSelect a new position\n');
@@ -86,10 +57,8 @@ export function player1PlayStage2() {
                 posRowDelete = parseInt(prompt('Enter the row coordinate '));
                 posColDelete = parseInt(prompt('Enter the row coordinate '));
             }
-            grid.changeValueCoin(emptyPosition, posRowDelete, posColDelete);
             player2.updateNumberCoinsRemoved();
+            grid.changeValueCoin(emptyPosition, posRowDelete, posColDelete);
         }
     }
 }
-
-player1PlayStage2();

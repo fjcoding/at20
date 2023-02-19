@@ -1,20 +1,7 @@
-import { Grid } from './grid.js';
-import { Player } from './player.js';
-import promptSync from 'prompt-sync';
-
-let prompt = new promptSync();
-let grid = new Grid();
-let player1 = new Player('W');
-let player2 = new Player('B');
-const emptyPosition = '*';
-
-grid.changeValueCoin(player2.colorPlayer, 0, 0);
-grid.changeValueCoin(player2.colorPlayer, 0, 3);
-
-export function player1PlayStage1() {
+export function player2PlayStage1(prompt, grid, player1, player2, emptyPosition) {
     console.clear();
     console.log(grid.showGrid());
-    console.log('\nPlayer ' + player1.colorPlayer + ' turn. (' + player1.numberCoinsToPlay + ' coins to play)');
+    console.log('\nPlayer ' + player2.colorPlayer + ' turn. (' + player2.numberCoinsToPlay + ' coins to play)');
     let rowCoordinate = parseInt(prompt('Enter the row coordinate '));
     let columnCoordinate = parseInt(prompt('Enter the column coordinate '));
     let isEmpty = grid.checkAvailablePos(rowCoordinate, columnCoordinate);
@@ -28,18 +15,18 @@ export function player1PlayStage1() {
         isEmpty = grid.checkAvailablePos(rowCoordinate, columnCoordinate);
     }
 
-    grid.changeValueCoin(player1.colorPlayer, rowCoordinate, columnCoordinate);
-    player1.updateNumberCoinsToPlay();
-    let mill = grid.checkIfThereMills(player1.colorPlayer, rowCoordinate, columnCoordinate);
+    grid.changeValueCoin(player2.colorPlayer, rowCoordinate, columnCoordinate);
+    player2.updateNumberCoinsToPlay();
+    let mill = grid.checkIfThereMills(player2.colorPlayer, rowCoordinate, columnCoordinate);
     if (mill.length > 0) {
-        player1.addMill(mill);
-        if (player1.checkNewMillAdded()) {
+        player2.addMill(mill);
+        if (player2.checkNewMillAdded()) {
             console.clear();
             console.log(grid.showGrid());
             console.log('Delete a coin...');
             let posRowDelete = parseInt(prompt('Enter the row coordinate '));
             let posColDelete = parseInt(prompt('Enter the row coordinate '));
-            while (!(player2.checkOwnCoin(grid.getSymbolCoinFromGrid(posRowDelete, posColDelete)))) {
+            while (!(player1.checkOwnCoin(grid.getSymbolCoinFromGrid(posRowDelete, posColDelete)))) {
                 console.clear();
                 console.log(grid.showGrid());
                 console.log('\nSelect another coin\n');
@@ -47,16 +34,7 @@ export function player1PlayStage1() {
                 posColDelete = parseInt(prompt('Enter the row coordinate '));
             }
             grid.changeValueCoin(emptyPosition, posRowDelete, posColDelete);
-            player2.updateNumberCoinsRemoved();
+            player1.updateNumberCoinsRemoved();
         }
     }
 }
-
-player1PlayStage1();
-player1PlayStage1();
-player1PlayStage1();
-player1PlayStage1();
-player1PlayStage1();
-player1PlayStage1();
-player1PlayStage1();
-
