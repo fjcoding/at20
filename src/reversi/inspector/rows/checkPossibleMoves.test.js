@@ -1,4 +1,4 @@
-import {getRowLimit} from './getRowLimit';
+import {possibleMoves} from './checkPossibleMoves.js';
 describe('Check for plays on the rows to the rigth', () => {
     it('for black', () => {
         const player = 'B';
@@ -12,11 +12,11 @@ describe('Check for plays on the rows to the rigth', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
-        const moves = new getRowLimit(initialMap, player);
-        expect(moves.rowLimitToRight()).toStrictEqual([[3, 7], [4, 5]]);
+        const moves = new possibleMoves();
+        expect(moves.possibleMovesToRight(initialMap, player)).toStrictEqual([[3, 7], [4, 5]]);
     });
     it('for white', () => {
-        const players = 'W';
+        const player = 'W';
         const initialMap = [
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -27,8 +27,8 @@ describe('Check for plays on the rows to the rigth', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
-        const moves = new getRowLimit(initialMap, players);
-        expect(moves.rowLimitToRight()).toStrictEqual([[2, 6]]);
+        const moves = new possibleMoves();
+        expect(moves.possibleMovesToRight(initialMap, player)).toStrictEqual([[2, 6]]);
     });
 });
 
@@ -45,11 +45,11 @@ describe('Check for plays on the rows to the left', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
-        const moves = new getRowLimit(initialMap, player);
-        expect(moves.rowLimitToLeft()).toStrictEqual([[3, 0]]);
+        const moves = new possibleMoves();
+        expect(moves.possibleMovesToLeft(initialMap, player)).toStrictEqual([[3, 0]]);
     });
     it('for white', () => {
-        const players = 'W';
+        const player = 'W';
         const initialMap = [
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -60,7 +60,7 @@ describe('Check for plays on the rows to the left', () => {
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ];
-        const moves = new getRowLimit(initialMap, players);
-        expect(moves.rowLimitToLeft()).toStrictEqual([[3, 1]]);
+        const moves = new possibleMoves();
+        expect(moves.possibleMovesToLeft(initialMap, player)).toStrictEqual([[3, 1]]);
     });
 });

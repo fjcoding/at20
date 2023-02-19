@@ -1,3 +1,4 @@
+
 export class getPiecesToFlip {
     getPiecesToFlipRigth(position, grid, player) {
         var gridXmax = 7;

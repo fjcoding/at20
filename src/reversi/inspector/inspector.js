@@ -1,5 +1,3 @@
-
-import {checkRowPossibleMovements} from './rows/checkRowMovements.js';
 import {ColumnInspector} from './columns/ColumnInspector.js';
 import {RowInspector} from './rows/RowInspector.js';
 import {DiagonalsInspector} from './diagonals/DiagonalsInspector.js';
@@ -11,10 +9,10 @@ export class Inspector {
         var verifyDiagonals;
         var availablePositions = [];
         var position = [0, 0];
-        verifyRow = new checkRowPossibleMovements(boardTocheck, player);
+        verifyRow = new RowInspector().checkPossibleMoves(boardTocheck, player);
         verifyColumn = new ColumnInspector(position, boardTocheck, player);
         verifyDiagonals = new DiagonalsInspector().checkPossibleMoves(boardTocheck, player);
-        availablePositions = availablePositions.concat(verifyRow.checkPossibleMoves(), verifyColumn.possibleMovements(), verifyDiagonals);
+        availablePositions = availablePositions.concat(verifyRow, verifyColumn.possibleMovements(), verifyDiagonals);
         return availablePositions;
     }
 
@@ -24,10 +22,10 @@ export class Inspector {
         var diagonalsMatch;
         var tokensToflip = [];
         const piecesPosition = [];
-        rowMatch = new RowInspector(position, board, player);
+        rowMatch = new RowInspector().checkRow(position, board, player);
         columnMatch = new ColumnInspector(position, board, player);
         diagonalsMatch = new DiagonalsInspector().findPositionsToFlip(position, board, player);
-        tokensToflip = tokensToflip.concat(rowMatch.checkRow(), columnMatch.findFlipPositions(piecesPosition), diagonalsMatch);
+        tokensToflip = tokensToflip.concat(rowMatch, columnMatch.findFlipPositions(piecesPosition), diagonalsMatch);
         return tokensToflip;
     }
 
