@@ -50,7 +50,7 @@ while (gameOver == false) {
 
         currentPlayer = players[(isTurn.assignTurn(positinonsToflip, currentPlayer.playerTag))];
         verifiedPositions  = inspector.checkPossiblePositions(board, currentPlayer.playerTag);
-        currentPlayer = players[isTurn.switchPlayerWithoutMoves(verifiedPositions, currentPlayer.playerTag)];
+        currentPlayer = players[isTurn.switchPlayerWithoutMovesOrTokens(verifiedPositions, currentPlayer.playerTag, currentPlayer.tokenCount.length)];
 
         thereAreZeroTokens = isGameOver.playersWithoutTokens(players[0].tokenCount, players[1].tokenCount);
         thereAreZeroMoves = isGameOver.playersWithoutMoves(inspector.checkPossiblePositions(board, players[0].playerTag).length,
