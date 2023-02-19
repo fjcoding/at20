@@ -14,16 +14,34 @@ describe('Player', () => {
         });
     });
 
+    it('should create a player', () => {
+        expect(player.name).toEqual('Player 1');
+        expect(player.pieceColor).toEqual('R');
+        expect(player.pieces[0]).toEqual({ x: 1, y: 1, color: 'red' });
+        expect(player.game).toBeDefined();
+    });
+
+    it('sets the pieces map to the specified value', () => {
+        const pieceset = [{ x: 3, y: 3, color: 'red' }];
+        player.pieces[0] = pieceset;
+
+        expect(player.pieces[0]).toBe(pieceset);
+    });
+
+    it('should get piece', () => {
+        expect(player.getPiece);
+    });
+
     it('should select a piece', () => {
         player.selectPiece({ x: 1, y: 1 });
         expect(player.pieceSelected).toEqual({ x: 1, y: 1, color: 'red' });
     });
 
-    test('should throw an error if the position is invalid', () => {
+    it('should throw an error if the position is invalid', () => {
         expect(() => player.selectPiece({ x: 10, y: 10 })).toThrow('Invalid position');
     });
 
-    test('should throw an error if the player does not have a piece at the given position', () => {
+    it('should throw an error if the player does not have a piece at the given position', () => {
         expect(() => player.selectPiece({ x: 3, y: 3 })).toThrow('Invalid piece for player, Player 1');
     });
 

@@ -1,3 +1,5 @@
+import { Player } from './player.js';
+import { Piece, COLOR as PIECE_COLOR } from './piece.js';
 import { Action } from './action';
 
 describe('Tests for isValidPosition method ', () => {
@@ -57,5 +59,18 @@ describe('Tests for isValidPosition method ', () => {
 
     it('should able to return true when input a correct position', () => {
         expect(action.isValidPosition(2, 5)).toEqual(true);
+    });
+
+    it('should call deletePiece in game with piece that was captured', () => {
+        const action = new Action();
+        const mockGame = {
+            deletePiece: jest.fn(),
+        };
+        const piece = new Piece(PIECE_COLOR.RED, 2, 3);
+        const pieceSelected = new Piece(PIECE_COLOR.RED, 0, 1);
+        const player = new Player('Test', PIECE_COLOR.RED, new Map([[pieceSelected, 2], [piece, 1]]), mockGame);
+        player.pieceSelected = pieceSelected;
+        action.killEnemyPiece(player, { x: 2, y: 3 });
+        expect(mockGame.deletePiece).toHaveBeenCalledWith(1, 2);
     });
 });

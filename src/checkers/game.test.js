@@ -39,4 +39,27 @@ describe('Game', () => {
     test('initializes the game', () => {
         expect(game.showBoard()).toBeDefined();
     });
+
+
+    test('should remove the piece at the given coordinates from both red and white pieces array', () => {
+        const piece = new Piece('red', 2, 3);
+        game.redPieces.push(piece);
+        game.grid.gridBoard[2][3] = piece;
+        game.deletePiece(2, 3);
+
+        expect(game.redPieces).not.toContain(piece);
+    });
+
+    test('should refresh the grid after deleting the piece', () => {
+        const piece = new Piece('red', 2, 3);
+        game.redPieces.push(piece);
+        game.grid.gridBoard[2][3] = piece;
+
+        // Mock the refreshGrid method to check if it was called
+        game.refreshGrid = jest.fn();
+        game.deletePiece(2, 3);
+
+        // Check that refreshGrid was called
+        expect(game.refreshGrid).toHaveBeenCalled();
+    });
 });
