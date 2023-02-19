@@ -1,5 +1,5 @@
 
-export class getPiecesToFlip{
+export class getPiecesToFlip {
     getPiecesToFlipRigth(position, grid, player) {
         var gridXmax = 7;
         var y = position[1];

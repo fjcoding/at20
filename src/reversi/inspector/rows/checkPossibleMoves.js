@@ -2,8 +2,7 @@
 import { positionOnBoard } from '../../board/positionOnBoard.js';
 
 export class possibleMoves {
-
-    possibleMovesToRight(grid,player) {
+    possibleMovesToRight(grid, player) {
         var opositePlayer;
         if (player == 'B') {
             opositePlayer = 'W';
@@ -31,7 +30,7 @@ export class possibleMoves {
         return checkPieces;
     }
 
-    possibleMovesToLeft(grid,player) {
+    possibleMovesToLeft(grid, player) {
         var opositePlayer;
         if (player == 'B') {
             opositePlayer = 'W';

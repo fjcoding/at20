@@ -2,8 +2,7 @@ import {getPiecesToFlip} from './getPiecesToFlip.js';
 import { positionOnBoard } from '../../board/positionOnBoard.js';
 import {possibleMoves} from './checkPossibleMoves.js';
 export class RowInspector {
-
-    #positionOnBoard=new positionOnBoard();
+    #positionOnBoard = new positionOnBoard();
 
     /*constructor(position, grid, player) {
         this.#grid = grid;
@@ -15,7 +14,7 @@ export class RowInspector {
         return this.#positionOnBoard;
     }
 
-    checkRow(position,grid,player) {
+    checkRow(position, grid, player) {
         var checkPiecesToFlip = [];
         var piecesToFlip = new getPiecesToFlip();
         var piecesToflipToRigth = piecesToFlip.getPiecesToFlipRigth(position, grid, player);
