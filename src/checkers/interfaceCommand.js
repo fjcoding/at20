@@ -37,6 +37,7 @@ export class Command {
         y1 = parseInt(posY);
         player.movePiece({ x: x1, y: y1 });
         player.game.refreshGrid();
+        console.clear();
         console.log(player.game.showBoard());
     };
 
@@ -48,6 +49,7 @@ export class Command {
         y1 = parseInt(posY);
         player.killEnemyPiece({ x: x1, y: y1 });
         player.game.refreshGrid();
+        console.clear();
         console.log(player.game.showBoard());
     };
 }

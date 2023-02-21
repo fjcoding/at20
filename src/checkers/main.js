@@ -18,7 +18,7 @@ const askAndRead = (text) => new Promise(resolve => {
 
 const main = async () => {
     let name1, name2;
-    let color;
+    let color1, color2;
     const game = new Game();
     const command = new Command();
 
@@ -28,15 +28,20 @@ const main = async () => {
     console.log('FIRST PLAYER');
     name1 = await askAndRead('Introduce a name for the FIRST player => ');
     await command.isValidName(name1);
-    color = (await askAndRead('Introduce the color of the piece( W -> WHITE, R -> RED)=> ')).toUpperCase();
-    const player1 = new Player(name1, color, 12, game);
+    color1 = (await askAndRead('Introduce the color of the piece( W -> WHITE, R -> RED)=> ')).toUpperCase();
+    const player1 = new Player(name1, color1, 12, game);
 
     console.log('SECOND PLAYER');
     name2 = await askAndRead('Introduce a name for the SECOND player => ');
     await command.isValidName(name2);
-    color = (await askAndRead('Introduce the color of the piece( W -> WHITE, R -> RED)=> ')).toUpperCase();
-    const player2 = new Player(name2, color, 12, game);
+    if (color1 === 'W') {
+        color2 = 'R';
+    } else if (color1 === 'R') {
+        color2 = 'W';
+    }
+    const player2 = new Player(name2, color2, 12, game);
 
+    console.clear();
     console.log(game.showBoard());
 
     await startGame(player1, player2);
