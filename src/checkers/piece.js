@@ -59,5 +59,5 @@ export const TYPE = {
 
 export const COLOR = {
     RED: 'red',
-    BLACK: 'black',
+    WHITE: 'white',
 };

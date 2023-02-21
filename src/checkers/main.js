@@ -18,7 +18,7 @@ const askAndRead = (text) => new Promise(resolve => {
 
 const main = async () => {
     let name1, name2;
-    let color;
+    let color1, color2;
     const game = new Game();
     const command = new Command();
 
@@ -28,15 +28,20 @@ const main = async () => {
     console.log('FIRST PLAYER');
     name1 = await askAndRead('Introduce a name for the FIRST player => ');
     await command.isValidName(name1);
-    color = (await askAndRead('Introduce the color of the piece( W -> WHITE, R -> RED)=> ')).toUpperCase();
-    const player1 = new Player(name1, color, 12, game);
+    color1 = (await askAndRead('Introduce the color of the piece( W -> WHITE, R -> RED)=> ')).toUpperCase();
+    const player1 = new Player(name1, color1, 12, game);
 
     console.log('SECOND PLAYER');
     name2 = await askAndRead('Introduce a name for the SECOND player => ');
     await command.isValidName(name2);
-    color = (await askAndRead('Introduce the color of the piece( W -> WHITE, R -> RED)=> ')).toUpperCase();
-    const player2 = new Player(name2, color, 12, game);
+    if (color1 === 'W') {
+        color2 = 'R';
+    } else if (color1 === 'R') {
+        color2 = 'W';
+    }
+    const player2 = new Player(name2, color2, 12, game);
 
+    console.clear();
     console.log(game.showBoard());
 
     await startGame(player1, player2);
@@ -47,6 +52,7 @@ const startGame = async (player1, player2) => {
     let option;
     while (player1.pieces > 0 || player2.pieces > 0) {
         console.log('Player: ', player1.name, ' piece color: ', player1.pieceColor);
+        console.log('Player 1 has ', player1.pieces, ' pieces');
         await command.inputForSelectPiece(player1);
         option = (await askAndRead('What do you want to do? move = M or kill = K => ')).toUpperCase();
         if (option == 'M') {
@@ -55,10 +61,10 @@ const startGame = async (player1, player2) => {
         if (option == 'K') {
             await command.inputForKillPiece(player1);
             player2.pieces--;
-            console.log('Player2 have ', player2.pieces, ' pieces');
         }
 
         console.log('Player: ', player2.name, ' piece color: ', player2.pieceColor);
+        console.log('Player 2 has ', player2.pieces, ' pieces');
         await command.inputForSelectPiece(player2);
         option = (await askAndRead('What do you want to do? move = M or kill = K => ')).toUpperCase();
         if (option == 'M') {
@@ -67,7 +73,6 @@ const startGame = async (player1, player2) => {
         if (option == 'K') {
             await command.inputForKillPiece(player2);
             player1.pieces--;
-            console.log('Player1 have ', player1.pieces, ' pieces');
         }
     }
 };

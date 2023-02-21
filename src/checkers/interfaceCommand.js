@@ -22,32 +22,34 @@ export class Command {
 
     inputForSelectPiece = async (player) => {
         let posX, posY, x1, y1;
-        posX = await this.askAndRead('Introduce the position select of the piece in the X  => ');
+        posX = await this.askAndRead('Introduce the position select of the piece in the row  => ');
         x1 = parseInt(posX);
-        posY = await this.askAndRead('Introduce the position select of the piece in the Y  => ');
+        posY = await this.askAndRead('Introduce the position select of the piece in the column  => ');
         y1 = parseInt(posY);
         player.selectPiece({ x: x1, y: y1 });
     };
 
     inputForMovePiece = async (player) => {
         let posX, posY, x1, y1;
-        posX = await this.askAndRead('Introduce the NEW position for move the piece in  X  => ');
+        posX = await this.askAndRead('Introduce the NEW position for move the piece in row  => ');
         x1 = parseInt(posX);
-        posY = await this.askAndRead('Introduce the NEW position for move the piece in  Y  => ');
+        posY = await this.askAndRead('Introduce the NEW position for move the piece in column  => ');
         y1 = parseInt(posY);
         player.movePiece({ x: x1, y: y1 });
         player.game.refreshGrid();
+        console.clear();
         console.log(player.game.showBoard());
     };
 
     inputForKillPiece = async (player) => {
         let posX, posY, x1, y1;
-        posX = await this.askAndRead('Introduce a NEXT position after kill your enemy for move the piece in  X  => ');
+        posX = await this.askAndRead('Introduce a NEXT position after kill your enemy for move the piece in row  => ');
         x1 = parseInt(posX);
-        posY = await this.askAndRead('Introduce a NEXT position after kill your enemy for move the piece in  Y  => ');
+        posY = await this.askAndRead('Introduce a NEXT position after kill your enemy for move the piece in column  => ');
         y1 = parseInt(posY);
         player.killEnemyPiece({ x: x1, y: y1 });
         player.game.refreshGrid();
+        console.clear();
         console.log(player.game.showBoard());
     };
 }
