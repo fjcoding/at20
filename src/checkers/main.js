@@ -52,6 +52,7 @@ const startGame = async (player1, player2) => {
     let option;
     while (player1.pieces > 0 || player2.pieces > 0) {
         console.log('Player: ', player1.name, ' piece color: ', player1.pieceColor);
+        console.log('Player 1 has ', player1.pieces, ' pieces');
         await command.inputForSelectPiece(player1);
         option = (await askAndRead('What do you want to do? move = M or kill = K => ')).toUpperCase();
         if (option == 'M') {
@@ -63,6 +64,7 @@ const startGame = async (player1, player2) => {
         }
 
         console.log('Player: ', player2.name, ' piece color: ', player2.pieceColor);
+        console.log('Player 2 has ', player2.pieces, ' pieces');
         await command.inputForSelectPiece(player2);
         option = (await askAndRead('What do you want to do? move = M or kill = K => ')).toUpperCase();
         if (option == 'M') {
