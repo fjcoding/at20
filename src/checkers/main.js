@@ -60,7 +60,6 @@ const startGame = async (player1, player2) => {
         if (option == 'K') {
             await command.inputForKillPiece(player1);
             player2.pieces--;
-            console.log('Player2 have ', player2.pieces, ' pieces');
         }
 
         console.log('Player: ', player2.name, ' piece color: ', player2.pieceColor);
@@ -72,7 +71,6 @@ const startGame = async (player1, player2) => {
         if (option == 'K') {
             await command.inputForKillPiece(player2);
             player1.pieces--;
-            console.log('Player1 have ', player1.pieces, ' pieces');
         }
     }
 };
