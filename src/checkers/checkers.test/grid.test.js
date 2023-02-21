@@ -1,4 +1,4 @@
-import {Grid} from './grid';
+import {Grid} from '../grid';
 
 describe('Test for Grid Class', () => {
     it('should create an 8x8 grid with all elements set to null', () => {

@@ -1,4 +1,4 @@
-import { CountPiece } from './countPiece';
+import { CountPiece } from '../countPiece';
 
 describe('Tests for CountPiece class', () => {
     it('should be able to return the correct amount pieces', () => {
