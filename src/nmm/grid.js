@@ -38,36 +38,6 @@ export class Grid {
         return stringGrid;
     }
 
-    // checkIfThereMills(colorPlayer, rowCoin, colCoin) {
-    //     let coinsPosition = [];
-    //     for (let row = 0; row < this.#gridInit.length; row++) {
-    //         for (let col = 0; col < this.#gridInit.length; col++) {
-    //             if (this.getSymbolCoinFromGrid(row, col) === colorPlayer) {
-    //                 coinsPosition.push(row + ',' + col);
-    //             }
-    //         }
-    //     }
-    //     let mill = [];
-    //     this.checkDirectionMills(coinsPosition, mill, rowCoin + ',' + colCoin, horizontalMills);
-    //     this.checkDirectionMills(coinsPosition, mill, rowCoin + ',' + colCoin, verticalMills);
-    //     return mill;
-    // }
-
-    // checkDirectionMills(coinsPosition, mill, posCoin, directionMills) {
-    //     let countCoins;
-    //     for (let hMill in directionMills) {
-    //         countCoins = 0;
-    //         coinsPosition.forEach(position => {
-    //             if (directionMills[hMill].indexOf(position) != -1) {
-    //                 countCoins++;
-    //             }
-    //         });
-    //         if (countCoins == 3 && directionMills[hMill].indexOf(posCoin) != -1) {
-    //             mill.push(directionMills[hMill]);
-    //         }
-    //     }
-    // }
-
     checkIfThereMills(colorPlayer, rowCoin, colCoin) {
         let coinsPosition = [];
         for (let row = 0; row < this.#gridInit.length; row++) {
@@ -97,7 +67,6 @@ export class Grid {
                 directionMills[dMill].forEach(position => {
                     mill.push(position);
                 });
-                // mill.push(directionMills[dMill]);
             }
         }
     }
