@@ -23,7 +23,7 @@ export function player2PlayStage3(prompt, grid, player1, player2, emptyPosition)
     //rules of the move
     let isNewPosition = !(rowCoordinateNew === rowCoordinate && columnCoordinateNew === columnCoordinate);
     let isEmpty = grid.checkAvailablePos(rowCoordinateNew, columnCoordinateNew);
-    
+
     while (!(isNewPosition && isEmpty)) {
         console.clear();
         console.log(grid.showGrid());

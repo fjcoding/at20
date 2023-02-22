@@ -42,11 +42,11 @@ while (!(player1.numberCoinsRemoved == 7 ||  player2.numberCoinsRemoved == 7)) {
     }
     if (player2.numberCoinsRemoved == 6) {
         player2PlayStage3(prompt, grid, player1, player2, emptyPosition);
-    }else if (player2.numberCoinsRemoved < 6){
+    } else if (player2.numberCoinsRemoved < 6) {
         player2PlayStage2(prompt, grid, player1, player2, emptyPosition, rule1);
     }
 }
-if(player1.numberCoinsRemoved == 7){
+if (player1.numberCoinsRemoved == 7) {
     win = 'BLACK';
 } else {
     win = 'WHITE';
