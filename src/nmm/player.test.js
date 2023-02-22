@@ -56,6 +56,17 @@ describe('Tests for player class', () => {
         expect(player.checkNewMillAdded()).toBe(false);
     });
 
+    it('should be able to show if a coin is part of a mill', () => {
+        let colorPlayer = 'White';
+        let player = new Player(colorPlayer);
+        let newMill = ['0,0', '0,3', '0,6'];
+        expect(player.addMill(newMill)).toBe(1);
+        expect(player.isPositionInBagMills(0, 0)).toBe(true);
+
+        expect(player.isPositionInBagMills(10, -1)).toBe(false);
+        expect(player.isPositionInBagMills(6, 6)).toBe(false);
+    });
+
     it('should be able to choose opponent coin position to remove it', () => {
         let colorPlayer1 = 'White';
         let player1 = new Player(colorPlayer1);
