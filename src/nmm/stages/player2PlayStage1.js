@@ -17,9 +17,15 @@ export function player2PlayStage1(prompt, grid, player1, player2, emptyPosition)
 
     grid.changeValueCoin(player2.colorPlayer, rowCoordinate, columnCoordinate);
     player2.updateNumberCoinsToPlay();
-    let mill = grid.checkIfThereMills(player2.colorPlayer, rowCoordinate, columnCoordinate);
-    if (mill.length > 0) {
-        player2.addMill(mill);
+    let hMill = grid.checkIfThereMills(player2.colorPlayer, rowCoordinate, columnCoordinate)[0];
+    let vMill = grid.checkIfThereMills(player2.colorPlayer, rowCoordinate, columnCoordinate)[1];
+    if (hMill.length > 0 || vMill.length > 0) {
+        if (hMill.length > 0) {
+            player2.addMill(hMill);
+        }
+        if (vMill.length > 0) {
+            player2.addMill(vMill);
+        }
         if (player2.checkNewMillAdded()) {
             console.clear();
             console.log(grid.showGrid());

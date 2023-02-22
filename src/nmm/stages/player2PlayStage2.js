@@ -47,9 +47,15 @@ export function player2PlayStage2(prompt, grid, player1, player2, emptyPosition,
     console.clear();
     console.log(grid.showGrid());
 
-    let mill = grid.checkIfThereMills(player2.colorPlayer, rowCoordinateNew, columnCoordinateNew);
-    if (mill.length > 0) {
-        player2.addMill(mill);
+    let hMill = grid.checkIfThereMills(player2.colorPlayer, rowCoordinateNew, columnCoordinateNew)[0];
+    let vMill = grid.checkIfThereMills(player2.colorPlayer, rowCoordinateNew, columnCoordinateNew)[1];
+    if (hMill.length > 0 || vMill.length > 0) {
+        if (hMill.length > 0) {
+            player2.addMill(hMill);
+        }
+        if (vMill.length > 0) {
+            player2.addMill(vMill);
+        }
         if (player2.checkNewMillAdded()) {
             console.clear();
             console.log(grid.showGrid());
