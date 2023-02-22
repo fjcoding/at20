@@ -38,6 +38,9 @@ export function player1PlayStage2(prompt, grid, player1, player2, emptyPosition,
 
     grid.changeValueCoin(player1.colorPlayer, rowCoordinateNew, columnCoordinateNew);
     grid.changeValueCoin(emptyPosition, rowCoordinate, columnCoordinate);
+    if (player1.isPositionInBagMills(rowCoordinate, columnCoordinate)) {
+        player1.removeMillWhenCoinPositionIs(rowCoordinate + ',' + columnCoordinate);
+    }
     console.clear();
     console.log(grid.showGrid());
 

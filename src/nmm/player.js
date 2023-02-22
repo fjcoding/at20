@@ -28,6 +28,10 @@ export class Player {
         return this.#numberCoinsRemoved;
     }
 
+    get bagMills() {
+        return this.#bagMills;
+    }
+
     updateNumberCoinsToPlay() {
         return this.#numberCoinsToPlay = this.#numberCoinsToPlay - 1;
     }
@@ -67,6 +71,18 @@ export class Player {
     choosePositionToRemove(player2, coinPositionSelected) {
         player2.updateNumberCoinsRemoved();
         return coinPositionSelected;
+    }
+
+    isPositionInBagMills(row, col) {
+        let result = false;
+        if (row < 10 && col < 10) {
+            this.#bagMills.forEach(mill => {
+                if (mill.indexOf(row + ',' + col) != -1) {
+                    result = true;
+                }
+            });
+        }
+        return result;
     }
 
     removeMillWhenCoinPositionIs(coinPosition) {

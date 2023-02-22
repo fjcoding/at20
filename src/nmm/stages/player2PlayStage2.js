@@ -41,6 +41,9 @@ export function player2PlayStage2(prompt, grid, player1, player2, emptyPosition,
 
     grid.changeValueCoin(player2.colorPlayer, rowCoordinateNew, columnCoordinateNew);
     grid.changeValueCoin(emptyPosition, rowCoordinate, columnCoordinate);
+    if (player2.isPositionInBagMills(rowCoordinate, columnCoordinate)) {
+        player2.removeMillWhenCoinPositionIs(rowCoordinate + ',' + columnCoordinate);
+    }
     console.clear();
     console.log(grid.showGrid());
 
