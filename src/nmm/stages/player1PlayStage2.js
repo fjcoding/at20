@@ -1,8 +1,8 @@
 export function player1PlayStage2(prompt, grid, player1, player2, emptyPosition, rule1) {
     console.clear();
     console.log(grid.showGrid());
-    let coins =  player1.numberCoinsToPlay - player1.numberCoinsRemoved;
-    console.log('\nPlayer ' + player1.colorPlayer + ' turn. (' + coins + ' coins to play)');
+    let coins =  9 - player1.numberCoinsRemoved;
+    console.log('\nPlayer ' + player1.colorPlayer + ' turn. (' + coins + ' coins to move)');
     console.log('Select a coin to move');
     let rowCoordinate = parseInt(prompt('Enter the row coordinate '));
     let columnCoordinate = parseInt(prompt('Enter the column coordinate '));
@@ -58,13 +58,14 @@ export function player1PlayStage2(prompt, grid, player1, player2, emptyPosition,
             console.log(grid.showGrid());
             console.log('Delete a coin...');
             let posRowDelete = parseInt(prompt('Enter the row coordinate '));
-            let posColDelete = parseInt(prompt('Enter the row coordinate '));
-            while (!(player2.checkOwnCoin(grid.getSymbolCoinFromGrid(posRowDelete, posColDelete)))) {
+            let posColDelete = parseInt(prompt('Enter the col coordinate '));
+            while (!(player2.checkOwnCoin(grid.getSymbolCoinFromGrid(posRowDelete, posColDelete))) ||
+                player2.isPositionInBagMills(posRowDelete, posColDelete)) {
                 console.clear();
                 console.log(grid.showGrid());
                 console.log('\nSelect another coin\n');
                 posRowDelete = parseInt(prompt('Enter the row coordinate '));
-                posColDelete = parseInt(prompt('Enter the row coordinate '));
+                posColDelete = parseInt(prompt('Enter the col coordinate '));
             }
             player2.updateNumberCoinsRemoved();
             grid.changeValueCoin(emptyPosition, posRowDelete, posColDelete);

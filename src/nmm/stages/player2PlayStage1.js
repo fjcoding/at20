@@ -31,13 +31,14 @@ export function player2PlayStage1(prompt, grid, player1, player2, emptyPosition)
             console.log(grid.showGrid());
             console.log('Delete a coin...');
             let posRowDelete = parseInt(prompt('Enter the row coordinate '));
-            let posColDelete = parseInt(prompt('Enter the row coordinate '));
-            while (!(player1.checkOwnCoin(grid.getSymbolCoinFromGrid(posRowDelete, posColDelete)))) {
+            let posColDelete = parseInt(prompt('Enter the col coordinate '));
+            while (!(player1.checkOwnCoin(grid.getSymbolCoinFromGrid(posRowDelete, posColDelete))) ||
+                player1.isPositionInBagMills(posRowDelete, posColDelete)) {
                 console.clear();
                 console.log(grid.showGrid());
                 console.log('\nSelect another coin\n');
                 posRowDelete = parseInt(prompt('Enter the row coordinate '));
-                posColDelete = parseInt(prompt('Enter the row coordinate '));
+                posColDelete = parseInt(prompt('Enter the col coordinate '));
             }
             grid.changeValueCoin(emptyPosition, posRowDelete, posColDelete);
             player1.updateNumberCoinsRemoved();
