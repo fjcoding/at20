@@ -69,6 +69,18 @@ export class Player {
         return coinPositionSelected;
     }
 
+    isPositionInBagMills(row, col) {
+        let result = false;
+        if ((row >= 0 && row < 10) && (col >= 0 && col < 10)) {
+            this.#bagMills.forEach(mill => {
+                if (mill.indexOf(row + ',' + col) != -1) {
+                    result = true;
+                }
+            });
+        }
+        return result;
+    }
+
     removeMillWhenCoinPositionIs(coinPosition) {
         let auxBagMills = [];
         let auxMill = [];

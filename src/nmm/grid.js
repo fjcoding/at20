@@ -47,23 +47,26 @@ export class Grid {
                 }
             }
         }
-        let mill = [];
-        this.checkDirectionMills(coinsPosition, mill, rowCoin + ',' + colCoin, horizontalMills);
-        this.checkDirectionMills(coinsPosition, mill, rowCoin + ',' + colCoin, verticalMills);
-        return mill;
+        let millH = [];
+        let millV = [];
+        this.checkDirectionMills(coinsPosition, millH, rowCoin + ',' + colCoin, horizontalMills);
+        this.checkDirectionMills(coinsPosition, millV, rowCoin + ',' + colCoin, verticalMills);
+        return [millH, millV];
     }
 
     checkDirectionMills(coinsPosition, mill, posCoin, directionMills) {
         let countCoins;
-        for (let hMill in directionMills) {
+        for (let dMill in directionMills) {
             countCoins = 0;
             coinsPosition.forEach(position => {
-                if (directionMills[hMill].indexOf(position) != -1) {
+                if (directionMills[dMill].indexOf(position) != -1) {
                     countCoins++;
                 }
             });
-            if (countCoins == 3 && directionMills[hMill].indexOf(posCoin) != -1) {
-                mill.push(directionMills[hMill]);
+            if (countCoins == 3 && directionMills[dMill].indexOf(posCoin) != -1) {
+                directionMills[dMill].forEach(position => {
+                    mill.push(position);
+                });
             }
         }
     }
